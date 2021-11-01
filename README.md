@@ -8,6 +8,7 @@ This is the web, android and ios project for the `unnamed` application.
 - [Pub Dev: Official Flutter & Dart package repository](https://pub.dev)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 - [CodeLab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Example Application: Contains common layouts (bad state management)](https://github.com/darius-calugar/flutter-presentation-project)
 
 # Project Information
 
@@ -28,7 +29,7 @@ These credentials would ideally be *hardcoded* into the database, so that they a
 
 ### IDE setup
 
-- Make sure the dart max line length to **120** from the IDE settings
+- Make sure the dart max line length to **80** from the IDE settings
 - Auto-reformat (`Ctrl+Alt+L`) should be used as often as possible when writing Flutter code
 
 ### File Structure

@@ -2,36 +2,47 @@ import 'package:flutter/material.dart';
 
 class ThemeConfig extends InheritedWidget {
   final Widget child;
-  final Brightness _brightness;
-  final Color _primaryColor;
-  final Color _primaryColorVariant;
-  final Color _onPrimaryColor;
-  final Color _secondaryColor;
-  final Color _secondaryColorVariant;
-  final Color _onSecondaryColor;
-  final Color _backgroundColor;
-  final Color _onBackgroundColor;
-  final Color _surfaceColor;
-  final Color _onSurfaceColor;
-  final Color _errorColor;
-  final Color _onErrorColor;
+
+  // Colors
+  final Brightness brightness;
+  final Color primaryColor;
+  final Color primaryColorVariant;
+  final Color onPrimaryColor;
+  final Color secondaryColor;
+  final Color secondaryColorVariant;
+  final Color onSecondaryColor;
+  final Color backgroundColor;
+  final Color onBackgroundColor;
+  final Color surfaceColor;
+  final Color onSurfaceColor;
+  final Color errorColor;
+  final Color onErrorColor;
+
+  // Sizes
+  final double buttonHeight = 40;
+  final double appMargin = 16;
+  final double smallestSpacing = 4;
+  final double smallSpacing = 8;
+  final double mediumSpacing = 16;
+  final double largeSpacing = 32;
+  final double largestSpacing = 64;
 
   ThemeConfig({
     Key? key,
     required this.child,
-  })  : _brightness = Brightness.light,
-        _primaryColor = const Color(0xFFFFAE00),
-        _primaryColorVariant = const Color(0xFFC3890B),
-        _onPrimaryColor = const Color(0xFFFFFFFF),
-        _secondaryColor = const Color(0xFF00B7FF),
-        _secondaryColorVariant = const Color(0xFF1179A9),
-        _onSecondaryColor = const Color(0xFFFFFFFF),
-        _backgroundColor = const Color(0xFFF0F0F0),
-        _onBackgroundColor = const Color(0xFF333333),
-        _surfaceColor = const Color(0xFFFFFFFF),
-        _onSurfaceColor = const Color(0xFF333333),
-        _errorColor = const Color(0xFFF87878),
-        _onErrorColor = const Color(0xFFF51B1B),
+  })  : brightness = Brightness.light,
+        primaryColor = const Color(0xFFFFAE00),
+        primaryColorVariant = const Color(0xFFC3890B),
+        onPrimaryColor = const Color(0xFFFFFFFF),
+        secondaryColor = const Color(0xFF00B7FF),
+        secondaryColorVariant = const Color(0xFF1179A9),
+        onSecondaryColor = const Color(0xFFFFFFFF),
+        backgroundColor = const Color(0xFFF0F0F0),
+        onBackgroundColor = const Color(0xFF333333),
+        surfaceColor = const Color(0xFFFFFFFF),
+        onSurfaceColor = const Color(0xFF333333),
+        errorColor = const Color(0xFFF87878),
+        onErrorColor = const Color(0xFFF51B1B),
         super(key: key, child: child);
 
   static ThemeConfig? of(BuildContext context) {
@@ -43,19 +54,19 @@ class ThemeConfig extends InheritedWidget {
 
   ThemeData buildThemeData() => ThemeData.from(
         colorScheme: ColorScheme(
-          brightness: _brightness,
-          primary: _primaryColor,
-          primaryVariant: _primaryColorVariant,
-          onPrimary: _onPrimaryColor,
-          secondary: _secondaryColor,
-          secondaryVariant: _secondaryColorVariant,
-          onSecondary: _onSecondaryColor,
-          background: _backgroundColor,
-          onBackground: _onBackgroundColor,
-          surface: _surfaceColor,
-          onSurface: _onSurfaceColor,
-          error: _errorColor,
-          onError: _onErrorColor,
+          brightness: brightness,
+          primary: primaryColor,
+          primaryVariant: primaryColorVariant,
+          onPrimary: onPrimaryColor,
+          secondary: secondaryColor,
+          secondaryVariant: secondaryColorVariant,
+          onSecondary: onSecondaryColor,
+          background: backgroundColor,
+          onBackground: onBackgroundColor,
+          surface: surfaceColor,
+          onSurface: onSurfaceColor,
+          error: errorColor,
+          onError: onErrorColor,
         ),
       ).copyWith(
         inputDecorationTheme: const InputDecorationTheme(filled: true),
