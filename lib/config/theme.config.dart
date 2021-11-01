@@ -58,6 +58,7 @@ class ThemeConfig extends InheritedWidget {
           onError: _onErrorColor,
         ),
       ).copyWith(
+        inputDecorationTheme: const InputDecorationTheme(filled: true),
         cardTheme: CardTheme(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),

@@ -10,7 +10,8 @@ GetIt inject = GetIt.instance;
 
 void setupDependencyInjection(AppConfig configuredApp) async {
   // Core
-  inject.registerLazySingleton(() async => await SharedPreferences.getInstance());
+  inject
+      .registerLazySingleton(() async => await SharedPreferences.getInstance());
   inject.registerLazySingleton(() => dioInstance(configuredApp));
 
   // Services

@@ -54,9 +54,9 @@ Suggested file structure:
         - **screens/'screen_name'.screen.dart**
         - **widgets/'widget_name'.widget.dart**
         - **utils/'util_name'.util.dart**
-    - **test/'test_name'.test.dart**
-    - **pubspec.yaml** - package config file
-    - **pubspec.lock** - package version lock file (not modified directly)
+- **test/'test_name'.test.dart**
+- **pubspec.yaml** - package config file
+- **pubspec.lock** - package version lock file (not modified directly)
 
 # Version Control
 
