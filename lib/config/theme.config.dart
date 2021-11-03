@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class ThemeConfig extends InheritedWidget {
@@ -31,7 +33,7 @@ class ThemeConfig extends InheritedWidget {
     Key? key,
     required this.child,
   })  : brightness = Brightness.light,
-        primaryColor = const Color(0xFFFFAE00),
+        primaryColor = const Color(0xFF6200EA),
         primaryColorVariant = const Color(0xFFC3890B),
         onPrimaryColor = const Color(0xFFFFFFFF),
         secondaryColor = const Color(0xFF00B7FF),
@@ -70,6 +72,7 @@ class ThemeConfig extends InheritedWidget {
         ),
       ).copyWith(
         inputDecorationTheme: const InputDecorationTheme(filled: true),
+        dividerTheme: DividerThemeData(color: Color.fromRGBO(153, 153, 153, 1)),
         cardTheme: CardTheme(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),

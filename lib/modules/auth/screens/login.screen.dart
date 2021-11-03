@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/modules/auth/widgets/login_hello_world.widget.dart';
-import 'package:project/modules/widgets/login.widget.dart';
+import 'package:project/modules/auth/widgets/login.widget.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String route = '/login';

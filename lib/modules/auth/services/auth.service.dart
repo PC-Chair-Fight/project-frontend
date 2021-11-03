@@ -14,8 +14,13 @@ class AuthService {
     return _dio;
   }
 
-// TODO - Implement API calls
-// Use Dio for API calls
+  Future<bool> login(String email, String password) {
+    return initializeDio().post("public/login", data: {email, password}).then((res) {
+      //here we will set the auth token/res
+      return true;
+    });
+  }
+  // Use Dio for API calls
 // Example:
 // Future<RESPONSE_MODEL> login(REQUEST_MODEL) {
 //     return initializeDio()

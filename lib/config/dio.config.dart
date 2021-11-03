@@ -12,6 +12,8 @@ Dio dioInstance(AppConfig configuredApp) {
     connectTimeout: 5000,
     receiveTimeout: 5000,
     sendTimeout: 5000,
+    //Will be changed
+    baseUrl: 'mockapi:5000/'
   ));
 
   dio.interceptors.addAll([
