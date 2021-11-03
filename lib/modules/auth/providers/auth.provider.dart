@@ -13,22 +13,24 @@ class AuthProvider extends AppProvider {
   bool loading = false;
   String? error = null;
   AuthService authService = inject.get<AuthService>();
-  
+
   Future<void> login(String email, String password) {
     loading = true;
     error = null;
-    super.notify('Starting authentication', notificationType: NotificationType.Start);
+    super.notify('Starting authentication',
+        notificationType: NotificationType.Start);
 
     return authService.login(email, password).then((res) {
       //here we will set the auth token
       authToken = 'authToken';
       loading = false;
-      super.notify('Authentication successful', notificationType: NotificationType.Success);
+      super.notify('Authentication successful',
+          notificationType: NotificationType.Success);
     }).catchError((err) {
       error = err;
       loading = false;
-      super.notify('Authentication failed', notificationType: NotificationType.Failure);
+      super.notify('Authentication failed',
+          notificationType: NotificationType.Failure);
     });
   }
-
 }

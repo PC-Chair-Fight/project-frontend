@@ -13,7 +13,6 @@ class Login extends StatefulWidget {
 }
 
 class LoginState extends State<Login> {
-
   final _formKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
@@ -31,11 +30,12 @@ class LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-
     final AuthProvider _authProvider = Provider.of<AuthProvider>(context);
 
     void login() {
-      _authProvider.login(emailController.value.text, passwordController.value.text).whenComplete(() {
+      _authProvider
+          .login(emailController.value.text, passwordController.value.text)
+          .whenComplete(() {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(_authProvider.error ?? 'Authentication successful'),
@@ -44,6 +44,7 @@ class LoginState extends State<Login> {
         );
       });
     }
+
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
@@ -60,7 +61,9 @@ class LoginState extends State<Login> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(label: Text('Email'), prefixIcon: Icon(Icons.alternate_email))),
+                decoration: InputDecoration(
+                    label: Text('Email'),
+                    prefixIcon: Icon(Icons.alternate_email))),
             SizedBox(height: 16),
             TextFormField(
               controller: passwordController,
@@ -71,7 +74,8 @@ class LoginState extends State<Login> {
                 }
                 return null;
               },
-              decoration: InputDecoration(label: Text('Password'), prefixIcon: Icon(Icons.password)),
+              decoration: InputDecoration(
+                  label: Text('Password'), prefixIcon: Icon(Icons.password)),
             ),
             SizedBox(height: 64),
             SizedBox(

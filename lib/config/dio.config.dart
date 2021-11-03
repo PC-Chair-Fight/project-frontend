@@ -6,15 +6,14 @@ import 'package:project/core/interceptors/auth_token.interceptor.dart';
 
 Dio dioInstance(AppConfig configuredApp) {
   final dio = Dio(BaseOptions(
-    headers: {
-      Headers.contentTypeHeader: 'application/json',
-    },
-    connectTimeout: 5000,
-    receiveTimeout: 5000,
-    sendTimeout: 5000,
-    //Will be changed
-    baseUrl: 'mockapi:5000/'
-  ));
+      headers: {
+        Headers.contentTypeHeader: 'application/json',
+      },
+      connectTimeout: 5000,
+      receiveTimeout: 5000,
+      sendTimeout: 5000,
+      //Will be changed
+      baseUrl: 'mockapi:5000/'));
 
   dio.interceptors.addAll([
     AuthTokenInterceptor(),
