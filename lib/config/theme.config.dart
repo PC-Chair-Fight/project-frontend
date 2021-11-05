@@ -19,7 +19,8 @@ class ThemeConfig extends InheritedWidget {
   final Color onSurfaceColor;
   final Color errorColor;
   final Color onErrorColor;
-
+  final Color dividerColor;
+  final Color onSuccessColor;
   // Sizes
   final double buttonHeight = 40;
   final double appMargin = 16;
@@ -28,7 +29,6 @@ class ThemeConfig extends InheritedWidget {
   final double mediumSpacing = 16;
   final double largeSpacing = 32;
   final double largestSpacing = 64;
-
   ThemeConfig({
     Key? key,
     required this.child,
@@ -45,6 +45,8 @@ class ThemeConfig extends InheritedWidget {
         onSurfaceColor = const Color(0xFF333333),
         errorColor = const Color(0xFFF87878),
         onErrorColor = const Color(0xFFF51B1B),
+        onSuccessColor = Colors.green,
+        dividerColor = Color.fromRGBO(153, 153, 153, 1),
         super(key: key, child: child);
 
   static ThemeConfig? of(BuildContext context) {
@@ -72,7 +74,7 @@ class ThemeConfig extends InheritedWidget {
         ),
       ).copyWith(
         inputDecorationTheme: const InputDecorationTheme(filled: true),
-        dividerTheme: DividerThemeData(color: Color.fromRGBO(153, 153, 153, 1)),
+        dividerColor: dividerColor,
         cardTheme: CardTheme(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),

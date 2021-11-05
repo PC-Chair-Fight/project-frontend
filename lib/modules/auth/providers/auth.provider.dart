@@ -12,7 +12,7 @@ class AuthProvider extends AppProvider {
 
   String? authToken = null;
   bool loading = false;
-  String? error = null;
+  Exception? error = null;
   AuthService authService = inject.get<AuthService>();
 
   Future<void> login(String email, String password) {
@@ -28,10 +28,10 @@ class AuthProvider extends AppProvider {
     }).catchError((err) {
       switch (err.runtimeType) {
         case (UnauthorizedException):
-          error = 'Wrong email or password';
+          error = err;
           break;
         default:
-          error = 'Oops. An error occurred';
+          error = err;
       }
       loading = false;
       notify('login', notificationType: NotificationType.Failure);

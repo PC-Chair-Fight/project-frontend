@@ -1,14 +1,6 @@
+import 'package:project/core/exceptions/baseException.dart';
 
-class UnauthorizedException implements Exception {
-
-  String _message = '';
-
-  UnauthorizedException([String message = 'Unauthorized for that action']) {
-    this._message = message;
-  }
-
-  @override
-  String toString() {
-    return _message;
-  }
+class UnauthorizedException extends BaseException {
+  UnauthorizedException([String message = 'Unauthorized for that action'])
+      : super(message);
 }

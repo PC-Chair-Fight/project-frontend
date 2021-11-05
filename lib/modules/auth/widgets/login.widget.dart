@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/config/theme.config.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
 import 'package:provider/provider.dart';
 
@@ -32,12 +33,19 @@ class LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider = Provider.of<AuthProvider>(context);
-
     void login() {
-      _authProvider.login(emailController.value.text, passwordController.value.text).whenComplete(() {
+      _authProvider
+          .login(emailController.value.text, passwordController.value.text)
+          .whenComplete(() {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(_authProvider.error ?? 'Authentication successful'),
+            backgroundColor: _authProvider.error == null
+                ? Colors.green
+                : Theme.of(context).colorScheme.onError,
+            content: Text(
+              _authProvider.error?.toString() ?? 'Ok',
+              textAlign: TextAlign.center,
+            ),
             duration: Duration(seconds: 1),
           ),
         );
@@ -50,7 +58,13 @@ class LoginState extends State<Login> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              'Welcome',
+              style: TextStyle(fontSize: 40),
+            ),
+            SizedBox(height: 64),
             TextFormField(
                 controller: emailController,
                 // The validator receives the text that the user has entered.
@@ -60,9 +74,14 @@ class LoginState extends State<Login> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(label: Text('Email'), prefixIcon: Icon(Icons.alternate_email))),
+                decoration: InputDecoration(
+                    label: Text('Email'),
+                    prefixIcon: Icon(Icons.alternate_email))),
             SizedBox(height: 16),
             TextFormField(
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
               controller: passwordController,
               // The validator receives the text that the user has entered.
               validator: (value) {
@@ -71,7 +90,8 @@ class LoginState extends State<Login> {
                 }
                 return null;
               },
-              decoration: InputDecoration(label: Text('Password'), prefixIcon: Icon(Icons.password)),
+              decoration: InputDecoration(
+                  label: Text('Password'), prefixIcon: Icon(Icons.password)),
             ),
             SizedBox(height: 64),
             SizedBox(

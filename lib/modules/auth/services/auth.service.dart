@@ -17,13 +17,14 @@ class AuthService {
   }
 
   Future<bool> login(String email, String password) {
-    return initializeDio().post("public/login", data: {email, password}).then((res) {
+    return initializeDio()
+        .post("public/login", data: {email, password}).then((res) {
       //here we will set the auth token/res
       return true;
     }).catchError((dioError) {
       switch (dioError.runtimeType) {
         case DioError:
-          switch (dioError.response!.statusCode) {
+          switch (dioError.response?.statusCode) {
             case (404):
               throw UnauthorizedException();
             default:

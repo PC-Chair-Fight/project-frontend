@@ -1,14 +1,6 @@
+import 'package:project/core/exceptions/baseException.dart';
 
-class UnexpectedException implements Exception {
-
-  String _message = '';
-
-  UnexpectedException([String message = 'An unexpected error occurred']) {
-    this._message = message;
-  }
-
-  @override
-  String toString() {
-    return _message;
-  }
+class UnexpectedException extends BaseException {
+  UnexpectedException([String message = 'An unexpected error occurred'])
+      : super(message);
 }
