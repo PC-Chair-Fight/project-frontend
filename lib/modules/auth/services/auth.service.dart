@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:project/config/inject.config.dart';
+import 'package:project/core/exceptions/unauthorized.dart';
+import 'package:project/core/exceptions/unexpected.dart';
 
 class AuthService {
   final _dio = inject.get<Dio>();
@@ -15,13 +17,24 @@ class AuthService {
   }
 
   Future<bool> login(String email, String password) {
-    return initializeDio()
-        .post("public/login", data: {email, password}).then((res) {
+    return initializeDio().post("public/login", data: {email, password}).then((res) {
       //here we will set the auth token/res
       return true;
+    }).catchError((dioError) {
+      switch (dioError.runtimeType) {
+        case DioError:
+          switch (dioError.response!.statusCode) {
+            case (404):
+              throw UnauthorizedException();
+            default:
+              throw UnexpectedException();
+          }
+        default:
+          throw UnexpectedException();
+      }
     });
   }
-  // Use Dio for API calls
+// Use Dio for API calls
 // Example:
 // Future<RESPONSE_MODEL> login(REQUEST_MODEL) {
 //     return initializeDio()

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
+import 'package:project/core/exceptions/unauthorized.dart';
 import 'package:project/modules/auth/services/auth.service.dart';
 
 class AuthProvider extends AppProvider {
@@ -17,20 +18,23 @@ class AuthProvider extends AppProvider {
   Future<void> login(String email, String password) {
     loading = true;
     error = null;
-    super.notify('Starting authentication',
-        notificationType: NotificationType.Start);
+    notify('login', notificationType: NotificationType.Start);
 
     return authService.login(email, password).then((res) {
       //here we will set the auth token
       authToken = 'authToken';
       loading = false;
-      super.notify('Authentication successful',
-          notificationType: NotificationType.Success);
+      notify('login', notificationType: NotificationType.Success);
     }).catchError((err) {
-      error = err;
+      switch (err.runtimeType) {
+        case (UnauthorizedException):
+          error = 'Wrong email or password';
+          break;
+        default:
+          error = 'Oops. An error occurred';
+      }
       loading = false;
-      super.notify('Authentication failed',
-          notificationType: NotificationType.Failure);
+      notify('login', notificationType: NotificationType.Failure);
     });
   }
 }
