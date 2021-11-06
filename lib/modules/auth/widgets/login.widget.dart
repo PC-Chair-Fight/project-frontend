@@ -43,7 +43,7 @@ class LoginState extends State<Login> {
                 ? ThemeConfig.of(context)!.successColor
                 : ThemeConfig.of(context)!.errorColor,
             content: Text(
-              _authProvider.error?.toString() ?? 'Ok',
+              _authProvider.error?.toString() ?? 'Authentication successful',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: _authProvider.error == null
