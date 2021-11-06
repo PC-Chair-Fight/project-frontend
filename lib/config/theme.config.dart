@@ -20,7 +20,9 @@ class ThemeConfig extends InheritedWidget {
   final Color errorColor;
   final Color onErrorColor;
   final Color dividerColor;
+  final Color successColor;
   final Color onSuccessColor;
+
   // Sizes
   final double buttonHeight = 40;
   final double appMargin = 16;
@@ -29,6 +31,7 @@ class ThemeConfig extends InheritedWidget {
   final double mediumSpacing = 16;
   final double largeSpacing = 32;
   final double largestSpacing = 64;
+
   ThemeConfig({
     Key? key,
     required this.child,
@@ -45,6 +48,7 @@ class ThemeConfig extends InheritedWidget {
         onSurfaceColor = const Color(0xFF333333),
         errorColor = const Color(0xFFF87878),
         onErrorColor = const Color(0xFFF51B1B),
+        successColor = Colors.green.shade200,
         onSuccessColor = Colors.green,
         dividerColor = Color.fromRGBO(153, 153, 153, 1),
         super(key: key, child: child);

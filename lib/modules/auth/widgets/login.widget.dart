@@ -40,13 +40,18 @@ class LoginState extends State<Login> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: _authProvider.error == null
-                ? Colors.green
-                : Theme.of(context).colorScheme.onError,
+                ? ThemeConfig.of(context)!.successColor
+                : ThemeConfig.of(context)!.errorColor,
             content: Text(
               _authProvider.error?.toString() ?? 'Ok',
               textAlign: TextAlign.center,
+              style: TextStyle(
+                color: _authProvider.error == null
+                    ? ThemeConfig.of(context)!.onSuccessColor
+                    : ThemeConfig.of(context)!.onErrorColor,
+              ),
             ),
-            duration: Duration(seconds: 1),
+            duration: Duration(seconds: 4),
           ),
         );
       });
