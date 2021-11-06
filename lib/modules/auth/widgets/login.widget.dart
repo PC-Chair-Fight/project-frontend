@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
-import 'package:project/modules/shared/utils/validators.urils.dart';
+import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:provider/provider.dart';
 
 // Define a custom Form widget.

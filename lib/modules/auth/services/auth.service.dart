@@ -16,11 +16,11 @@ class AuthService {
     return _dio;
   }
 
-  Future<bool> login(String email, String password) {
+  Future<String> login(String email, String password) {
     return initializeDio()
         .post("public/login", data: {email, password}).then((res) {
       //here we will set the auth token/res
-      return true;
+      return '';
     }).catchError((dioError) {
       switch (dioError.runtimeType) {
         case DioError:
