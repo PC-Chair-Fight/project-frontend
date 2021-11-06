@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:project/config/inject.config.dart';
-import 'package:project/core/exceptions/unauthorized.dart';
-import 'package:project/core/exceptions/unexpected.dart';
+import 'package:project/core/exceptions/unauthorized.exception.dart';
+import 'package:project/core/exceptions/unexpected.exception.dart';
 
 class AuthService {
   final _dio = inject.get<Dio>();

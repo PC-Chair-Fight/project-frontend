@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
+import 'package:project/modules/shared/utils/validators.urils.dart';
 import 'package:provider/provider.dart';
 
 // Define a custom Form widget.
@@ -19,8 +20,6 @@ class LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  //
-
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
@@ -33,6 +32,7 @@ class LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider = Provider.of<AuthProvider>(context);
+
     void login() {
       _authProvider
           .login(emailController.value.text, passwordController.value.text)
@@ -63,44 +63,37 @@ class LoginState extends State<Login> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               'Welcome',
-              style: TextStyle(fontSize: 40),
+              style: TextStyle(fontSize: ThemeConfig.of(context)!.headline1),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(height: 64),
+            SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
             TextFormField(
                 controller: emailController,
                 // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    UtilValidators.required(value, 'Please enter your email'),
                 decoration: InputDecoration(
                     label: Text('Email'),
                     prefixIcon: Icon(Icons.alternate_email))),
-            SizedBox(height: 16),
+            SizedBox(height: ThemeConfig.of(context)!.largeSpacing),
             TextFormField(
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
               controller: passwordController,
               // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
-                }
-                return null;
-              },
+              validator: (value) =>
+                  UtilValidators.required(value, 'Please enter your password'),
               decoration: InputDecoration(
                   label: Text('Password'), prefixIcon: Icon(Icons.password)),
             ),
-            SizedBox(height: 64),
+            SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
             SizedBox(
-              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   // Validate returns true if the form is valid, or false otherwise.
@@ -111,39 +104,35 @@ class LoginState extends State<Login> {
                 child: const Text('Login'),
               ),
             ),
-            SizedBox(height: 32),
+            SizedBox(height: ThemeConfig.of(context)!.largeSpacing),
             SizedBox(
-                width: double.infinity,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(child: Divider()),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('OR'),
-                    ),
-                    Expanded(child: Divider())
-                  ],
-                )),
-            SizedBox(height: 32),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: Divider()),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text('OR'),
+                ),
+                Expanded(child: Divider())
+              ],
+            )),
+            SizedBox(height: ThemeConfig.of(context)!.largeSpacing),
             SizedBox(
-              width: double.infinity,
               child: ElevatedButton(
                 onPressed: null,
                 child: const Text('Register'),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
             SizedBox(
-              width: double.infinity,
               child: ElevatedButton(
                 onPressed: null,
                 child: const Text('Continue with Google'),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
             SizedBox(
-              width: double.infinity,
               child: ElevatedButton(
                 onPressed: null,
                 child: const Text('Continue with Facebook'),

@@ -1,4 +1,4 @@
-import 'package:project/core/exceptions/baseException.dart';
+import 'package:project/core/exceptions/base.exception.dart';
 
 class UnauthorizedException extends BaseException {
   UnauthorizedException([String message = 'Unauthorized for that action'])

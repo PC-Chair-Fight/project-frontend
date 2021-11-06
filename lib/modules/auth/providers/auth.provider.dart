@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
-import 'package:project/core/exceptions/unauthorized.dart';
+import 'package:project/core/exceptions/unauthorized.exception.dart';
 import 'package:project/modules/auth/services/auth.service.dart';
 
 class AuthProvider extends AppProvider {

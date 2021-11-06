@@ -24,6 +24,7 @@ class ThemeConfig extends InheritedWidget {
   final Color onSuccessColor;
 
   // Sizes
+  final double headline1 = 40;
   final double buttonHeight = 40;
   final double appMargin = 16;
   final double smallestSpacing = 4;
