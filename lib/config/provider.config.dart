@@ -14,7 +14,8 @@ class ProviderConfig extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AuthProvider>(create: (context) => AuthProvider(context)),
+        ChangeNotifierProvider<AuthProvider>(
+            create: (context) => AuthProvider(context)),
       ],
       child: child,
     );
