@@ -17,8 +17,8 @@ class AuthService {
   }
 
   Future<String> login(String email, String password) {
-    return initializeDio()
-        .post("public/login", data: {email, password}).then((res) {
+    return initializeDio().post("public/login",
+        data: {'email': email, 'password': password}).then((res) {
       //here we will set the auth token/res
       return '';
     }).catchError((dioError) {
@@ -28,6 +28,31 @@ class AuthService {
             case (404):
               throw UnauthorizedException();
             default:
+              throw UnexpectedException();
+          }
+        default:
+          throw UnexpectedException();
+      }
+    });
+  }
+
+  Future<void> register(
+      String username, String email, DateTime dateOfBirth, String password) {
+    return initializeDio().post('/public/register', data: {
+      'username': username,
+      'email': email,
+      'password': password,
+      'dateOfBirth': dateOfBirth.toIso8601String()
+    }).catchError((dioError) {
+      // no need to parse a result, the method not throwing means the user was registered
+      switch (dioError.runtimeType) {
+        case DioError:
+          switch (dioError.response?.statusCode) {
+            case (404):
+              throw UnauthorizedException();
+            default:
+              /* TODO parse additional errors that the backend may send
+                 e.g. email already exists */
               throw UnexpectedException();
           }
         default:
