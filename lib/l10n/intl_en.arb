@@ -10,7 +10,7 @@
   "Exception_invalid_login_credentials": "Invalid email or password",
   "@LoginScreen": {
   },
-  "LoginScreen_welcome": "Welcome",
+  "LoginScreen_title": "PC Project",
   "LoginScreen_email_input_label": "Email",
   "LoginScreen_password_input_label": "Password",
   "LoginScreen_login_button": "Login",

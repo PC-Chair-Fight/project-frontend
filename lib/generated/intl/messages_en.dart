@@ -45,11 +45,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Register"),
         "LoginScreen_success":
             MessageLookupByLibrary.simpleMessage("Authentication successful"),
+        "LoginScreen_title": MessageLookupByLibrary.simpleMessage("PC Project"),
         "LoginScreen_validator_email_required":
             MessageLookupByLibrary.simpleMessage("Please enter an email"),
         "LoginScreen_validator_password_required":
             MessageLookupByLibrary.simpleMessage("Please enter a password"),
-        "LoginScreen_welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "_locale": MessageLookupByLibrary.simpleMessage("en")
       };
 }

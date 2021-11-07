@@ -100,11 +100,11 @@ class S {
     );
   }
 
-  /// `Welcome`
-  String get LoginScreen_welcome {
+  /// `PC Project`
+  String get LoginScreen_title {
     return Intl.message(
-      'Welcome',
-      name: 'LoginScreen_welcome',
+      'PC Project',
+      name: 'LoginScreen_title',
       desc: '',
       args: [],
     );
