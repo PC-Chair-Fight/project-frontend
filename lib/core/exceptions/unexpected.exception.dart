@@ -1,6 +1,6 @@
 import 'package:project/core/exceptions/base.exception.dart';
+import 'package:project/generated/l10n.dart';
 
 class UnexpectedException extends BaseException {
-  UnexpectedException([String message = 'An unexpected error occurred'])
-      : super(message);
+  UnexpectedException() : super(S.current.Exception_unexpected);
 }

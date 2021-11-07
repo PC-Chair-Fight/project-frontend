@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:project/config/inject.config.dart';
-import 'package:project/core/exceptions/unauthorized.exception.dart';
+import 'package:project/core/exceptions/connection_timed_out.exception.dart';
+import 'package:project/core/exceptions/invalid_login_cedentials.exception.dart';
 import 'package:project/core/exceptions/unexpected.exception.dart';
 
 class AuthService {
@@ -19,14 +20,16 @@ class AuthService {
   Future<String> login(String email, String password) {
     return initializeDio()
         .post("public/login", data: {email, password}).then((res) {
-      //here we will set the auth token/res
+      // TODO - here we will set the auth token/res
       return '';
     }).catchError((dioError) {
       switch (dioError.runtimeType) {
         case DioError:
           switch (dioError.response?.statusCode) {
+            case null:
+              throw ConnectionTimedOutException();
             case (404):
-              throw UnauthorizedException();
+              throw InvalidLoginCredentials();
             default:
               throw UnexpectedException();
           }
@@ -35,15 +38,4 @@ class AuthService {
       }
     });
   }
-// Use Dio for API calls
-// Example:
-// Future<RESPONSE_MODEL> login(REQUEST_MODEL) {
-//     return initializeDio()
-//         .get('/auth/login', data: {...}, ...)
-//         .then((response) {...}) // Parse the response data into the appropriate response model
-//         .catchError(
-//             (error) {...},  // Parse the DioError into the appropriate app exception
-//             test: (error) error is DioError
-//         );
-// }
 }

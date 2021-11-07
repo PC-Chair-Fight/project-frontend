@@ -1,0 +1,25 @@
+{
+  "_locale": "en",
+  "@App": {
+  },
+  "App_title": "PC Project",
+  "@Exception": {
+  },
+  "Exception_unexpected": "Unexpected error... Please try again later",
+  "Exception_connection_timed_out": "Connection timed out... Check your internet connection and try again",
+  "Exception_invalid_login_credentials": "Invalid email or password",
+  "@LoginScreen": {
+  },
+  "LoginScreen_welcome": "Welcome",
+  "LoginScreen_email_input_label": "Email",
+  "LoginScreen_password_input_label": "Password",
+  "LoginScreen_login_button": "Login",
+  "LoginScreen_or": "OR",
+  "LoginScreen_register_button": "Register",
+  "LoginScreen_google_button": "Continue with Google",
+  "LoginScreen_facebook_button": "Continue with Facebook",
+  "LoginScreen_validator_email_required": "Please enter an email",
+  "LoginScreen_validator_password_required": "Please enter a password",
+  "LoginScreen_success": "Authentication successful",
+  "LoginScreen_error_generic": "Please enter a password"
+}
