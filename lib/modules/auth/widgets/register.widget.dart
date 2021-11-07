@@ -14,31 +14,13 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
+  var _selectedDate = DateTime.now();
 
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final dateOfBirthController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
-  var _selectedDate = DateTime.now();
-
-  _selectDate(BuildContext context) async {
-    final now = DateTime.now();
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: _selectedDate,
-        firstDate: DateTime(now.year - 100, now.month, now.day),
-        lastDate: now);
-    if (picked != null && picked != _selectedDate)
-      setState(() {
-        _selectedDate = picked;
-
-        // TODO use format from intl when available
-        dateOfBirthController.text =
-            '${picked.toLocal().day}/${picked.toLocal().month}/${picked.toLocal().year}';
-      });
-  }
 
   @override
   void dispose() {
@@ -53,32 +35,6 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     final AuthProvider _authProvider = Provider.of<AuthProvider>(context);
-
-    register() {
-      _authProvider
-          .register(usernameController.value.text, emailController.value.text,
-              _selectedDate, passwordController.value.text)
-          .whenComplete(() {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: _authProvider.error == null
-                ? ThemeConfig.of(context)!.successColor
-                : ThemeConfig.of(context)!.errorColor,
-            content: Text(
-              _authProvider.error?.toString() ?? 'Account created',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: _authProvider.error == null
-                    ? ThemeConfig.of(context)!.onSuccessColor
-                    : ThemeConfig.of(context)!.onErrorColor,
-              ),
-            ),
-            duration: Duration(seconds: 4),
-          ),
-        );
-        if (_authProvider.error == null) Navigator.of(context).pop();
-      });
-    }
 
     return Form(
       key: _formKey,
@@ -165,7 +121,8 @@ class _RegisterState extends State<Register> {
             SizedBox(
               child: ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) register();
+                  if (_formKey.currentState!.validate())
+                    register(_authProvider);
                 },
                 child: const Text('Register'),
               ),
@@ -180,5 +137,48 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  _selectDate(BuildContext context) async {
+    final now = DateTime.now();
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: _selectedDate,
+        firstDate: DateTime(now.year - 100, now.month, now.day),
+        lastDate: now);
+    if (picked != null && picked != _selectedDate)
+      setState(() {
+        _selectedDate = picked;
+
+        // TODO use format from intl when available
+        dateOfBirthController.text =
+            '${picked.toLocal().day}/${picked.toLocal().month}/${picked.toLocal().year}';
+      });
+  }
+
+  register(AuthProvider authProvider) {
+    authProvider
+        .register(usernameController.value.text, emailController.value.text,
+            _selectedDate, passwordController.value.text)
+        .whenComplete(() {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: authProvider.error == null
+              ? ThemeConfig.of(context)!.successColor
+              : ThemeConfig.of(context)!.errorColor,
+          content: Text(
+            authProvider.error?.toString() ?? 'Account created',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: authProvider.error == null
+                  ? ThemeConfig.of(context)!.onSuccessColor
+                  : ThemeConfig.of(context)!.onErrorColor,
+            ),
+          ),
+          duration: Duration(seconds: 4),
+        ),
+      );
+      if (authProvider.error == null) Navigator.of(context).pop();
+    });
   }
 }
