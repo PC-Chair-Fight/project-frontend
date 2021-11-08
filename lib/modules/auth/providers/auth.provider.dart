@@ -38,4 +38,27 @@ class AuthProvider extends AppProvider {
       notify('login', notificationType: NotificationType.Failure);
     });
   }
+
+  Future<void> register(
+      String username, String email, DateTime dateOfBirth, String password) {
+    loading = true;
+    error = null;
+    notify('register', notificationType: NotificationType.Start);
+    return authService
+        .register(username, email, dateOfBirth, password)
+        .then((_) {
+      loading = false;
+      notify('register', notificationType: NotificationType.Success);
+    }).catchError((err) {
+      switch (err.runtimeType) {
+        case (UnauthorizedException):
+          error = err;
+          break;
+        default:
+          error = err;
+      }
+      loading = false;
+      notify('register', notificationType: NotificationType.Failure);
+    });
+  }
 }
