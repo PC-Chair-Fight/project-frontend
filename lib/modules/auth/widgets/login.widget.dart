@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
+import 'package:project/modules/job/screens/main.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:provider/provider.dart';
 
@@ -100,9 +101,10 @@ class LoginState extends State<Login> {
               child: ElevatedButton(
                 onPressed: () {
                   // Validate returns true if the form is valid, or false otherwise.
-                  if (_formKey.currentState!.validate()) {
-                    login();
-                  }
+                  // if (_formKey.currentState!.validate()) {
+                  //   login();
+                  // }
+                  Navigator.pushNamed(context, JobMainScreen.route);
                 },
                 child: const Text('Login'),
               ),
