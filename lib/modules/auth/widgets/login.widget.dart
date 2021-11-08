@@ -53,85 +53,62 @@ class LoginState extends State<Login> {
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
             Text(
-              S
-                  .of(context)
-                  .LoginScreen_title,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline4,
+              S.of(context).LoginScreen_title,
+              style: Theme.of(context).textTheme.headline4,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: ThemeConfig.of(context)!.largeSpacing),
             TextFormField(
-                controller: emailController,
-                validator: (value) =>
-                UtilValidators
-                    .guard(value)
-                    .required(S
-                    .of(context)
-                    .LoginScreen_validator_email_required)
-                    .message,
-                decoration: InputDecoration(
-                    label: Text(S
-                        .of(context)
-                        .LoginScreen_email_input_label),
-                    prefixIcon: Icon(Icons.alternate_email))),
+              controller: emailController,
+              validator: (value) => UtilValidators.guard(value)
+                  .required(S.of(context).LoginScreen_validator_email_required)
+                  .message,
+              decoration: InputDecoration(
+                label: Text(S.of(context).LoginScreen_email_input_label),
+                prefixIcon: Icon(Icons.alternate_email),
+              ),
+            ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
             TextFormField(
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
               controller: passwordController,
-              validator: (value) =>
-              UtilValidators
-                  .guard(value)
-                  .required(S
-                  .of(context)
-                  .LoginScreen_validator_password_required)
+              validator: (value) => UtilValidators.guard(value)
+                  .required(
+                      S.of(context).LoginScreen_validator_password_required)
                   .message,
               decoration: InputDecoration(
-                label: Text(S
-                    .of(context)
-                    .LoginScreen_password_input_label),
+                label: Text(S.of(context).LoginScreen_password_input_label),
+                prefixIcon: Icon(Icons.password),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
             SizedBox(
               child: ElevatedButton(
-                onPressed: () => login(authProvider),
-                child: Text(S
-                    .of(context)
-                    .LoginScreen_login_button),
+                onPressed: () => _login(authProvider),
+                child: Text(S.of(context).LoginScreen_login_button),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.largeSpacing),
             LabeledDivider(
-              label: Text(S
-                  .of(context)
-                  .LoginScreen_or),
+              label: Text(S.of(context).LoginScreen_or),
             ),
             SizedBox(height: ThemeConfig.of(context)!.largeSpacing),
-            child: OutlinedButton(
+            OutlinedButton(
               onPressed: () =>
                   Navigator.pushNamed(context, RegisterScreen.route),
-              child: const Text(S
-                  .of(context)
-                  .LoginScreen_register_button),
+              child: Text(S.of(context).LoginScreen_register_button),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
             ElevatedButton(
               onPressed: null,
-              child: Text(S
-                  .of(context)
-                  .LoginScreen_google_button),
+              child: Text(S.of(context).LoginScreen_google_button),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
             ElevatedButton(
               onPressed: null,
-              child: Text(S
-                  .of(context)
-                  .LoginScreen_facebook_button),
+              child: Text(S.of(context).LoginScreen_facebook_button),
             ),
           ],
         ),
@@ -139,7 +116,7 @@ class LoginState extends State<Login> {
     );
   }
 
-  void login(AuthProvider authProvider) {
+  void _login(AuthProvider authProvider) {
     if (_formKey.currentState?.validate() ?? false) {
       authProvider
           .login(emailController.value.text, passwordController.value.text)
@@ -150,9 +127,7 @@ class LoginState extends State<Login> {
                 ? ThemeConfig.of(context)!.successColor
                 : ThemeConfig.of(context)!.errorColor,
             content: Text(
-              authProvider.error?.message ?? S
-                  .of(context)
-                  .LoginScreen_success,
+              authProvider.error?.message ?? S.of(context).LoginScreen_success,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: authProvider.error == null

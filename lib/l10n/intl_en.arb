@@ -1,5 +1,5 @@
 {
-  "_locale": "en",
+  "@@locale": "en",
   "@App": {
   },
   "App_title": "PC Project",
@@ -21,5 +21,23 @@
   "LoginScreen_validator_email_required": "Please enter an email",
   "LoginScreen_validator_password_required": "Please enter a password",
   "LoginScreen_success": "Authentication successful",
-  "LoginScreen_error_generic": "Please enter a password"
+  "LoginScreen_error_generic": "Please enter a password",
+  "@RegisterScreen": {
+  },
+  "RegisterScreen_username_input_label": "Username",
+  "RegisterScreen_email_input_label": "Email",
+  "RegisterScreen_date_of_birth_input_label": "Date of birth",
+  "RegisterScreen_password_input_label": "Password",
+  "RegisterScreen_confirm_password_input_label": "Confirm password",
+  "RegisterScreen_register_button": "Register",
+  "RegisterScreen_back_to_login_button": "Back to login",
+  "RegisterScreen_username_required": "Please enter a username",
+  "RegisterScreen_email_required": "Please enter an email",
+  "RegisterScreen_date_of_birth_required": "Please enter a date of birth",
+  "RegisterScreen_password_required": "Please enter a password",
+  "RegisterScreen_password_too_short": "Password must contain at least 3 characters",
+  "RegisterScreen_password_no_special_characters": "Password must contain at least 1 special character",
+  "RegisterScreen_confirm_password_required": "Please confirm your password",
+  "RegisterScreen_confirm_password_does_not_match": "Passwords do not match",
+  "RegisterScreen_success": "Account created successfully"
 }

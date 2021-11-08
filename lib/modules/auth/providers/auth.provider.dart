@@ -3,7 +3,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
 import 'package:project/core/exceptions/base.exception.dart';
-import 'package:project/core/exceptions/connection_timed_out.exception.dart';
 import 'package:project/modules/auth/services/auth.service.dart';
 
 class AuthProvider extends AppProvider {
@@ -27,13 +26,7 @@ class AuthProvider extends AppProvider {
       loading = false;
       notify('login', notificationType: NotificationType.Success);
     }).catchError((err) {
-      switch (err.runtimeType) {
-        case (ConnectionTimedOutException):
-          error = err;
-          break;
-        default:
-          error = err;
-      }
+      err = err;
       loading = false;
       notify('login', notificationType: NotificationType.Failure);
     });
@@ -50,13 +43,7 @@ class AuthProvider extends AppProvider {
       loading = false;
       notify('register', notificationType: NotificationType.Success);
     }).catchError((err) {
-      switch (err.runtimeType) {
-        case (UnauthorizedException):
-          error = err;
-          break;
-        default:
-          error = err;
-      }
+      err = err;
       loading = false;
       notify('register', notificationType: NotificationType.Failure);
     });

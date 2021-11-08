@@ -50,16 +50,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `en`
-  String get _locale {
-    return Intl.message(
-      'en',
-      name: '_locale',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `PC Project`
   String get App_title {
     return Intl.message(
@@ -215,6 +205,166 @@ class S {
     return Intl.message(
       'Please enter a password',
       name: 'LoginScreen_error_generic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get RegisterScreen_username_input_label {
+    return Intl.message(
+      'Username',
+      name: 'RegisterScreen_username_input_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get RegisterScreen_email_input_label {
+    return Intl.message(
+      'Email',
+      name: 'RegisterScreen_email_input_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of birth`
+  String get RegisterScreen_date_of_birth_input_label {
+    return Intl.message(
+      'Date of birth',
+      name: 'RegisterScreen_date_of_birth_input_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get RegisterScreen_password_input_label {
+    return Intl.message(
+      'Password',
+      name: 'RegisterScreen_password_input_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get RegisterScreen_confirm_password_input_label {
+    return Intl.message(
+      'Confirm password',
+      name: 'RegisterScreen_confirm_password_input_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get RegisterScreen_register_button {
+    return Intl.message(
+      'Register',
+      name: 'RegisterScreen_register_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to login`
+  String get RegisterScreen_back_to_login_button {
+    return Intl.message(
+      'Back to login',
+      name: 'RegisterScreen_back_to_login_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a username`
+  String get RegisterScreen_username_required {
+    return Intl.message(
+      'Please enter a username',
+      name: 'RegisterScreen_username_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter an email`
+  String get RegisterScreen_email_required {
+    return Intl.message(
+      'Please enter an email',
+      name: 'RegisterScreen_email_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a date of birth`
+  String get RegisterScreen_date_of_birth_required {
+    return Intl.message(
+      'Please enter a date of birth',
+      name: 'RegisterScreen_date_of_birth_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a password`
+  String get RegisterScreen_password_required {
+    return Intl.message(
+      'Please enter a password',
+      name: 'RegisterScreen_password_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least 3 characters`
+  String get RegisterScreen_password_too_short {
+    return Intl.message(
+      'Password must contain at least 3 characters',
+      name: 'RegisterScreen_password_too_short',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least 1 special character`
+  String get RegisterScreen_password_no_special_characters {
+    return Intl.message(
+      'Password must contain at least 1 special character',
+      name: 'RegisterScreen_password_no_special_characters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your password`
+  String get RegisterScreen_confirm_password_required {
+    return Intl.message(
+      'Please confirm your password',
+      name: 'RegisterScreen_confirm_password_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get RegisterScreen_confirm_password_does_not_match {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'RegisterScreen_confirm_password_does_not_match',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account created successfully`
+  String get RegisterScreen_success {
+    return Intl.message(
+      'Account created successfully',
+      name: 'RegisterScreen_success',
       desc: '',
       args: [],
     );
