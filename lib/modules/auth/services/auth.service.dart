@@ -18,7 +18,7 @@ class AuthService {
   }
 
   Future<String> login(String email, String password) {
-    return initializeDio().post("public/login",
+    return initializeDio().post('public/login',
         data: {'email': email, 'password': password}).then((res) {
       //here we will set the auth token/res
       return '';
