@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
+import 'package:project/modules/auth/screens/register.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:provider/provider.dart';
 
@@ -75,8 +76,9 @@ class LoginState extends State<Login> {
             TextFormField(
                 controller: emailController,
                 // The validator receives the text that the user has entered.
-                validator: (value) =>
-                    UtilValidators.required(value, 'Please enter your email'),
+                validator: (value) => UtilValidators.guard(value)
+                    .required('Please enter your email')
+                    .message,
                 decoration: InputDecoration(
                     label: Text('Email'),
                     prefixIcon: Icon(Icons.alternate_email))),
@@ -87,8 +89,9 @@ class LoginState extends State<Login> {
               autocorrect: false,
               controller: passwordController,
               // The validator receives the text that the user has entered.
-              validator: (value) =>
-                  UtilValidators.required(value, 'Please enter your password'),
+              validator: (value) => UtilValidators.guard(value)
+                  .required('Please enter your password')
+                  .message,
               decoration: InputDecoration(
                   label: Text('Password'), prefixIcon: Icon(Icons.password)),
             ),
@@ -120,7 +123,8 @@ class LoginState extends State<Login> {
             SizedBox(height: ThemeConfig.of(context)!.largeSpacing),
             SizedBox(
               child: ElevatedButton(
-                onPressed: null,
+                onPressed: () =>
+                    Navigator.pushNamed(context, RegisterScreen.route),
                 child: const Text('Register'),
               ),
             ),
