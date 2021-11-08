@@ -1,12 +1,5 @@
 class BaseException implements Exception {
-  String _message = '';
+  late final String message;
 
-  BaseException([String message = 'An unexpected error occurred']) {
-    _message = message;
-  }
-
-  @override
-  String toString() {
-    return _message;
-  }
+  BaseException(String message) : message = message;
 }
