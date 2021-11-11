@@ -87,7 +87,10 @@ class LoginState extends State<Login> {
             SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
             SizedBox(
               child: ElevatedButton(
-                onPressed: () => _login(authProvider),
+                onPressed: () => {
+                  //_login(authProvider),
+                  Navigator.pushNamed(context, JobMainScreen.route)
+                },
                 child: Text(S.of(context).LoginScreen_login_button),
               ),
             ),
