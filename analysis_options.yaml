@@ -1,3 +1,9 @@
+analyzer:
+  exclude:
+    - "lib/generated/l10n.dart"
+    - "lib/generated/intl/messages_all.dart"
+    - "lib/generated/intl/messages_en.dart"
+
 linter:
   rules:
     always_use_package_imports: true

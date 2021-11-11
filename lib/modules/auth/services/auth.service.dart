@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:project/config/inject.config.dart';
-import 'package:project/core/exceptions/unauthorized.exception.dart';
+import 'package:project/core/exceptions/connection_timed_out.exception.dart';
+import 'package:project/core/exceptions/invalid_login_cedentials.exception.dart';
 import 'package:project/core/exceptions/unexpected.exception.dart';
 
 class AuthService {
@@ -17,7 +18,7 @@ class AuthService {
   }
 
   Future<String> login(String email, String password) {
-    return initializeDio().post("public/login",
+    return initializeDio().post('public/login',
         data: {'email': email, 'password': password}).then((res) {
       //here we will set the auth token/res
       return '';
@@ -25,8 +26,10 @@ class AuthService {
       switch (dioError.runtimeType) {
         case DioError:
           switch (dioError.response?.statusCode) {
+            case null:
+              throw ConnectionTimedOutException();
             case (404):
-              throw UnauthorizedException();
+              throw InvalidLoginCredentials();
             default:
               throw UnexpectedException();
           }
@@ -48,8 +51,8 @@ class AuthService {
       switch (dioError.runtimeType) {
         case DioError:
           switch (dioError.response?.statusCode) {
-            case (404):
-              throw UnauthorizedException();
+            case null:
+              throw ConnectionTimedOutException();
             default:
               /* TODO parse additional errors that the backend may send
                  e.g. email already exists */
@@ -60,15 +63,4 @@ class AuthService {
       }
     });
   }
-// Use Dio for API calls
-// Example:
-// Future<RESPONSE_MODEL> login(REQUEST_MODEL) {
-//     return initializeDio()
-//         .get('/auth/login', data: {...}, ...)
-//         .then((response) {...}) // Parse the response data into the appropriate response model
-//         .catchError(
-//             (error) {...},  // Parse the DioError into the appropriate app exception
-//             test: (error) error is DioError
-//         );
-// }
 }

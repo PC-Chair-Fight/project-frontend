@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/screens/login.screen.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
 import 'package:project/modules/job/screens/main.screen.dart';
@@ -10,7 +13,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Project', // TODO - Internationalize using intl
+      onGenerateTitle: (context) => S.of(context).App_title,
       routes: {
         LoginScreen.route: (context) => LoginScreen(),
         RegisterScreen.route: (context) => RegisterScreen(),
@@ -18,6 +21,14 @@ class App extends StatelessWidget {
       },
       initialRoute: LoginScreen.route,
       theme: ThemeConfig.of(context)!.buildThemeData(),
+      supportedLocales: S.delegate.supportedLocales,
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate
+      ],
     );
   }
 }
