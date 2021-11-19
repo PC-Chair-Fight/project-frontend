@@ -1,106 +1,67 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/config/theme.config.dart';
+import 'package:project/modules/job/widgets/bidderCard.widget.dart';
 
-class JobCardWidget extends StatefulWidget{
+class JobCardWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return JobCard();
   }
-
 }
 
 class JobCard extends State<JobCardWidget> {
-  static const String fillerText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
+  static const String fillerText =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
       'Fusce rhoncus urna ut ex rutrum convallis. Suspendisse potenti. Vivamus nisl ipsum, '
       'ornare non sodales nec, tincidunt eu eros. Nam sollicitudin ante ligula. ';
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Container(
+      height: 270,
+      width: 600,
       child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const ListTile(
-              title: Text('Job Title'),
-            ),
-            const ListTile(
-              title: Text(
-                fillerText,
-                textAlign: TextAlign.left,
-              )
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Expanded(child:
-                  InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {
-                      print('Card tapped.');
-                    },
-                    child: Card(
-                      child: ListTile(
-                        leading: Icon(Icons.album),
-                        title: Text("test"),
-                        subtitle: Text("subtext"),
-                      ),
-                    ),
-                  )
-                ),
-                Expanded(
-                  child: InkWell(
-                    onTap: (){
-                      print('Another card tapped.');
-                    },
-                    child: Card(
-                      child: ListTile(
-                        leading: Icon(Icons.album),
-                        title: Text("test"),
-                        subtitle: Text("another text"),
-                      ),
-                    ),
-                  ),
-
-                )
-
-                ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Job Title",
+                style: ThemeConfig.of(context)!.headline5,
+                textAlign: TextAlign.start,
               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "Posted by"
-                ),
-                SizedBox(width: 12,),
-                Card(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.album),
-                      TextButton(
-                          onPressed: (){
-                            print("Poster name clicked");
-                          },
-                          child: Text(
-                            "Username"
-                          )
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(width: 12,),
-                Text(
-                  "on 99/99/3000"
-                ),
-                SizedBox(width: 12,),
-              ],
-            )
-            ]
-          )
-        )
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 67),
+                child: Text(fillerText, style: ThemeConfig.of(context)!.body2),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [BidderCardWidget(), BidderCardWidget()],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [Text("See job details"), Icon(Icons.album)],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("Posted by"),
+                  Icon(Icons.album),
+                  Text("Username"),
+                  Text("on"),
+                  Text("99/88/2000")
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
-
 }
