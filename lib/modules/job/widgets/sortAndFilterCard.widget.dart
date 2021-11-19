@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:date_range_form_field/date_range_form_field.dart';
+import 'package:project/config/theme.config.dart';
 
 class SortAndFilterWidget extends StatefulWidget {
   @override
@@ -13,27 +14,31 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
   bool isToggled = false;
   bool checkbox = true;
   DateTimeRange? myDateTimeRange;
-  String categoryDropwDownValue = "One";
+  String categoryDropwDownValue = 'One';
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 510,
       width: 400,
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("Sort Jobs"),
-                  SizedBox(
-                    width: 50,
+                  Text(
+                    'Sort Jobs',
+                    style: ThemeConfig.of(context)!.headline5,
+                    textAlign: TextAlign.start,
                   ),
-                  Text("Ascending"),
+                  SizedBox(
+                    width: 120,
+                  ),
+                  Text('Ascending'),
                   Switch(
                     value: this.isToggled,
                     onChanged: (newValue) {
@@ -42,6 +47,7 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
                   )
                 ],
               ),
+              SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -50,9 +56,11 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
                       onChanged: (onChanged) {
                         this.checkbox = !this.checkbox;
                       }),
-                  Text("Sort criteria"),
+                  Text('Sort Criteria',
+                      style: ThemeConfig.of(context)!.subtitle1),
                 ],
               ),
+              SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -61,9 +69,11 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
                       onChanged: (onChanged) {
                         this.checkbox = !this.checkbox;
                       }),
-                  Text("Sort criteria"),
+                  Text('Sort Criteria',
+                      style: ThemeConfig.of(context)!.subtitle1),
                 ],
               ),
+              SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -72,17 +82,23 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
                       onChanged: (onChanged) {
                         this.checkbox = !this.checkbox;
                       }),
-                  Text("Sort criteria"),
+                  Text('Sort Criteria',
+                      style: ThemeConfig.of(context)!.subtitle1),
                 ],
               ),
-              Text("Filter Jobs"),
+              SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
+              Text(
+                'Filter Jobs',
+                style: ThemeConfig.of(context)!.headline5,
+                textAlign: TextAlign.start,
+              ),
               DateRangeField(
                 enabled: true,
                 firstDate: DateTime.utc(2000, DateTime.january, 1),
                 initialValue: DateTimeRange(
                     start: DateTime.now().subtract(Duration(days: 5)),
                     end: DateTime.now().add(Duration(days: 10))),
-                decoration: InputDecoration(labelText: "Post date range"),
+                decoration: InputDecoration(labelText: 'Post date range'),
                 validator: (value) {
                   if (value!.start.isBefore(DateTime.now())) {
                     return 'why';
@@ -100,7 +116,7 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
                 initialValue: DateTimeRange(
                     start: DateTime.now().subtract(Duration(days: 5)),
                     end: DateTime.now().add(Duration(days: 10))),
-                decoration: InputDecoration(labelText: "Deadline date range"),
+                decoration: InputDecoration(labelText: 'Deadline date range'),
                 validator: (value) {
                   if (value!.start.isBefore(DateTime.now())) {
                     return 'why';
@@ -132,20 +148,25 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    child: ElevatedButton(
-                      onPressed: () => {
-                      },
-                      child: Text("Apply"),
+                  Expanded(
+                    child: SizedBox(
+                      height: 30,
+                      child: ElevatedButton(
+                        onPressed: () => {},
+                        child: Text('Apply'),
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    child: ElevatedButton(
-                      onPressed: () => {
-
-                      },
-                      child: Text("Clear"),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: SizedBox(
+                      height: 30,
+                      child: ElevatedButton(
+                        onPressed: () => {},
+                        child: Text('Clear'),
+                      ),
                     ),
                   ),
                 ],

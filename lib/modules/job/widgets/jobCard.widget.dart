@@ -21,7 +21,6 @@ class JobCard extends State<JobCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 270,
       width: 600,
       child: Card(
         child: Padding(
@@ -31,31 +30,65 @@ class JobCard extends State<JobCardWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Job Title",
+                'Job Title',
                 style: ThemeConfig.of(context)!.headline5,
                 textAlign: TextAlign.start,
               ),
-              ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: 67),
-                child: Text(fillerText, style: ThemeConfig.of(context)!.body2),
+              Container(
+                height: 70,
+                child: Text(
+                  fillerText + fillerText,
+                  style: ThemeConfig.of(context)!.body2,
+                  overflow: TextOverflow.fade,
+                ),
               ),
+              SizedBox(height: ThemeConfig.of(context)!.smallSpacing),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(child: BidderCardWidget()),
+                  SizedBox(width: 20),
+                  Expanded(child: BidderCardWidget())
+                ],
+              ),
+              SizedBox(height: ThemeConfig.of(context)!.smallSpacing),
               Row(
                 mainAxisSize: MainAxisSize.min,
-                children: [BidderCardWidget(), BidderCardWidget()],
+                children: [
+                  Text(
+                    'See job details',
+                    style: ThemeConfig.of(context)!.subtitle1,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(Icons.arrow_right_alt),
+                ],
               ),
+              SizedBox(height: ThemeConfig.of(context)!.smallSpacing),
               Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [Text("See job details"), Icon(Icons.album)],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("Posted by"),
+                  Text(
+                    'Posted by',
+                    style: ThemeConfig.of(context)!.caption,
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
                   Icon(Icons.album),
-                  Text("Username"),
-                  Text("on"),
-                  Text("99/88/2000")
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Text('Username', style: ThemeConfig.of(context)!.subtitle2),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text('on', style: ThemeConfig.of(context)!.caption),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Text('99/88/2000', style: ThemeConfig.of(context)!.caption)
                 ],
               )
             ],
