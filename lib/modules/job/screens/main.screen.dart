@@ -9,10 +9,8 @@ class JobMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: JobMainWidget(),
-      ),
+    return  Center(
+          child: JobMainWidget(),
     );
   }
 }
