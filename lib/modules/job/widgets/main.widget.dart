@@ -49,7 +49,7 @@ class JobMainState extends State<JobMainWidget> {
                       onPressed: () => {
 
                       },
-                      child: Text("Post a Job"),
+                      child: Text('Post a Job'),
                     ),
                   ),
                 ),
