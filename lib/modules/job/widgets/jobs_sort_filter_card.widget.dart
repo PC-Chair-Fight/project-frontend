@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 
-class SortFilterCard extends StatefulWidget {
+class JobsSortFilterCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _SortAndFilterCardState();
   }
 }
 
-class _SortAndFilterCardState extends State<SortFilterCard> {
+class _SortAndFilterCardState extends State<JobsSortFilterCard> {
   bool isToggled = false;
   bool checkbox = true;
   DateTimeRange? myDateTimeRange;

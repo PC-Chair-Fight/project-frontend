@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/modules/job/widgets/job_card.widget.dart';
-import 'package:project/modules/job/widgets/sort_filter_card.widget.dart';
+import 'package:project/modules/job/widgets/jobs_sort_filter_card.widget.dart';
 
 class JobsDashboard extends StatelessWidget {
   @override
@@ -24,7 +24,7 @@ class JobsDashboard extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.max,
           children: [
-            SortFilterCard(),
+            JobsSortFilterCard(),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [

@@ -26,11 +26,11 @@ class JobCard extends StatelessWidget {
                 textAlign: TextAlign.start,
               ),
               Container(
-                height: 70,
                 child: Text(
                   fillerText + fillerText,
                   style: ThemeConfig.of(context)!.body2,
-                  overflow: TextOverflow.fade,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
               ),
               SizedBox(height: ThemeConfig.of(context)!.smallSpacing),
