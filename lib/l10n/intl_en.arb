@@ -41,5 +41,23 @@
   "RegisterScreen_password_no_special_characters": "Password must contain at least 1 special character",
   "RegisterScreen_confirm_password_required": "Please confirm your password",
   "RegisterScreen_confirm_password_does_not_match": "Passwords do not match",
-  "RegisterScreen_success": "Account created successfully"
+  "RegisterScreen_success": "Account created successfully",
+  "@JobSortFilterCard": {
+  },
+  "JobSortFilterCard_clearButton": "Clear",
+  "JobSortFilterCard_applyButton": "Apply",
+  "JobSortFilterCard_deadlineDateRange": "Deadline date range",
+  "JobSortFilterCard_postDateRange": "Post date range",
+  "JobSortFilterCard_filterJobs": "Filter Jobs",
+  "JobSortFilterCard_ascending": "Ascending",
+  "JobSortFilterCard_sortJobs": "Sort Jobs",
+  "@JobCard": {
+  },
+  "JobCard_postedBy": "Posted by",
+  "JobCard_onString": "on",
+  "JobsCard_seeJobDetails": "See Job Details",
+  "JobsDashboardScreen_search": "Search field...",
+  "@JobsDashboardScreen":{
+  },
+  "JobsDashboardScreen_postJob": "Post a Job"
 }

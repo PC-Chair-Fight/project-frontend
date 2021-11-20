@@ -29,6 +29,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid email or password"),
         "Exception_unexpected": MessageLookupByLibrary.simpleMessage(
             "Unexpected error... Please try again later"),
+        "JobCard_onString": MessageLookupByLibrary.simpleMessage("on"),
+        "JobCard_postedBy": MessageLookupByLibrary.simpleMessage("Posted by"),
+        "JobSortFilterCard_applyButton":
+            MessageLookupByLibrary.simpleMessage("Apply"),
+        "JobSortFilterCard_ascending":
+            MessageLookupByLibrary.simpleMessage("Ascending"),
+        "JobSortFilterCard_clearButton":
+            MessageLookupByLibrary.simpleMessage("Clear"),
+        "JobSortFilterCard_deadlineDateRange":
+            MessageLookupByLibrary.simpleMessage("Deadline date range"),
+        "JobSortFilterCard_filterJobs":
+            MessageLookupByLibrary.simpleMessage("Filter Jobs"),
+        "JobSortFilterCard_postDateRange":
+            MessageLookupByLibrary.simpleMessage("Post date range"),
+        "JobSortFilterCard_sortJobs":
+            MessageLookupByLibrary.simpleMessage("Sort Jobs"),
+        "JobsCard_seeJobDetails":
+            MessageLookupByLibrary.simpleMessage("See Job Details"),
+        "JobsDashboardScreen_postJob":
+            MessageLookupByLibrary.simpleMessage("Post a Job"),
+        "JobsDashboardScreen_search":
+            MessageLookupByLibrary.simpleMessage("Search field..."),
         "LoginScreen_email_input_label":
             MessageLookupByLibrary.simpleMessage("Email"),
         "LoginScreen_error_generic":
