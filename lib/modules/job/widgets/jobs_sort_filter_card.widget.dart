@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 
-
 class JobsSortFilterCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -21,7 +20,7 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
+      width: ThemeConfig.of(context).appSmallWidth,
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -100,7 +99,8 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                 initialValue: DateTimeRange(
                     start: DateTime.now().subtract(Duration(days: 5)),
                     end: DateTime.now().add(Duration(days: 10))),
-                decoration: InputDecoration(labelText: S.of(context).JobSortFilterCard_postDateRange),
+                decoration: InputDecoration(
+                    labelText: S.of(context).JobSortFilterCard_postDateRange),
                 validator: (value) {
                   if (value!.start.isBefore(DateTime.now())) {
                     return 'why';
@@ -118,7 +118,9 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                 initialValue: DateTimeRange(
                     start: DateTime.now().subtract(Duration(days: 5)),
                     end: DateTime.now().add(Duration(days: 10))),
-                decoration: InputDecoration(labelText: S.of(context).JobSortFilterCard_deadlineDateRange),
+                decoration: InputDecoration(
+                    labelText:
+                        S.of(context).JobSortFilterCard_deadlineDateRange),
                 validator: (value) {
                   if (value!.start.isBefore(DateTime.now())) {
                     return 'why';
@@ -157,7 +159,8 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                       height: 30,
                       child: ElevatedButton(
                         onPressed: () => {},
-                        child: Text(S.of(context).JobSortFilterCard_applyButton),
+                        child:
+                            Text(S.of(context).JobSortFilterCard_applyButton),
                       ),
                     ),
                   ),
@@ -167,7 +170,8 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                       height: 30,
                       child: ElevatedButton(
                         onPressed: () => {},
-                        child: Text(S.of(context).JobSortFilterCard_clearButton),
+                        child:
+                            Text(S.of(context).JobSortFilterCard_clearButton),
                       ),
                     ),
                   ),

@@ -78,8 +78,7 @@ class LoginState extends State<Login> {
                                 S.of(context).LoginScreen_email_input_label),
                           ),
                         ),
-                        SizedBox(
-                            height: ThemeConfig.of(context).mediumSpacing),
+                        SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         TextFormField(
                           obscureText: true,
                           enableSuggestions: false,
@@ -126,18 +125,24 @@ class LoginState extends State<Login> {
                           child:
                               Text(S.of(context).LoginScreen_register_button),
                         ),
-                        SizedBox(
-                            height: ThemeConfig.of(context).mediumSpacing),
+                        SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         ElevatedButton(
                           onPressed: null,
                           child: Text(S.of(context).LoginScreen_google_button),
                         ),
-                        SizedBox(
-                            height: ThemeConfig.of(context).mediumSpacing),
+                        SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         ElevatedButton(
                           onPressed: null,
                           child:
                               Text(S.of(context).LoginScreen_facebook_button),
+                        ),
+                        SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, JobsDashboardScreen.route);
+                          },
+                          child: Text('Skip'),
                         ),
                       ],
                     ),

@@ -53,6 +53,11 @@ class ThemeConfig extends InheritedWidget {
   final double largeSpacing = 32;
   final double largestSpacing = 64;
 
+  // Elevations
+  final double smallElevation = 2;
+  final double mediumElevation = 4;
+  final double LargeElevation = 8;
+
   ThemeConfig({
     Key? key,
     required this.child,
@@ -158,8 +163,8 @@ class ThemeConfig extends InheritedWidget {
           secondary: secondaryColor,
           secondaryVariant: secondaryColorVariant,
           onSecondary: onSecondaryColor,
-          background: backgroundColor,
-          onBackground: onBackgroundColor,
+          background: surfaceColor,
+          onBackground: onSurfaceColor,
           surface: surfaceColor,
           onSurface: onSurfaceColor,
           error: errorColor,
@@ -184,7 +189,14 @@ class ThemeConfig extends InheritedWidget {
         visualDensity: VisualDensity.standard,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         dividerColor: dividerColor,
+        scaffoldBackgroundColor: backgroundColor,
+        iconTheme: IconThemeData(
+          size: 20,
+          color: onBackgroundColor,
+        ),
         cardTheme: CardTheme(
+          elevation: smallElevation,
+          margin: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
@@ -219,6 +231,24 @@ class ThemeConfig extends InheritedWidget {
                 width: 1,
               ),
             ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            minimumSize:
+                MaterialStateProperty.all(Size.fromRadius(buttonHeight / 2)),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
+            ),
+            textStyle: MaterialStateProperty.all(subtitle2),
+          ),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          smallSizeConstraints: BoxConstraints.expand(
+            width: buttonHeight,
+            height: buttonHeight,
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
