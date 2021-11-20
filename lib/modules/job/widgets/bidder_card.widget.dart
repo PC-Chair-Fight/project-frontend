@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project/config/theme.config.dart';
 
-class BidderCardWidget extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return BidderCard();
-  }
-}
-
-class BidderCard extends State<BidderCardWidget> {
+class BidderCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

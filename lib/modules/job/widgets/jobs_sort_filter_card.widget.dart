@@ -1,20 +1,20 @@
+import 'package:date_range_form_field/date_range_form_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:date_range_form_field/date_range_form_field.dart';
 import 'package:project/config/theme.config.dart';
 
-class SortAndFilterWidget extends StatefulWidget {
+class JobsSortFilterCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return SortAndFilterCard();
+    return _SortAndFilterCardState();
   }
 }
 
-class SortAndFilterCard extends State<SortAndFilterWidget> {
+class _SortAndFilterCardState extends State<JobsSortFilterCard> {
   bool isToggled = false;
   bool checkbox = true;
   DateTimeRange? myDateTimeRange;
-  String categoryDropwDownValue = 'One';
+  String categoryDropDownValue = 'One';
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +132,7 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
                 icon: const Icon(Icons.arrow_downward),
                 iconSize: 24,
                 elevation: 16,
-                value: this.categoryDropwDownValue,
+                value: this.categoryDropDownValue,
                 items: <String>['One', 'Two', 'Free', 'Four']
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
@@ -142,7 +142,7 @@ class SortAndFilterCard extends State<SortAndFilterWidget> {
                 }).toList(),
                 onChanged: (String? newValue) {
                   setState(() {
-                    this.categoryDropwDownValue = newValue!;
+                    this.categoryDropDownValue = newValue!;
                   });
                 },
               ),

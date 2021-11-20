@@ -1,16 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
-import 'package:project/modules/job/widgets/bidderCard.widget.dart';
+import 'package:project/modules/job/widgets/bidder_card.widget.dart';
 
-class JobCardWidget extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return JobCard();
-  }
-}
-
-class JobCard extends State<JobCardWidget> {
+class JobCard extends StatelessWidget {
   static const String fillerText =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
       'Fusce rhoncus urna ut ex rutrum convallis. Suspendisse potenti. Vivamus nisl ipsum, '
@@ -33,11 +26,11 @@ class JobCard extends State<JobCardWidget> {
                 textAlign: TextAlign.start,
               ),
               Container(
-                height: 70,
                 child: Text(
                   fillerText + fillerText,
                   style: ThemeConfig.of(context)!.body2,
-                  overflow: TextOverflow.fade,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
               ),
               SizedBox(height: ThemeConfig.of(context)!.smallSpacing),
