@@ -4,7 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
+import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
+import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
@@ -38,7 +40,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthProvider _authProvider = Provider.of<AuthProvider>(context);
+    final AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     return Form(
       key: _formKey,
@@ -92,6 +94,10 @@ class _RegisterState extends State<Register> {
               decoration: InputDecoration(
                 label: Text(
                     S.of(context).RegisterScreen_date_of_birth_input_label),
+                suffixIcon: Icon(
+                  Icons.date_range,
+                  color: ThemeConfig.of(context)!.primaryColor,
+                ),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -138,10 +144,10 @@ class _RegisterState extends State<Register> {
             ),
             SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
             ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) _register(_authProvider);
-              },
-              child: Text(S.of(context).RegisterScreen_register_button),
+              onPressed: () => _register(authProvider),
+              child: authProvider.loading
+                  ? LoadingIndicator(type: LoadingIndicatorType.Button)
+                  : Text(S.of(context).RegisterScreen_register_button),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
             TextButton(
@@ -170,34 +176,35 @@ class _RegisterState extends State<Register> {
   }
 
   _register(AuthProvider authProvider) {
-    authProvider
-        .register(
-      firstNameController.value.text,
-      lastNameController.value.text,
-      emailController.value.text,
-      _selectedDate,
-      passwordController.value.text,
-    )
-        .whenComplete(() {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: authProvider.error == null
-              ? ThemeConfig.of(context)!.successColor
-              : ThemeConfig.of(context)!.errorColor,
-          content: Text(
-            authProvider.error?.toString() ??
-                S.of(context).RegisterScreen_success,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: authProvider.error == null
-                  ? ThemeConfig.of(context)!.onSuccessColor
-                  : ThemeConfig.of(context)!.onErrorColor,
+    if ((_formKey.currentState?.validate() ?? false) && !authProvider.loading)
+      authProvider
+          .register(
+              firstNameController.value.text,
+              lastNameController.value.text,
+              emailController.value.text,
+              _selectedDate,
+              passwordController.value.text)
+          .whenComplete(() {
+        if (authProvider.authToken != null)
+          Navigator.pushNamed(context, JobsDashboardScreen.route);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: authProvider.error == null
+                ? ThemeConfig.of(context)!.successColor
+                : ThemeConfig.of(context)!.errorColor,
+            content: Text(
+              authProvider.error?.toString() ??
+                  S.of(context).RegisterScreen_success,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: authProvider.error == null
+                    ? ThemeConfig.of(context)!.onSuccessColor
+                    : ThemeConfig.of(context)!.onErrorColor,
+              ),
             ),
+            duration: Duration(seconds: 4),
           ),
-          duration: Duration(seconds: 4),
-        ),
-      );
-      if (authProvider.error == null) Navigator.of(context).pop();
-    });
+        );
+      });
   }
 }

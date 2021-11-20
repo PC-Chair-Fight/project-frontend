@@ -7,6 +7,7 @@ import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:project/modules/shared/widgets/app_logo.widget.dart';
 import 'package:project/modules/shared/widgets/labeled_divider.widget.dart';
+import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
 
 // Define a custom Form widget.
@@ -27,8 +28,6 @@ class LoginState extends State<Login> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -85,11 +84,10 @@ class LoginState extends State<Login> {
             SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
             SizedBox(
               child: ElevatedButton(
-                onPressed: () => {
-                  _login(authProvider),
-                  Navigator.pushNamed(context, JobsDashboardScreen.route)
-                },
-                child: Text(S.of(context).LoginScreen_login_button),
+                onPressed: () => _login(authProvider),
+                child: authProvider.loading
+                    ? LoadingIndicator(type: LoadingIndicatorType.Button)
+                    : Text(S.of(context).LoginScreen_login_button),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.largeSpacing),
@@ -119,10 +117,12 @@ class LoginState extends State<Login> {
   }
 
   void _login(AuthProvider authProvider) {
-    if (_formKey.currentState?.validate() ?? false) {
+    if ((_formKey.currentState?.validate() ?? false) && !authProvider.loading) {
       authProvider
           .login(emailController.value.text, passwordController.value.text)
           .whenComplete(() {
+        if (authProvider.authToken != null)
+          Navigator.pushNamed(context, JobsDashboardScreen.route);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: authProvider.error == null
