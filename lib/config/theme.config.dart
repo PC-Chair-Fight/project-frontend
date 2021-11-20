@@ -50,6 +50,13 @@ class ThemeConfig extends InheritedWidget {
   final double largeSpacing;
   final double largestSpacing;
 
+  // Durations
+  final Duration fastDuration = new Duration(milliseconds: 100);
+  final Duration mediumDuration = new Duration(milliseconds: 300);
+  final Duration slowDuration = new Duration(milliseconds: 600);
+
+  final double elevation = 4;
+
   ThemeConfig({
     Key? key,
     required this.child,
@@ -227,7 +234,7 @@ class ThemeConfig extends InheritedWidget {
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           contentPadding: EdgeInsets.symmetric(
-              horizontal: mediumSpacing,
+            horizontal: mediumSpacing,
             vertical: smallSpacing,
           ),
         ),
