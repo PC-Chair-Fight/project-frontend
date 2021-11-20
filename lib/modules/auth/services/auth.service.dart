@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/exceptions/connection_timed_out.exception.dart';
-import 'package:project/core/exceptions/invalid_login_cedentials.exception.dart';
+import 'package:project/core/exceptions/invalid_login_credentials.exception.dart';
+import 'package:project/core/exceptions/register_conflict.exception.dart';
 import 'package:project/core/exceptions/unexpected.exception.dart';
 
 class AuthService {
@@ -18,49 +19,51 @@ class AuthService {
   }
 
   Future<String> login(String email, String password) {
-    return initializeDio().post('public/login',
-        data: {'email': email, 'password': password}).then((res) {
-      //here we will set the auth token/res
-      return '';
-    }).catchError((dioError) {
-      switch (dioError.runtimeType) {
-        case DioError:
-          switch (dioError.response?.statusCode) {
-            case null:
-              throw ConnectionTimedOutException();
-            case (404):
-              throw InvalidLoginCredentials();
+    return initializeDio()
+        .post('/Auth/Login', data: {'email': email, 'password': password})
+        .then((response) => response.data['token'] as String)
+        .catchError((dioError) {
+          switch (dioError.runtimeType) {
+            case DioError:
+              switch (dioError.response?.statusCode) {
+                case null:
+                  throw ConnectionTimedOutException();
+                case (404):
+                  throw InvalidLoginCredentials();
+                default:
+                  throw UnexpectedException();
+              }
             default:
               throw UnexpectedException();
           }
-        default:
-          throw UnexpectedException();
-      }
-    });
+        });
   }
 
-  Future<void> register(
-      String username, String email, DateTime dateOfBirth, String password) {
-    return initializeDio().post('/public/register', data: {
-      'username': username,
-      'email': email,
-      'password': password,
-      'dateOfBirth': dateOfBirth.toIso8601String()
-    }).catchError((dioError) {
-      // no need to parse a result, the method not throwing means the user was registered
-      switch (dioError.runtimeType) {
-        case DioError:
-          switch (dioError.response?.statusCode) {
-            case null:
-              throw ConnectionTimedOutException();
+  Future<String> register(String firstName, String lastName, String email,
+      DateTime dateOfBirth, String password) {
+    return initializeDio()
+        .post('/Auth/Register', data: {
+          'firstName': firstName,
+          'lastName': lastName,
+          'email': email,
+          'password': password,
+          'dateOfBirth': dateOfBirth.toIso8601String()
+        })
+        .then((response) => response.data['token'] as String)
+        .catchError((dioError) {
+          switch (dioError.runtimeType) {
+            case DioError:
+              switch (dioError.response?.statusCode) {
+                case null:
+                  throw ConnectionTimedOutException();
+                case 409:
+                  throw RegisterConflictException();
+                default:
+                  throw UnexpectedException();
+              }
             default:
-              /* TODO parse additional errors that the backend may send
-                 e.g. email already exists */
               throw UnexpectedException();
           }
-        default:
-          throw UnexpectedException();
-      }
-    });
+        });
   }
 }

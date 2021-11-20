@@ -65,7 +65,6 @@ class LoginState extends State<Login> {
                   .message,
               decoration: InputDecoration(
                 label: Text(S.of(context).LoginScreen_email_input_label),
-                prefixIcon: Icon(Icons.alternate_email),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -80,7 +79,6 @@ class LoginState extends State<Login> {
                   .message,
               decoration: InputDecoration(
                 label: Text(S.of(context).LoginScreen_password_input_label),
-                prefixIcon: Icon(Icons.password),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.largestSpacing),

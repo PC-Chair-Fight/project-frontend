@@ -18,7 +18,8 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   var _selectedDate = DateTime.now();
 
-  final usernameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final dateOfBirthController = TextEditingController();
   final passwordController = TextEditingController();
@@ -26,7 +27,8 @@ class _RegisterState extends State<Register> {
 
   @override
   void dispose() {
-    usernameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     emailController.dispose();
     dateOfBirthController.dispose();
     passwordController.dispose();
@@ -48,13 +50,24 @@ class _RegisterState extends State<Register> {
           children: [
             TextFormField(
               textInputAction: TextInputAction.next,
-              controller: usernameController,
+              controller: firstNameController,
               validator: (value) => UtilValidators.guard(value)
-                  .required(S.of(context).RegisterScreen_username_required)
+                  .required(S.of(context).RegisterScreen_first_name_required)
                   .message,
               decoration: InputDecoration(
-                label: Text(S.of(context).RegisterScreen_username_input_label),
-                prefixIcon: Icon(Icons.account_circle_outlined),
+                label:
+                    Text(S.of(context).RegisterScreen_first_name_input_label),
+              ),
+            ),
+            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
+            TextFormField(
+              textInputAction: TextInputAction.next,
+              controller: lastNameController,
+              validator: (value) => UtilValidators.guard(value)
+                  .required(S.of(context).RegisterScreen_last_name_required)
+                  .message,
+              decoration: InputDecoration(
+                label: Text(S.of(context).RegisterScreen_last_name_input_label),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -66,7 +79,6 @@ class _RegisterState extends State<Register> {
                   .message,
               decoration: InputDecoration(
                 label: Text(S.of(context).LoginScreen_email_input_label),
-                prefixIcon: Icon(Icons.alternate_email),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -80,7 +92,6 @@ class _RegisterState extends State<Register> {
               decoration: InputDecoration(
                 label: Text(
                     S.of(context).RegisterScreen_date_of_birth_input_label),
-                prefixIcon: Icon(Icons.calendar_today),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -102,7 +113,6 @@ class _RegisterState extends State<Register> {
                   .message,
               decoration: InputDecoration(
                 label: Text('Password'),
-                prefixIcon: Icon(Icons.password),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -124,7 +134,6 @@ class _RegisterState extends State<Register> {
               decoration: InputDecoration(
                 label: Text(
                     S.of(context).RegisterScreen_confirm_password_input_label),
-                prefixIcon: Icon(Icons.password),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
@@ -162,8 +171,13 @@ class _RegisterState extends State<Register> {
 
   _register(AuthProvider authProvider) {
     authProvider
-        .register(usernameController.value.text, emailController.value.text,
-            _selectedDate, passwordController.value.text)
+        .register(
+      firstNameController.value.text,
+      lastNameController.value.text,
+      emailController.value.text,
+      _selectedDate,
+      passwordController.value.text,
+    )
         .whenComplete(() {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

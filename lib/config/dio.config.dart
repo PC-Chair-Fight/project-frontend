@@ -9,10 +9,9 @@ Dio dioInstance(AppConfig configuredApp) {
     headers: {
       Headers.contentTypeHeader: 'application/json',
     },
-    connectTimeout: 5000,
-    receiveTimeout: 5000,
-    sendTimeout: 5000,
-    //Will be changed
+    connectTimeout: 10000,
+    receiveTimeout: 10000,
+    sendTimeout: 10000,
   ));
 
   dio.interceptors.addAll([

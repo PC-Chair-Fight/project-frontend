@@ -11,7 +11,7 @@ class AppConfig extends InheritedWidget {
     required this.child,
   })  : logProviders = true,
         logServices = true,
-        authBaseUrl = 'http://YOUR_URL_HERE', // TODO - Add your base url here
+        authBaseUrl = 'https://chairfightbackend.azurewebsites.net/',
         super(key: key, child: child);
 
   static AppConfig? of(BuildContext context) {
