@@ -23,8 +23,11 @@ These credentials would ideally be *hardcoded* into the database, so that they a
 
 ### Running instructions
 
-- ensure the latest flutter sdk is installed ([Flutter Install](https://flutter.dev/docs/get-started/install)).
-- run `flutter pub get` for loading the packages (can be ran directly from the UI of some IDEs such as Android Studio) (do **not** also run `flutter pub upgrade` as that will change all the plugin versions).
+- ensure the latest flutter sdk is
+  installed ([Flutter Install](https://flutter.dev/docs/get-started/install)).
+- run `flutter pub get` for loading the packages (can be ran directly from the UI of some IDEs such
+  as Android Studio) (do **not** also run `flutter pub upgrade` as that will change all the plugin
+  versions).
 - run `flutter run`.
 
 ### IDE setup
@@ -69,8 +72,10 @@ Suggested file structure:
 
 ### Pull Requests, Reviews & Merging
 
-- Active pull requests require at least **2** reviews approvals with at least **1** from a coordinator, although reviews from all people is highly advised.
+- Active pull requests require at least **2** reviews approvals with at least **1** from a
+  coordinator, although reviews from all people is highly advised.
 - Reviews are made through comments on the pull request.
-- When a certain comment is resolved, the developer should leave a **thumbs-up** reaction to the initial comment.
+- When a certain comment is resolved, the developer should leave a **thumbs-up** reaction to the
+  initial comment.
 - Only the reviewer is allowed to mark a conversation as `Resolved`.
 - Feature branches are merged into develop using the `Squash and merge` option.

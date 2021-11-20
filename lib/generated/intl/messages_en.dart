@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -28,6 +29,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid email or password"),
         "Exception_unexpected": MessageLookupByLibrary.simpleMessage(
             "Unexpected error... Please try again later"),
+        "JobCard_onString": MessageLookupByLibrary.simpleMessage("on"),
+        "JobCard_postedBy": MessageLookupByLibrary.simpleMessage("Posted by"),
+        "JobSortFilterCard_applyButton":
+            MessageLookupByLibrary.simpleMessage("Apply"),
+        "JobSortFilterCard_ascending":
+            MessageLookupByLibrary.simpleMessage("Ascending"),
+        "JobSortFilterCard_clearButton":
+            MessageLookupByLibrary.simpleMessage("Clear"),
+        "JobSortFilterCard_deadlineDateRange":
+            MessageLookupByLibrary.simpleMessage("Deadline date range"),
+        "JobSortFilterCard_filterJobs":
+            MessageLookupByLibrary.simpleMessage("Filter Jobs"),
+        "JobSortFilterCard_postDateRange":
+            MessageLookupByLibrary.simpleMessage("Post date range"),
+        "JobSortFilterCard_sortJobs":
+            MessageLookupByLibrary.simpleMessage("Sort Jobs"),
+        "JobsCard_seeJobDetails":
+            MessageLookupByLibrary.simpleMessage("See Job Details"),
+        "JobsDashboardScreen_postJob":
+            MessageLookupByLibrary.simpleMessage("Post a Job"),
+        "JobsDashboardScreen_search":
+            MessageLookupByLibrary.simpleMessage("Search field..."),
         "LoginScreen_email_input_label":
             MessageLookupByLibrary.simpleMessage("Email"),
         "LoginScreen_error_generic":

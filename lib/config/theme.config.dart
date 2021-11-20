@@ -125,6 +125,7 @@ class ThemeConfig extends InheritedWidget {
         ),
         body2 = TextStyle(
           fontSize: 14,
+          height: 1.75,
           fontWeight: FontWeight.w700,
           color: const Color(0xFF333333),
         ),

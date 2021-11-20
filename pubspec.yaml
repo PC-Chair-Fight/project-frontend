@@ -21,6 +21,7 @@ dependencies:
   shared_preferences: ^2.0.8
   # UI
   cupertino_icons: ^1.0.2
+  date_range_form_field: ^1.0.2
   # Translations
   intl: ^0.17.0
   intl_utils: ^2.5.0
