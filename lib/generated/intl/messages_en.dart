@@ -31,6 +31,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "Unexpected error... Please try again later"),
         "JobCard_onString": MessageLookupByLibrary.simpleMessage("on"),
         "JobCard_postedBy": MessageLookupByLibrary.simpleMessage("Posted by"),
+        "JobDetailsScreen_description":
+            MessageLookupByLibrary.simpleMessage("Description"),
+        "JobDetailsScreen_name": MessageLookupByLibrary.simpleMessage("Name"),
+        "JobDetailsScreen_no_description":
+            MessageLookupByLibrary.simpleMessage("(No description)"),
+        "JobDetailsScreen_no_name":
+            MessageLookupByLibrary.simpleMessage("(No name)"),
+        "JobDetailsScreen_show_less":
+            MessageLookupByLibrary.simpleMessage("Show less"),
+        "JobDetailsScreen_show_more":
+            MessageLookupByLibrary.simpleMessage("Show more"),
+        "JobDetailsScreen_title":
+            MessageLookupByLibrary.simpleMessage("Job Details"),
         "JobSortFilterCard_applyButton":
             MessageLookupByLibrary.simpleMessage("Apply"),
         "JobSortFilterCard_ascending":

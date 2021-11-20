@@ -370,6 +370,76 @@ class S {
     );
   }
 
+  /// `Job Details`
+  String get JobDetailsScreen_title {
+    return Intl.message(
+      'Job Details',
+      name: 'JobDetailsScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get JobDetailsScreen_name {
+    return Intl.message(
+      'Name',
+      name: 'JobDetailsScreen_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(No name)`
+  String get JobDetailsScreen_no_name {
+    return Intl.message(
+      '(No name)',
+      name: 'JobDetailsScreen_no_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get JobDetailsScreen_description {
+    return Intl.message(
+      'Description',
+      name: 'JobDetailsScreen_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(No description)`
+  String get JobDetailsScreen_no_description {
+    return Intl.message(
+      '(No description)',
+      name: 'JobDetailsScreen_no_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show more`
+  String get JobDetailsScreen_show_more {
+    return Intl.message(
+      'Show more',
+      name: 'JobDetailsScreen_show_more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show less`
+  String get JobDetailsScreen_show_less {
+    return Intl.message(
+      'Show less',
+      name: 'JobDetailsScreen_show_less',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Clear`
   String get JobSortFilterCard_clearButton {
     return Intl.message(
