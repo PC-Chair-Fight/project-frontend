@@ -23,18 +23,18 @@ class JobCard extends StatelessWidget {
             children: [
               Text(
                 'Job Title',
-                style: ThemeConfig.of(context)!.headline5,
+                style: ThemeConfig.of(context).headline5,
                 textAlign: TextAlign.start,
               ),
               Container(
                 child: Text(
                   fillerText + fillerText,
-                  style: ThemeConfig.of(context)!.body2,
+                  style: ThemeConfig.of(context).body2,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
               ),
-              SizedBox(height: ThemeConfig.of(context)!.smallSpacing),
+              SizedBox(height: ThemeConfig.of(context).smallSpacing),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -43,13 +43,13 @@ class JobCard extends StatelessWidget {
                   Expanded(child: BidderCardWidget())
                 ],
               ),
-              SizedBox(height: ThemeConfig.of(context)!.smallSpacing),
+              SizedBox(height: ThemeConfig.of(context).smallSpacing),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     S.of(context).JobsCard_seeJobDetails,
-                    style: ThemeConfig.of(context)!.subtitle1,
+                    style: ThemeConfig.of(context).subtitle1,
                   ),
                   SizedBox(
                     width: 10,
@@ -57,13 +57,13 @@ class JobCard extends StatelessWidget {
                   Icon(Icons.arrow_right_alt),
                 ],
               ),
-              SizedBox(height: ThemeConfig.of(context)!.smallSpacing),
+              SizedBox(height: ThemeConfig.of(context).smallSpacing),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
                     S.of(context).JobCard_postedBy,
-                    style: ThemeConfig.of(context)!.caption,
+                    style: ThemeConfig.of(context).caption,
                   ),
                   SizedBox(
                     width: 8,
@@ -72,15 +72,15 @@ class JobCard extends StatelessWidget {
                   SizedBox(
                     width: 4,
                   ),
-                  Text('Username', style: ThemeConfig.of(context)!.subtitle2),
+                  Text('Username', style: ThemeConfig.of(context).subtitle2),
                   SizedBox(
                     width: 8,
                   ),
-                  Text(S.of(context).JobCard_onString, style: ThemeConfig.of(context)!.caption),
+                  Text(S.of(context).JobCard_onString, style: ThemeConfig.of(context).caption),
                   SizedBox(
                     width: 2,
                   ),
-                  Text('99/88/2000', style: ThemeConfig.of(context)!.caption)
+                  Text('99/88/2000', style: ThemeConfig.of(context).caption)
                 ],
               )
             ],

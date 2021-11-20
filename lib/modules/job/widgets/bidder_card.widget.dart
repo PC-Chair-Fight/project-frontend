@@ -22,9 +22,9 @@ class BidderCardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Username',
-                          style: ThemeConfig.of(context)!.subtitle1),
+                          style: ThemeConfig.of(context).subtitle1),
                       Text("<User's Offer>",
-                          style: ThemeConfig.of(context)!.overline)
+                          style: ThemeConfig.of(context).overline)
                     ],
                   ),
                 ),

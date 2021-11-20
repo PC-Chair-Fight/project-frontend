@@ -34,7 +34,7 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                 children: [
                   Text(
                     S.of(context).JobSortFilterCard_sortJobs,
-                    style: ThemeConfig.of(context)!.headline5,
+                    style: ThemeConfig.of(context).headline5,
                     textAlign: TextAlign.start,
                   ),
                   SizedBox(
@@ -49,7 +49,7 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                   )
                 ],
               ),
-              SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
+              SizedBox(height: ThemeConfig.of(context).mediumSpacing),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -59,10 +59,10 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                         this.checkbox = !this.checkbox;
                       }),
                   Text('Sort Criteria',
-                      style: ThemeConfig.of(context)!.subtitle1),
+                      style: ThemeConfig.of(context).subtitle1),
                 ],
               ),
-              SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
+              SizedBox(height: ThemeConfig.of(context).mediumSpacing),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -72,10 +72,10 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                         this.checkbox = !this.checkbox;
                       }),
                   Text('Sort Criteria',
-                      style: ThemeConfig.of(context)!.subtitle1),
+                      style: ThemeConfig.of(context).subtitle1),
                 ],
               ),
-              SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
+              SizedBox(height: ThemeConfig.of(context).mediumSpacing),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -85,13 +85,13 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                         this.checkbox = !this.checkbox;
                       }),
                   Text('Sort Criteria',
-                      style: ThemeConfig.of(context)!.subtitle1),
+                      style: ThemeConfig.of(context).subtitle1),
                 ],
               ),
-              SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
+              SizedBox(height: ThemeConfig.of(context).mediumSpacing),
               Text(
                 S.of(context).JobSortFilterCard_filterJobs,
-                style: ThemeConfig.of(context)!.headline5,
+                style: ThemeConfig.of(context).headline5,
                 textAlign: TextAlign.start,
               ),
               DateRangeField(

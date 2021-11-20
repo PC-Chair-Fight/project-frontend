@@ -41,14 +41,17 @@ class ThemeConfig extends InheritedWidget {
   final TextStyle overline;
 
   // Sizes
-  final double appMargin;
-  final double borderRadius;
-  final double buttonHeight;
-  final double smallestSpacing;
-  final double smallSpacing;
-  final double mediumSpacing;
-  final double largeSpacing;
-  final double largestSpacing;
+  final double appSmallWidth = 400;
+  final double appMediumWidth = 600;
+  final double appLargeWidth = 800;
+  final double appMargin = 20;
+  final double borderRadius = 8;
+  final double buttonHeight = 36;
+  final double smallestSpacing = 4;
+  final double smallSpacing = 8;
+  final double mediumSpacing = 16;
+  final double largeSpacing = 32;
+  final double largestSpacing = 64;
 
   ThemeConfig({
     Key? key,
@@ -137,18 +140,10 @@ class ThemeConfig extends InheritedWidget {
           fontWeight: FontWeight.w500,
           color: const Color(0xFF333333),
         ),
-        appMargin = 20,
-        borderRadius = 8,
-        buttonHeight = 36,
-        smallestSpacing = 4,
-        smallSpacing = 8,
-        mediumSpacing = 16,
-        largeSpacing = 32,
-        largestSpacing = 64,
         super(key: key, child: child);
 
-  static ThemeConfig? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ThemeConfig>();
+  static ThemeConfig of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ThemeConfig>()!;
   }
 
   @override
@@ -186,6 +181,7 @@ class ThemeConfig extends InheritedWidget {
           overline: overline,
         ),
       ).copyWith(
+        visualDensity: VisualDensity.standard,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         dividerColor: dividerColor,
         cardTheme: CardTheme(
@@ -228,7 +224,7 @@ class ThemeConfig extends InheritedWidget {
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           contentPadding: EdgeInsets.symmetric(
-              horizontal: mediumSpacing,
+            horizontal: mediumSpacing,
             vertical: smallSpacing,
           ),
         ),
