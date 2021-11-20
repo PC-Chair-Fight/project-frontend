@@ -5,6 +5,7 @@ import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/screens/login.screen.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
+import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -15,7 +16,8 @@ class App extends StatelessWidget {
       onGenerateTitle: (context) => S.of(context).App_title,
       routes: {
         LoginScreen.route: (context) => LoginScreen(),
-        RegisterScreen.route: (context) => RegisterScreen()
+        RegisterScreen.route: (context) => RegisterScreen(),
+        JobsDashboardScreen.route: (context) => JobsDashboardScreen()
       },
       initialRoute: LoginScreen.route,
       theme: ThemeConfig.of(context)!.buildThemeData(),
