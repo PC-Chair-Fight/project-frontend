@@ -3,7 +3,7 @@ import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
-import 'package:project/modules/job/screens/main.screen.dart';
+import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:project/modules/shared/widgets/app_logo.widget.dart';
 import 'package:project/modules/shared/widgets/labeled_divider.widget.dart';
@@ -89,7 +89,7 @@ class LoginState extends State<Login> {
               child: ElevatedButton(
                 onPressed: () => {
                   _login(authProvider),
-                  Navigator.pushNamed(context, JobMainScreen.route)
+                  Navigator.pushNamed(context, JobsDashboardScreen.route)
                 },
                 child: Text(S.of(context).LoginScreen_login_button),
               ),
