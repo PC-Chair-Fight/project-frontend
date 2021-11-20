@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/modules/job/widgets/job_card.widget.dart';
 import 'package:project/modules/job/widgets/jobs_sort_filter_card.widget.dart';
+import 'package:project/generated/l10n.dart';
+
 
 class JobsDashboard extends StatelessWidget {
   @override
@@ -15,7 +17,7 @@ class JobsDashboard extends StatelessWidget {
             color: Colors.white,
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Search for something',
+                hintText: S.of(context).JobsDashboardScreen_search,
                 prefixIcon: Icon(Icons.search),
               ),
             ),
@@ -39,7 +41,7 @@ class JobsDashboard extends StatelessWidget {
                 child: SizedBox(
                   child: ElevatedButton(
                     onPressed: () => {},
-                    child: Text('Post a Job'),
+                    child: Text(S.of(context).JobsDashboardScreen_postJob),
                   ),
                 ),
               ),

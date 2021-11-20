@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/modules/job/widgets/bidder_card.widget.dart';
+import 'package:project/generated/l10n.dart';
 
 class JobCard extends StatelessWidget {
   static const String fillerText =
@@ -47,7 +48,7 @@ class JobCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'See job details',
+                    S.of(context).JobCard_seeJobDetails,
                     style: ThemeConfig.of(context)!.subtitle1,
                   ),
                   SizedBox(
@@ -61,7 +62,7 @@ class JobCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Posted by',
+                    S.of(context).JobCard_postedBy,
                     style: ThemeConfig.of(context)!.caption,
                   ),
                   SizedBox(
@@ -75,7 +76,7 @@ class JobCard extends StatelessWidget {
                   SizedBox(
                     width: 8,
                   ),
-                  Text('on', style: ThemeConfig.of(context)!.caption),
+                  Text(S.of(context).JobCard_onString, style: ThemeConfig.of(context)!.caption),
                   SizedBox(
                     width: 2,
                   ),

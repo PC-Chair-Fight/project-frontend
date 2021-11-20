@@ -369,6 +369,116 @@ class S {
       args: [],
     );
   }
+
+  //Post a Job
+  String get JobsDashboardScreen_postJob{
+    return Intl.message(
+      'Post a Job',
+      name: 'JobsDashboardScreen_postJob',
+      desc: '',
+      args: [],
+    );
+  }
+
+  //Search
+  String get JobsDashboardScreen_search{
+    return Intl.message(
+      'Search field...',
+      name: 'JobsDashboardScreen_search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobCard_seeJobDetails{
+    return Intl.message(
+      'See Job Details',
+      name: 'JobsCard_seeJobDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobCard_postedBy{
+    return Intl.message(
+      'Posted by',
+      name: 'JobCard_postedBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobCard_onString{
+    return Intl.message(
+      'on',
+      name: 'JobCard_onString',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobSortFilterCard_sortJobs{
+    return Intl.message(
+      'Sort Jobs',
+      name: 'JobSortFilterCard_sortJobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobSortFilterCard_ascending{
+    return Intl.message(
+      'Ascending',
+      name: 'JobSortFilterCard_ascending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobSortFilterCard_filterJobs{
+    return Intl.message(
+      'Filter Jobs',
+      name: 'JobSortFilterCard_filterJobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobSortFilterCard_postDateRange{
+    return Intl.message(
+      'Post date range',
+      name: 'JobSortFilterCard_postDateRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobSortFilterCard_deadlineDateRange{
+    return Intl.message(
+      'Deadline date range',
+      name: 'JobSortFilterCard_deadlineDateRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobSortFilterCard_applyButton{
+    return Intl.message(
+      'Apply',
+      name: 'JobSortFilterCard_applyButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get JobSortFilterCard_clearButton{
+    return Intl.message(
+      'Clear',
+      name: 'JobSortFilterCard_clearButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

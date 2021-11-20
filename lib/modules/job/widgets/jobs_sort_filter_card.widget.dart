@@ -2,6 +2,8 @@ import 'package:date_range_form_field/date_range_form_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/generated/l10n.dart';
+
 
 class JobsSortFilterCard extends StatefulWidget {
   @override
@@ -31,14 +33,14 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Sort Jobs',
+                    S.of(context).JobSortFilterCard_sortJobs,
                     style: ThemeConfig.of(context)!.headline5,
                     textAlign: TextAlign.start,
                   ),
                   SizedBox(
                     width: 120,
                   ),
-                  Text('Ascending'),
+                  Text(S.of(context).JobSortFilterCard_ascending),
                   Switch(
                     value: this.isToggled,
                     onChanged: (newValue) {
@@ -88,7 +90,7 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
               ),
               SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
               Text(
-                'Filter Jobs',
+                S.of(context).JobSortFilterCard_filterJobs,
                 style: ThemeConfig.of(context)!.headline5,
                 textAlign: TextAlign.start,
               ),
@@ -98,7 +100,7 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                 initialValue: DateTimeRange(
                     start: DateTime.now().subtract(Duration(days: 5)),
                     end: DateTime.now().add(Duration(days: 10))),
-                decoration: InputDecoration(labelText: 'Post date range'),
+                decoration: InputDecoration(labelText: S.of(context).JobSortFilterCard_postDateRange),
                 validator: (value) {
                   if (value!.start.isBefore(DateTime.now())) {
                     return 'why';
@@ -116,7 +118,7 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                 initialValue: DateTimeRange(
                     start: DateTime.now().subtract(Duration(days: 5)),
                     end: DateTime.now().add(Duration(days: 10))),
-                decoration: InputDecoration(labelText: 'Deadline date range'),
+                decoration: InputDecoration(labelText: S.of(context).JobSortFilterCard_deadlineDateRange),
                 validator: (value) {
                   if (value!.start.isBefore(DateTime.now())) {
                     return 'why';
@@ -155,7 +157,7 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                       height: 30,
                       child: ElevatedButton(
                         onPressed: () => {},
-                        child: Text('Apply'),
+                        child: Text(S.of(context).JobSortFilterCard_applyButton),
                       ),
                     ),
                   ),
@@ -165,7 +167,7 @@ class _SortAndFilterCardState extends State<JobsSortFilterCard> {
                       height: 30,
                       child: ElevatedButton(
                         onPressed: () => {},
-                        child: Text('Clear'),
+                        child: Text(S.of(context).JobSortFilterCard_clearButton),
                       ),
                     ),
                   ),
