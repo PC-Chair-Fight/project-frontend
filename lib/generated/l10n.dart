@@ -370,99 +370,18 @@ class S {
     );
   }
 
-  //Post a Job
-  String get JobsDashboardScreen_postJob{
+  /// `Clear`
+  String get JobSortFilterCard_clearButton {
     return Intl.message(
-      'Post a Job',
-      name: 'JobsDashboardScreen_postJob',
+      'Clear',
+      name: 'JobSortFilterCard_clearButton',
       desc: '',
       args: [],
     );
   }
 
-  //Search
-  String get JobsDashboardScreen_search{
-    return Intl.message(
-      'Search field...',
-      name: 'JobsDashboardScreen_search',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobCard_seeJobDetails{
-    return Intl.message(
-      'See Job Details',
-      name: 'JobsCard_seeJobDetails',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobCard_postedBy{
-    return Intl.message(
-      'Posted by',
-      name: 'JobCard_postedBy',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobCard_onString{
-    return Intl.message(
-      'on',
-      name: 'JobCard_onString',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobSortFilterCard_sortJobs{
-    return Intl.message(
-      'Sort Jobs',
-      name: 'JobSortFilterCard_sortJobs',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobSortFilterCard_ascending{
-    return Intl.message(
-      'Ascending',
-      name: 'JobSortFilterCard_ascending',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobSortFilterCard_filterJobs{
-    return Intl.message(
-      'Filter Jobs',
-      name: 'JobSortFilterCard_filterJobs',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobSortFilterCard_postDateRange{
-    return Intl.message(
-      'Post date range',
-      name: 'JobSortFilterCard_postDateRange',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobSortFilterCard_deadlineDateRange{
-    return Intl.message(
-      'Deadline date range',
-      name: 'JobSortFilterCard_deadlineDateRange',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get JobSortFilterCard_applyButton{
+  /// `Apply`
+  String get JobSortFilterCard_applyButton {
     return Intl.message(
       'Apply',
       name: 'JobSortFilterCard_applyButton',
@@ -471,10 +390,101 @@ class S {
     );
   }
 
-  String get JobSortFilterCard_clearButton{
+  /// `Deadline date range`
+  String get JobSortFilterCard_deadlineDateRange {
     return Intl.message(
-      'Clear',
-      name: 'JobSortFilterCard_clearButton',
+      'Deadline date range',
+      name: 'JobSortFilterCard_deadlineDateRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post date range`
+  String get JobSortFilterCard_postDateRange {
+    return Intl.message(
+      'Post date range',
+      name: 'JobSortFilterCard_postDateRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Jobs`
+  String get JobSortFilterCard_filterJobs {
+    return Intl.message(
+      'Filter Jobs',
+      name: 'JobSortFilterCard_filterJobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ascending`
+  String get JobSortFilterCard_ascending {
+    return Intl.message(
+      'Ascending',
+      name: 'JobSortFilterCard_ascending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sort Jobs`
+  String get JobSortFilterCard_sortJobs {
+    return Intl.message(
+      'Sort Jobs',
+      name: 'JobSortFilterCard_sortJobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Posted by`
+  String get JobCard_postedBy {
+    return Intl.message(
+      'Posted by',
+      name: 'JobCard_postedBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `on`
+  String get JobCard_onString {
+    return Intl.message(
+      'on',
+      name: 'JobCard_onString',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See Job Details`
+  String get JobsCard_seeJobDetails {
+    return Intl.message(
+      'See Job Details',
+      name: 'JobsCard_seeJobDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search field...`
+  String get JobsDashboardScreen_search {
+    return Intl.message(
+      'Search field...',
+      name: 'JobsDashboardScreen_search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post a Job`
+  String get JobsDashboardScreen_postJob {
+    return Intl.message(
+      'Post a Job',
+      name: 'JobsDashboardScreen_postJob',
       desc: '',
       args: [],
     );

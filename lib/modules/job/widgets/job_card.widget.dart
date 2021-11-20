@@ -48,7 +48,7 @@ class JobCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    S.of(context).JobCard_seeJobDetails,
+                    S.of(context).JobsCard_seeJobDetails,
                     style: ThemeConfig.of(context)!.subtitle1,
                   ),
                   SizedBox(
