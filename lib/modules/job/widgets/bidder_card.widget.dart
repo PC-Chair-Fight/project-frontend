@@ -9,26 +9,22 @@ class BidderCardWidget extends StatelessWidget {
     return Container(
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(ThemeConfig.of(context).smallSpacing),
           child: Row(
-            mainAxisSize: MainAxisSize.max,
             children: [
               Icon(Icons.album),
-              Container(
-                width: 180,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Username',
-                          style: ThemeConfig.of(context)!.subtitle1),
-                      Text("<User's Offer>",
-                          style: ThemeConfig.of(context)!.overline)
-                    ],
-                  ),
+              SizedBox(width: ThemeConfig.of(context).smallSpacing),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text('Username', style: ThemeConfig.of(context).subtitle1),
+                    Text("<User's Offer>",
+                        style: ThemeConfig.of(context).overline)
+                  ],
                 ),
               ),
+              SizedBox(width: ThemeConfig.of(context).smallSpacing),
               Text('#1')
             ],
           ),

@@ -30,7 +30,7 @@ class App extends StatelessWidget {
         }
       },
       initialRoute: LoginScreen.route,
-      theme: ThemeConfig.of(context)!.buildThemeData(),
+      theme: ThemeConfig.of(context).buildThemeData(),
       supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: [
         S.delegate,

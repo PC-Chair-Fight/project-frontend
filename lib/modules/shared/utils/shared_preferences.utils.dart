@@ -1,3 +1,5 @@
-class SharedPreferencesUtils {
-  static const String AUTH_TOKEN_KEY = 'AUTH_TOKEN';
+class StorageKeys {
+  StorageKeys._();
+
+  static const String AUTH_TOKEN = 'AUTH_TOKEN';
 }

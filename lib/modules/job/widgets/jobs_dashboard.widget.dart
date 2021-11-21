@@ -1,52 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project/config/theme.config.dart';
 import 'package:project/modules/job/widgets/job_card.widget.dart';
+import 'package:project/modules/job/widgets/jobs_dashboard_toolbar.widget.dart';
 import 'package:project/modules/job/widgets/jobs_sort_filter_card.widget.dart';
-import 'package:project/generated/l10n.dart';
-
 
 class JobsDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final wideLayout = MediaQuery.of(context).size.width > 1100;
+    final smallLayout = MediaQuery.of(context).size.width < 800;
+
     return Column(
       children: [
-        AppBar(
-          title: Container(
-            width: double.infinity,
-            height: 40,
-            color: Colors.white,
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: S.of(context).JobsDashboardScreen_search,
-                prefixIcon: Icon(Icons.search),
-              ),
-            ),
+        JobsDashboardToolbar(),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: ThemeConfig.of(context).appMargin,
+            horizontal: wideLayout ? ThemeConfig.of(context).appMargin : 0,
           ),
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            JobsSortFilterCard(),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                JobCard(),
-                JobCard(),
-              ],
-            ),
-            Container(
-              width: 400,
-              height: 70,
-              child: Card(
-                child: SizedBox(
-                  child: ElevatedButton(
-                    onPressed: () => {},
-                    child: Text(S.of(context).JobsDashboardScreen_postJob),
+          child: wideLayout
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    JobsSortFilterCard(),
+                    SizedBox(width: ThemeConfig.of(context).mediumSpacing),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: ThemeConfig.of(context).appMediumWidth,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          JobCard(roundEdges: !smallLayout),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              : ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: ThemeConfig.of(context).appLargeWidth,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      JobCard(roundEdges: !smallLayout),
+                    ],
                   ),
                 ),
-              ),
-            )
-          ],
         ),
       ],
     );
