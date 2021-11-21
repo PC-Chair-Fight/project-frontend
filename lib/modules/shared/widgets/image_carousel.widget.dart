@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 
@@ -45,7 +46,7 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
                     'icon': Icons.chevron_left,
                     'callback': () {
                       controller.previousPage(
-                        duration: ThemeConfig.of(context)!.mediumDuration,
+                        duration: ThemeConfig.of(context).mediumDuration,
                         curve: Curves.easeOut,
                       );
                     }
@@ -54,7 +55,7 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
                     'icon': Icons.chevron_right,
                     'callback': () {
                       return controller.nextPage(
-                        duration: ThemeConfig.of(context)!.mediumDuration,
+                        duration: ThemeConfig.of(context).mediumDuration,
                         curve: Curves.easeOut,
                       );
                     },
@@ -66,28 +67,40 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
                     child: SizedBox(
                       width: 48,
                       child: ClipRect(
-                        child: BackdropFilter(
-                          filter: ImageFilter.compose(
-                            outer: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                            inner: ImageFilter.compose(
-                              outer: ImageFilter.matrix(
-                                Matrix4.translationValues(0, -10, 0).storage,
+                        child: kIsWeb // ImageFilter does not work on web
+                            ?
+                            Container(
+                                color: Colors.black12,
+                                child: Icon(
+                                  params['icon'] as IconData,
+                                  color: Colors.white,
+                                  size: 32,
+                                ),
+                              )
+                            : BackdropFilter(
+                                filter: ImageFilter.compose(
+                                  outer: ImageFilter.blur(
+                                      sigmaX: 5.0, sigmaY: 5.0,),
+                                  inner: ImageFilter.compose(
+                                    outer: ImageFilter.matrix(
+                                      Matrix4.translationValues(0, -10, 0)
+                                          .storage,
+                                    ),
+                                    inner: ImageFilter.matrix(
+                                      Matrix4.diagonal3Values(1.05, 1.05, 1.05)
+                                          .storage,
+                                    ),
+                                  ),
+                                ),
+                                child: Container(
+                                  color: Colors.black12,
+                                  child: Icon(
+                                    params['icon'] as IconData,
+                                    color: Colors.white,
+                                    size: 32,
+                                  ),
+                                ),
                               ),
-                              inner: ImageFilter.matrix(
-                                Matrix4.diagonal3Values(1.05, 1.05, 1.05)
-                                    .storage,
-                              ),
-                            ),
-                          ),
-                          child: Container(
-                            color: Colors.black12,
-                            child: Icon(
-                              params['icon'] as IconData,
-                              color: Colors.white,
-                              size: 32,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ),
