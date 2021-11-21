@@ -210,11 +210,21 @@ class S {
     );
   }
 
-  /// `Username`
-  String get RegisterScreen_username_input_label {
+  /// `First name`
+  String get RegisterScreen_first_name_input_label {
     return Intl.message(
-      'Username',
-      name: 'RegisterScreen_username_input_label',
+      'First name',
+      name: 'RegisterScreen_first_name_input_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get RegisterScreen_last_name_input_label {
+    return Intl.message(
+      'Last name',
+      name: 'RegisterScreen_last_name_input_label',
       desc: '',
       args: [],
     );
@@ -280,11 +290,21 @@ class S {
     );
   }
 
-  /// `Please enter a username`
-  String get RegisterScreen_username_required {
+  /// `Please enter your first name`
+  String get RegisterScreen_first_name_required {
     return Intl.message(
-      'Please enter a username',
-      name: 'RegisterScreen_username_required',
+      'Please enter your first name',
+      name: 'RegisterScreen_first_name_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your last name`
+  String get RegisterScreen_last_name_required {
+    return Intl.message(
+      'Please enter your last name',
+      name: 'RegisterScreen_last_name_required',
       desc: '',
       args: [],
     );

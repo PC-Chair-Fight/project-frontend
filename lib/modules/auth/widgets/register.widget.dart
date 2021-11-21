@@ -4,7 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
+import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
+import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
@@ -18,7 +20,8 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   var _selectedDate = DateTime.now();
 
-  final usernameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final dateOfBirthController = TextEditingController();
   final passwordController = TextEditingController();
@@ -26,7 +29,8 @@ class _RegisterState extends State<Register> {
 
   @override
   void dispose() {
-    usernameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     emailController.dispose();
     dateOfBirthController.dispose();
     passwordController.dispose();
@@ -36,7 +40,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthProvider _authProvider = Provider.of<AuthProvider>(context);
+    final AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     return Form(
       key: _formKey,
@@ -48,13 +52,24 @@ class _RegisterState extends State<Register> {
           children: [
             TextFormField(
               textInputAction: TextInputAction.next,
-              controller: usernameController,
+              controller: firstNameController,
               validator: (value) => UtilValidators.guard(value)
-                  .required(S.of(context).RegisterScreen_username_required)
+                  .required(S.of(context).RegisterScreen_first_name_required)
                   .message,
               decoration: InputDecoration(
-                label: Text(S.of(context).RegisterScreen_username_input_label),
-                prefixIcon: Icon(Icons.account_circle_outlined),
+                label:
+                    Text(S.of(context).RegisterScreen_first_name_input_label),
+              ),
+            ),
+            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
+            TextFormField(
+              textInputAction: TextInputAction.next,
+              controller: lastNameController,
+              validator: (value) => UtilValidators.guard(value)
+                  .required(S.of(context).RegisterScreen_last_name_required)
+                  .message,
+              decoration: InputDecoration(
+                label: Text(S.of(context).RegisterScreen_last_name_input_label),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -66,7 +81,6 @@ class _RegisterState extends State<Register> {
                   .message,
               decoration: InputDecoration(
                 label: Text(S.of(context).LoginScreen_email_input_label),
-                prefixIcon: Icon(Icons.alternate_email),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -80,7 +94,10 @@ class _RegisterState extends State<Register> {
               decoration: InputDecoration(
                 label: Text(
                     S.of(context).RegisterScreen_date_of_birth_input_label),
-                prefixIcon: Icon(Icons.calendar_today),
+                suffixIcon: Icon(
+                  Icons.date_range,
+                  color: ThemeConfig.of(context)!.primaryColor,
+                ),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -102,7 +119,6 @@ class _RegisterState extends State<Register> {
                   .message,
               decoration: InputDecoration(
                 label: Text('Password'),
-                prefixIcon: Icon(Icons.password),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
@@ -124,15 +140,14 @@ class _RegisterState extends State<Register> {
               decoration: InputDecoration(
                 label: Text(
                     S.of(context).RegisterScreen_confirm_password_input_label),
-                prefixIcon: Icon(Icons.password),
               ),
             ),
             SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
             ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) _register(_authProvider);
-              },
-              child: Text(S.of(context).RegisterScreen_register_button),
+              onPressed: () => _register(authProvider),
+              child: authProvider.loading
+                  ? LoadingIndicator(type: LoadingIndicatorType.Button)
+                  : Text(S.of(context).RegisterScreen_register_button),
             ),
             SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
             TextButton(
@@ -161,29 +176,35 @@ class _RegisterState extends State<Register> {
   }
 
   _register(AuthProvider authProvider) {
-    authProvider
-        .register(usernameController.value.text, emailController.value.text,
-            _selectedDate, passwordController.value.text)
-        .whenComplete(() {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: authProvider.error == null
-              ? ThemeConfig.of(context)!.successColor
-              : ThemeConfig.of(context)!.errorColor,
-          content: Text(
-            authProvider.error?.toString() ??
-                S.of(context).RegisterScreen_success,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: authProvider.error == null
-                  ? ThemeConfig.of(context)!.onSuccessColor
-                  : ThemeConfig.of(context)!.onErrorColor,
+    if ((_formKey.currentState?.validate() ?? false) && !authProvider.loading)
+      authProvider
+          .register(
+              firstNameController.value.text,
+              lastNameController.value.text,
+              emailController.value.text,
+              _selectedDate,
+              passwordController.value.text)
+          .whenComplete(() {
+        if (authProvider.authToken != null)
+          Navigator.pushNamed(context, JobsDashboardScreen.route);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: authProvider.error == null
+                ? ThemeConfig.of(context)!.successColor
+                : ThemeConfig.of(context)!.errorColor,
+            content: Text(
+              authProvider.error?.toString() ??
+                  S.of(context).RegisterScreen_success,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: authProvider.error == null
+                    ? ThemeConfig.of(context)!.onSuccessColor
+                    : ThemeConfig.of(context)!.onErrorColor,
+              ),
             ),
+            duration: Duration(seconds: 4),
           ),
-          duration: Duration(seconds: 4),
-        ),
-      );
-      if (authProvider.error == null) Navigator.of(context).pop();
-    });
+        );
+      });
   }
 }

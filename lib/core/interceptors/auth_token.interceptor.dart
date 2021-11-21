@@ -8,7 +8,7 @@ class AuthTokenInterceptor extends Interceptor {
 
   void onRequest(request, handler) async {
     final token =
-        await (await _prefs).getString(SharedPreferencesUtils.AUTH_TOKEN_KEY);
+        await (await _prefs).getString(StorageKeys.AUTH_TOKEN);
     if (token != null && token != '') {
       request.headers['Authorization'] = 'Bearer $token';
     }

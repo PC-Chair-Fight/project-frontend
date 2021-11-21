@@ -91,6 +91,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Email"),
         "RegisterScreen_email_required":
             MessageLookupByLibrary.simpleMessage("Please enter an email"),
+        "RegisterScreen_first_name_input_label":
+            MessageLookupByLibrary.simpleMessage("First name"),
+        "RegisterScreen_first_name_required":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter your first name"),
+        "RegisterScreen_last_name_input_label":
+            MessageLookupByLibrary.simpleMessage("Last name"),
+        "RegisterScreen_last_name_required":
+            MessageLookupByLibrary.simpleMessage("Please enter your last name"),
         "RegisterScreen_password_input_label":
             MessageLookupByLibrary.simpleMessage("Password"),
         "RegisterScreen_password_no_special_characters":
@@ -103,11 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Password must contain at least 3 characters"),
         "RegisterScreen_register_button":
             MessageLookupByLibrary.simpleMessage("Register"),
-        "RegisterScreen_success": MessageLookupByLibrary.simpleMessage(
-            "Account created successfully"),
-        "RegisterScreen_username_input_label":
-            MessageLookupByLibrary.simpleMessage("Username"),
-        "RegisterScreen_username_required":
-            MessageLookupByLibrary.simpleMessage("Please enter a username")
+        "RegisterScreen_success":
+            MessageLookupByLibrary.simpleMessage("Account created successfully")
       };
 }
