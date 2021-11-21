@@ -16,11 +16,11 @@ class LabeledDivider extends StatelessWidget {
         Expanded(child: Divider()),
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: ThemeConfig.of(context)!.mediumSpacing,
+            horizontal: ThemeConfig.of(context).mediumSpacing,
           ),
           child: DefaultTextStyle(
             child: label,
-            style: ThemeConfig.of(context)!.caption,
+            style: ThemeConfig.of(context).caption,
           ),
         ),
         Expanded(child: Divider())

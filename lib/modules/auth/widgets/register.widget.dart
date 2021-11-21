@@ -45,115 +45,145 @@ class _RegisterState extends State<Register> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: EdgeInsets.all(ThemeConfig.of(context)!.appMargin),
+        padding: EdgeInsets.all(ThemeConfig.of(context).appMargin),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(
-              textInputAction: TextInputAction.next,
-              controller: firstNameController,
-              validator: (value) => UtilValidators.guard(value)
-                  .required(S.of(context).RegisterScreen_first_name_required)
-                  .message,
-              decoration: InputDecoration(
-                label:
-                    Text(S.of(context).RegisterScreen_first_name_input_label),
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: ThemeConfig.of(context).appMediumWidth,
               ),
-            ),
-            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
-            TextFormField(
-              textInputAction: TextInputAction.next,
-              controller: lastNameController,
-              validator: (value) => UtilValidators.guard(value)
-                  .required(S.of(context).RegisterScreen_last_name_required)
-                  .message,
-              decoration: InputDecoration(
-                label: Text(S.of(context).RegisterScreen_last_name_input_label),
-              ),
-            ),
-            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
-            TextFormField(
-              textInputAction: TextInputAction.next,
-              controller: emailController,
-              validator: (value) => UtilValidators.guard(value)
-                  .required(S.of(context).LoginScreen_validator_email_required)
-                  .message,
-              decoration: InputDecoration(
-                label: Text(S.of(context).LoginScreen_email_input_label),
-              ),
-            ),
-            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
-            TextFormField(
-              readOnly: true,
-              onTap: () => _selectDate(context),
-              controller: dateOfBirthController,
-              validator: (value) => UtilValidators.guard(value)
-                  .required(S.of(context).RegisterScreen_date_of_birth_required)
-                  .message,
-              decoration: InputDecoration(
-                label: Text(
-                    S.of(context).RegisterScreen_date_of_birth_input_label),
-                suffixIcon: Icon(
-                  Icons.date_range,
-                  color: ThemeConfig.of(context)!.primaryColor,
-                ),
-              ),
-            ),
-            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
-            TextFormField(
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              textInputAction: TextInputAction.next,
-              controller: passwordController,
-              validator: (value) => UtilValidators.guard(value)
-                  .required(S.of(context).RegisterScreen_password_required)
-                  .atLeast(3, S.of(context).RegisterScreen_password_too_short)
-                  .contains(
-                      " !\"#\$%&'()*+,-./:;<=>?@[]^_`{|}~",
-                      1,
-                      S
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextFormField(
+                    textInputAction: TextInputAction.next,
+                    controller: firstNameController,
+                    validator: (value) => UtilValidators.guard(value)
+                        .required(
+                            S.of(context).RegisterScreen_first_name_required)
+                        .message,
+                    decoration: InputDecoration(
+                      label: Text(
+                          S.of(context).RegisterScreen_first_name_input_label),
+                    ),
+                  ),
+                  SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                  TextFormField(
+                    textInputAction: TextInputAction.next,
+                    controller: lastNameController,
+                    validator: (value) => UtilValidators.guard(value)
+                        .required(
+                            S.of(context).RegisterScreen_last_name_required)
+                        .message,
+                    decoration: InputDecoration(
+                      label: Text(
+                          S.of(context).RegisterScreen_last_name_input_label),
+                    ),
+                  ),
+                  SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                  TextFormField(
+                    textInputAction: TextInputAction.next,
+                    controller: emailController,
+                    validator: (value) => UtilValidators.guard(value)
+                        .required(
+                            S.of(context).LoginScreen_validator_email_required)
+                        .message,
+                    decoration: InputDecoration(
+                      label: Text(S.of(context).LoginScreen_email_input_label),
+                    ),
+                  ),
+                  SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                  TextFormField(
+                    readOnly: true,
+                    onTap: () => _selectDate(context),
+                    controller: dateOfBirthController,
+                    validator: (value) => UtilValidators.guard(value)
+                        .required(
+                            S.of(context).RegisterScreen_date_of_birth_required)
+                        .message,
+                    decoration: InputDecoration(
+                      label: Text(S
                           .of(context)
-                          .RegisterScreen_password_no_special_characters)
-                  .message,
-              decoration: InputDecoration(
-                label: Text('Password'),
-              ),
-            ),
-            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
-            TextFormField(
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              textInputAction: TextInputAction.done,
-              controller: confirmPasswordController,
-              validator: (value) => UtilValidators.guard(value)
-                  .required(
-                      S.of(context).RegisterScreen_confirm_password_required)
-                  .equal(
-                      passwordController.value.text,
-                      S
+                          .RegisterScreen_date_of_birth_input_label),
+                      suffixIcon: Icon(
+                        Icons.date_range,
+                        color: ThemeConfig.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                  TextFormField(
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    textInputAction: TextInputAction.next,
+                    controller: passwordController,
+                    validator: (value) => UtilValidators.guard(value)
+                        .required(
+                            S.of(context).RegisterScreen_password_required)
+                        .atLeast(
+                            3, S.of(context).RegisterScreen_password_too_short)
+                        .contains(
+                            " !\"#\$%&'()*+,-./:;<=>?@[]^_`{|}~",
+                            1,
+                            S
+                                .of(context)
+                                .RegisterScreen_password_no_special_characters)
+                        .message,
+                    decoration: InputDecoration(
+                      label: Text('Password'),
+                    ),
+                  ),
+                  SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                  TextFormField(
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    textInputAction: TextInputAction.done,
+                    controller: confirmPasswordController,
+                    validator: (value) => UtilValidators.guard(value)
+                        .required(S
+                            .of(context)
+                            .RegisterScreen_confirm_password_required)
+                        .equal(
+                            passwordController.value.text,
+                            S
+                                .of(context)
+                                .RegisterScreen_confirm_password_does_not_match)
+                        .message,
+                    decoration: InputDecoration(
+                      label: Text(S
                           .of(context)
-                          .RegisterScreen_confirm_password_does_not_match)
-                  .message,
-              decoration: InputDecoration(
-                label: Text(
-                    S.of(context).RegisterScreen_confirm_password_input_label),
+                          .RegisterScreen_confirm_password_input_label),
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: ThemeConfig.of(context)!.largestSpacing),
-            ElevatedButton(
-              onPressed: () => _register(authProvider),
-              child: authProvider.loading
-                  ? LoadingIndicator(type: LoadingIndicatorType.Button)
-                  : Text(S.of(context).RegisterScreen_register_button),
+            SizedBox(height: ThemeConfig.of(context).largestSpacing),
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: ThemeConfig.of(context).appSmallWidth,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => _register(authProvider),
+                    child: authProvider.loading
+                        ? LoadingIndicator(type: LoadingIndicatorType.Button)
+                        : Text(S.of(context).RegisterScreen_register_button),
+                  ),
+                  SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child:
+                        Text(S.of(context).RegisterScreen_back_to_login_button),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: ThemeConfig.of(context)!.mediumSpacing),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(S.of(context).RegisterScreen_back_to_login_button),
-            )
           ],
         ),
       ),
@@ -190,16 +220,16 @@ class _RegisterState extends State<Register> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: authProvider.error == null
-                ? ThemeConfig.of(context)!.successColor
-                : ThemeConfig.of(context)!.errorColor,
+                ? ThemeConfig.of(context).successColor
+                : ThemeConfig.of(context).errorColor,
             content: Text(
               authProvider.error?.toString() ??
                   S.of(context).RegisterScreen_success,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: authProvider.error == null
-                    ? ThemeConfig.of(context)!.onSuccessColor
-                    : ThemeConfig.of(context)!.onErrorColor,
+                    ? ThemeConfig.of(context).onSuccessColor
+                    : ThemeConfig.of(context).onErrorColor,
               ),
             ),
             duration: Duration(seconds: 4),

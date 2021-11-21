@@ -13,10 +13,10 @@ class LoadingIndicator extends StatelessWidget {
         return CircularProgressIndicator();
       case LoadingIndicatorType.Button:
         return SizedBox(
-          width: ThemeConfig.of(context)!.buttonHeight / 2,
-          height: ThemeConfig.of(context)!.buttonHeight / 2,
+          width: ThemeConfig.of(context).buttonHeight / 2,
+          height: ThemeConfig.of(context).buttonHeight / 2,
           child: CircularProgressIndicator(
-            color: ThemeConfig.of(context)!.onPrimaryColor,
+            color: ThemeConfig.of(context).onPrimaryColor,
           ),
         );
       case LoadingIndicatorType.Page:

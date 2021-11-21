@@ -8,11 +8,11 @@ class AppLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO - Replace with the real logo
     return Material(
-      color: ThemeConfig.of(context)!.surfaceColor,
+      color: ThemeConfig.of(context).surfaceColor,
       elevation: 4,
       shape: CircleBorder(),
       child: Padding(
-        padding: EdgeInsets.all(ThemeConfig.of(context)!.appMargin),
+        padding: EdgeInsets.all(ThemeConfig.of(context).appMargin),
         child: FlutterLogo(),
       ),
     );
