@@ -6,7 +6,8 @@ class JobDescription extends StatefulWidget {
   final String? name;
   final String? description;
 
-  const JobDescription({Key? key, this.name, this.description}) : super(key: key);
+  const JobDescription({Key? key, this.name, this.description})
+      : super(key: key);
 
   @override
   _JobDescriptionState createState() => _JobDescriptionState();
@@ -50,20 +51,18 @@ class _JobDescriptionState extends State<JobDescription> {
                   : TextOverflow.ellipsis,
             ),
             SizedBox(height: ThemeConfig.of(context).mediumSpacing),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () => setState(
-                        () => _showingDescription = !_showingDescription,
-                  ),
-                  child: Text(
-                    _showingDescription
-                        ? S.of(context).JobDetailsScreen_show_less
-                        : S.of(context).JobDetailsScreen_show_more,
-                  ),
-                )
-              ],
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () => setState(
+                  () => _showingDescription = !_showingDescription,
+                ),
+                child: Text(
+                  _showingDescription
+                      ? S.of(context).JobDetailsScreen_show_less
+                      : S.of(context).JobDetailsScreen_show_more,
+                ),
+              ),
             )
           ],
         ),

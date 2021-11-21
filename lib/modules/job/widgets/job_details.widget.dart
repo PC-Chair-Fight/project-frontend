@@ -38,7 +38,8 @@ class _JobDetailsState extends State<JobDetails> {
     final bidGridView = GridView.count(
       crossAxisSpacing: ThemeConfig.of(context).smallSpacing,
       mainAxisSpacing: ThemeConfig.of(context).smallSpacing,
-      childAspectRatio: 3, // TODO somehow compute this
+      childAspectRatio: 3,
+      // TODO somehow compute this
       shrinkWrap: true,
       primary: false,
       padding: EdgeInsets.all(
@@ -58,60 +59,155 @@ class _JobDetailsState extends State<JobDetails> {
     );
 
     // setup differentiated based on platform (web or not)
-    return //smallLayout ?
-        CustomScrollView(
-      slivers: [
-        SliverAppBar(
-            automaticallyImplyLeading: false,
-            expandedHeight: 400,
-            flexibleSpace: carousel),
-        SliverToBoxAdapter(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                JobDescription(
-                  name: widget.job.name,
-                  description: widget.job.description,
+    return smallLayout
+        ? CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                  automaticallyImplyLeading: false,
+                  expandedHeight: 400,
+                  flexibleSpace: carousel),
+              SliverToBoxAdapter(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      JobDescription(
+                        name: widget.job.name,
+                        description: widget.job.description,
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.all(ThemeConfig.of(context).appMargin),
+                        child: bidGridView,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: ThemeConfig.of(context).appMargin),
+                        child: bidButton,
+                      ),
+                      SizedBox(
+                        height: ThemeConfig.of(context).appMargin,
+                      )
+                    ],
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(ThemeConfig.of(context).appMargin),
-                  child: bidGridView,
+              )
+            ],
+          )
+        : wideLayout
+            ? SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height,
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: ThemeConfig.of(context).appMargin,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth:
+                                    ThemeConfig.of(context).appMediumWidth,
+                              ),
+                              child: Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    carousel,
+                                    JobDescription(
+                                      name: widget.job.name,
+                                      description: widget.job.description,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: ThemeConfig.of(context).mediumSpacing,
+                          ),
+                          Flexible(
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth: ThemeConfig.of(context).appSmallWidth,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  bidGridView,
+                                  bidButton,
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: ThemeConfig.of(context).appMargin),
-                  child: bidButton,
-                ),
-                SizedBox(
-                  height: ThemeConfig.of(context).appMargin,
-                )
-              ],
-            ),
-          ),
-        )
-      ],
-    );
-    // : wideLayout
-    //     ? Row(
-    //         crossAxisAlignment: CrossAxisAlignment.stretch,
-    //         mainAxisSize: MainAxisSize.min,
-    //         children: [
-    //           Card(
-    //             clipBehavior: Clip.antiAliasWithSaveLayer,
-    //             child: Column(
-    //               mainAxisSize: MainAxisSize.min,
-    //               children: [
-    //                 // carousel,
-    //                 JobDescription(
-    //                   name: widget.job.name,
-    //                   description: widget.job.description,
-    //                 )
-    //               ],
+              )
+            : Container(); // TODO
+    // SingleChildScrollView(
+    //             child: ConstrainedBox(
+    //               constraints: BoxConstraints(
+    //                 minHeight: MediaQuery.of(context).size.height,
+    //               ),
+    //               child: Center(
+    //                 child: Column(
+    //                   mainAxisSize: MainAxisSize.min,
+    //                   crossAxisAlignment: CrossAxisAlignment.start,
+    //                   children: [
+    //                     Flexible(
+    //                       child: ConstrainedBox(
+    //                         constraints: BoxConstraints(
+    //                           maxWidth:
+    //                               ThemeConfig.of(context).appMediumWidth,
+    //                         ),
+    //                         child: Card(
+    //                           clipBehavior: Clip.antiAlias,
+    //                           child: Column(
+    //                             mainAxisSize: MainAxisSize.min,
+    //                             children: [
+    //                               carousel,
+    //                               JobDescription(
+    //                                 name: widget.job.name,
+    //                                 description: widget.job.description,
+    //                               )
+    //                             ],
+    //                           ),
+    //                         ),
+    //                       ),
+    //                     ),
+    //                     SizedBox(
+    //                       width: ThemeConfig.of(context).mediumSpacing,
+    //                     ),
+    //                     Flexible(
+    //                       child: ConstrainedBox(
+    //                         constraints: BoxConstraints(
+    //                           maxWidth: ThemeConfig.of(context).appSmallWidth,
+    //                         ),
+    //                         child: Column(
+    //                           crossAxisAlignment: CrossAxisAlignment.stretch,
+    //                           mainAxisSize: MainAxisSize.min,
+    //                           children: [
+    //                             bidGridView,
+    //                             bidButton,
+    //                           ],
+    //                         ),
+    //                       ),
+    //                     )
+    //                   ],
+    //                 ),
+    //               ),
     //             ),
-    //           ),
-    //         ],
-    //       )
-    //     : Container();
+    //           );
   }
 }
