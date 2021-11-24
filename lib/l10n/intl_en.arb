@@ -51,6 +51,7 @@
   "JobDetailsScreen_no_description": "(No description)",
   "JobDetailsScreen_show_more": "Show more",
   "JobDetailsScreen_show_less": "Show less",
+  "JobDetailsScreen_bid_button": "Bid",
   "@JobSortFilterCard": {
   },
   "JobSortFilterCard_clearButton": "Clear",

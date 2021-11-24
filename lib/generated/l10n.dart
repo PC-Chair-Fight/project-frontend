@@ -460,6 +460,16 @@ class S {
     );
   }
 
+  /// `Bid`
+  String get JobDetailsScreen_bid_button {
+    return Intl.message(
+      'Bid',
+      name: 'JobDetailsScreen_bid_button',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Clear`
   String get JobSortFilterCard_clearButton {
     return Intl.message(

@@ -41,29 +41,64 @@ class _JobDescriptionState extends State<JobDescription> {
               style: ThemeConfig.of(context).subtitle2,
             ),
             SizedBox(height: ThemeConfig.of(context).mediumSpacing),
-            Text(
-              widget.description ??
-                  S.of(context).JobDetailsScreen_no_description,
-              style: ThemeConfig.of(context).body1,
-              maxLines: _showingDescription ? null : 2,
-              overflow: _showingDescription
-                  ? TextOverflow.visible
-                  : TextOverflow.ellipsis,
+            LayoutBuilder(
+              builder: (context, size) {
+                final text = widget.description ??
+                    S.of(context).JobDetailsScreen_no_description;
+                final style = ThemeConfig.of(context).body1;
+                final painter = TextPainter(
+                  maxLines: 2,
+                  textAlign: TextAlign.left,
+                  textDirection: TextDirection.ltr,
+                  text: TextSpan(
+                    text: text,
+                    style: style,
+                  ),
+                );
+                painter.layout(maxWidth: size.maxWidth);
+
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      text,
+                      style: style,
+                      maxLines: _showingDescription ? null : 2,
+                      overflow: _showingDescription
+                          ? TextOverflow.visible
+                          : TextOverflow.ellipsis,
+                    )
+                  ]..addAll(
+                      painter.didExceedMaxLines
+                          ? [
+                              SizedBox(
+                                  height:
+                                      ThemeConfig.of(context).mediumSpacing),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton(
+                                  onPressed: () => setState(
+                                    () => _showingDescription =
+                                        !_showingDescription,
+                                  ),
+                                  child: Text(
+                                    _showingDescription
+                                        ? S
+                                            .of(context)
+                                            .JobDetailsScreen_show_less
+                                        : S
+                                            .of(context)
+                                            .JobDetailsScreen_show_more,
+                                  ),
+                                ),
+                              )
+                            ]
+                          : [],
+                    ),
+                );
+              },
             ),
-            SizedBox(height: ThemeConfig.of(context).mediumSpacing),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () => setState(
-                  () => _showingDescription = !_showingDescription,
-                ),
-                child: Text(
-                  _showingDescription
-                      ? S.of(context).JobDetailsScreen_show_less
-                      : S.of(context).JobDetailsScreen_show_more,
-                ),
-              ),
-            )
           ],
         ),
       ),
