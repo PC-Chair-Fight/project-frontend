@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -229,7 +227,8 @@ class _JobDetailsState extends State<JobDetails> {
 
   Widget _bidButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {}, // TODO show modal asking for bid value when modals are ready
+      onPressed: () {},
+      // TODO show modal asking for bid value when modals are ready
       child: Text(S.of(context).JobDetailsScreen_bid_button),
     );
   }
