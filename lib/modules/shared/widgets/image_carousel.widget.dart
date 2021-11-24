@@ -29,12 +29,25 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
         children: [
           PageView(
             controller: controller,
-            children: [
-              ...widget.images.map((image) => Image(
-                    image: image,
-                    fit: BoxFit.cover,
-                  ))
-            ],
+            children: widget.images
+                .map((image) => Image(
+                      image: image,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) =>
+                          loadingProgress == null
+                              ? child
+                              : Center(
+                                  child: CircularProgressIndicator(
+                                    value: loadingProgress.expectedTotalBytes !=
+                                            null
+                                        ? loadingProgress
+                                                .cumulativeBytesLoaded /
+                                            loadingProgress.expectedTotalBytes!
+                                        : null,
+                                  ),
+                                ),
+                    ))
+                .toList(),
           ),
           Positioned.fill(
             child: Row(
@@ -68,8 +81,7 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
                       width: 48,
                       child: ClipRect(
                         child: kIsWeb // ImageFilter does not work on web
-                            ?
-                            Container(
+                            ? Container(
                                 color: Colors.black12,
                                 child: Icon(
                                   params['icon'] as IconData,
@@ -80,7 +92,9 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
                             : BackdropFilter(
                                 filter: ImageFilter.compose(
                                   outer: ImageFilter.blur(
-                                      sigmaX: 5.0, sigmaY: 5.0,),
+                                    sigmaX: 5.0,
+                                    sigmaY: 5.0,
+                                  ),
                                   inner: ImageFilter.compose(
                                     outer: ImageFilter.matrix(
                                       Matrix4.translationValues(0, -10, 0)
