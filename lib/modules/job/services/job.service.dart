@@ -20,7 +20,7 @@ class JobService {
   }
 
   Future<JobModel> getDetails(int jobId) async =>
-      initializeDio() // TODO uncomment this when we have jobs
+      initializeDio()
           .get('/Job/Details', queryParameters: {'id': jobId})
           .then((response) => JobModel.fromJson(response.data))
           .catchError(
