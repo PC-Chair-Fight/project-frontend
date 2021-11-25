@@ -7,6 +7,9 @@
   },
   "Exception_unexpected": "Unexpected error... Please try again later",
   "Exception_connection_timed_out": "Connection timed out... Check your internet connection and try again",
+  "Exception_bad_request": "The server had trouble processing your request... Please try again later",
+  "Exception_unauthorized": "You are not allowed to perform this action",
+  "Exception_not_found": "Item not found",
   "Exception_invalid_login_credentials": "Invalid email or password",
   "@LoginScreen": {
   },

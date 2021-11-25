@@ -1,45 +1,41 @@
-import 'package:project/modules/job/models/job_image.model.dart';
 import 'package:project/modules/job/models/bid.model.dart';
 
-class Job {
+class JobModel {
   int? id;
+  int? userId;
   String? name;
   String? description;
-  List<JobImage>? images;
-  List<Bid>? bids;
+  List<String> images;
+  List<Bid> bids;
   DateTime? postDate;
   bool? done;
 
-  Job({
+  JobModel({
     this.id,
     this.name,
     this.description,
-    this.images,
-    this.bids,
+    this.images = const [],
+    this.bids = const [],
     this.postDate,
     this.done,
   });
 
-  Job.fromJson(Map<String, dynamic> json)
-      : id = json['Id'],
-        name = json['Name'],
-        description = json['Description'],
-        images = (json['Images'] as List<Map<String, dynamic>>)
-            .map((e) => JobImage.fromJson(e))
-            .toList(),
-        bids = (json['Bids'] as List<Map<String, dynamic>>)
-            .map((e) => Bid.fromJson(e))
-            .toList(),
-        postDate = DateTime.parse(json['PostDate'] as String),
-        done = json['Done'];
+  JobModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        name = json['name'],
+        description = json['description'],
+        images = json['images'] as List<String>? ?? [],
+        bids = json['bids'] as List<Bid>? ?? [],
+        postDate = DateTime.parse(json['postDate'] as String),
+        done = json['done'];
 
   toJson() => {
-        'Id': id,
-        'Name': name,
-        'Description': description,
-        'Images': images,
-        'Bids': bids,
-        'PostDate': postDate?.toIso8601String(),
-        'Done': done
+        'id': id,
+        'name': name,
+        'description': description,
+        'images': images,
+        'bids': bids.map((b) => b.toJson()),
+        'postDate': postDate?.toIso8601String(),
+        'done': done
       };
 }

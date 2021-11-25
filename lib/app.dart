@@ -20,14 +20,7 @@ class App extends StatelessWidget {
         LoginScreen.route: (context) => LoginScreen(),
         RegisterScreen.route: (context) => RegisterScreen(),
         JobsDashboardScreen.route: (context) => JobsDashboardScreen(),
-      },
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case JobDetailsScreen.route:
-            return MaterialPageRoute(
-                builder: (context) =>
-                    JobDetailsScreen(job: settings.arguments as Job));
-        }
+        JobDetailsScreen.route: (context) => JobDetailsScreen()
       },
       initialRoute: LoginScreen.route,
       theme: ThemeConfig.of(context).buildThemeData(),

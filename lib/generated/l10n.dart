@@ -80,6 +80,36 @@ class S {
     );
   }
 
+  /// `The server had trouble processing your request... Please try again later`
+  String get Exception_bad_request {
+    return Intl.message(
+      'The server had trouble processing your request... Please try again later',
+      name: 'Exception_bad_request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are not allowed to perform this action`
+  String get Exception_unauthorized {
+    return Intl.message(
+      'You are not allowed to perform this action',
+      name: 'Exception_unauthorized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item not found`
+  String get Exception_not_found {
+    return Intl.message(
+      'Item not found',
+      name: 'Exception_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Invalid email or password`
   String get Exception_invalid_login_credentials {
     return Intl.message(

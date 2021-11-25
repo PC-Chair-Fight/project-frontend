@@ -10,9 +10,9 @@ import 'package:project/modules/job/widgets/job_description.widget.dart';
 import 'package:project/modules/shared/widgets/image_carousel.widget.dart';
 
 class JobDetails extends StatefulWidget {
-  final Job job;
+  final JobModel job;
 
-  const JobDetails({Key? key, required Job this.job}) : super(key: key);
+  const JobDetails({Key? key, required JobModel this.job}) : super(key: key);
 
   @override
   State<JobDetails> createState() => _JobDetailsState();
@@ -111,7 +111,10 @@ class _JobDetailsState extends State<JobDetails> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   _bidGridView(context),
-                                  SizedBox(height: ThemeConfig.of(context).mediumSpacing,),
+                                  SizedBox(
+                                    height:
+                                        ThemeConfig.of(context).mediumSpacing,
+                                  ),
                                   _bidButton(context),
                                 ],
                               ),
@@ -172,7 +175,10 @@ class _JobDetailsState extends State<JobDetails> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   _bidGridView(context),
-                                  SizedBox(height: ThemeConfig.of(context).mediumSpacing,),
+                                  SizedBox(
+                                    height:
+                                        ThemeConfig.of(context).mediumSpacing,
+                                  ),
                                   _bidButton(context),
                                 ],
                               ),
@@ -189,34 +195,30 @@ class _JobDetailsState extends State<JobDetails> {
   Widget _carousel(BuildContext context) {
     return ImageCarouselWidget(
       height: 400,
-      images: (widget.job.images ?? [])
-          .where((image) => image.url != null)
-          .map((image) => NetworkImage(image.url!))
-          .toList(),
+      images: widget.job.images.map((image) => NetworkImage(image)).toList(),
     );
   }
 
   Widget _bidGridView(BuildContext context) {
+    int bidPosition = 1;
     return LayoutBuilder(
       builder: (context, size) => Wrap(
         direction: Axis.horizontal,
         runSpacing: ThemeConfig.of(context).smallSpacing,
         spacing: ThemeConfig.of(context).smallSpacing,
         alignment: WrapAlignment.center,
-        children: [
-          BidderCardWidget(),
-          BidderCardWidget(),
-          BidderCardWidget(),
-          BidderCardWidget(),
-        ]
+        children: widget.job.bids
             .map(
-              (w) => ConstrainedBox(
+              (b) => ConstrainedBox(
                 // make a wrap child be just wide enough to fit two such
                 // children on a row, taking into account the spacing
                 constraints: BoxConstraints(
                     maxWidth: size.maxWidth / 2 -
                         ThemeConfig.of(context).smallSpacing),
-                child: w,
+                child: BidderCardWidget(
+                  position: bidPosition++,
+                  bid: b,
+                ),
               ),
             )
             .toList(),

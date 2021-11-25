@@ -5,13 +5,17 @@ class AppConfig extends InheritedWidget {
   final bool logProviders;
   final bool logServices;
   final String authBaseUrl;
+  final String jobBaseUrl;
+  final String bidBaseUrl;
 
   const AppConfig({
     Key? key,
     required this.child,
   })  : logProviders = true,
         logServices = true,
-        authBaseUrl = 'https://chairfightbackend.azurewebsites.net/',
+        authBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
+        jobBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
+        bidBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
         super(key: key, child: child);
 
   static AppConfig? of(BuildContext context) {

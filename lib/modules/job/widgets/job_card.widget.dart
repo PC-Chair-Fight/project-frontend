@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
+import 'package:project/modules/job/models/bid.model.dart';
 import 'package:project/modules/job/models/job.model.dart';
-import 'package:project/modules/job/models/job_image.model.dart';
 import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/job/widgets/bidder_card.widget.dart';
+import 'package:project/modules/user/models/user.model.dart';
+import 'package:project/modules/worker/models/worker.model.dart';
 
 class JobCard extends StatelessWidget {
   static const String fillerText =
@@ -44,33 +46,48 @@ class JobCard extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Expanded(child: BidderCardWidget()),
+                Expanded(
+                  child: BidderCardWidget(
+                    position: 1,
+                    bid: Bid(
+                      id: 1,
+                      sum: 120,
+                      worker: Worker(
+                        user: User(
+                            firstName: 'Rhiana',
+                            lastName: 'McDonnell',
+                            profilePicture:
+                                'https://picsum.photos/id/1/600'),
+                      ),
+                    ),
+                  ),
+                ),
                 SizedBox(width: 20),
-                Expanded(child: BidderCardWidget())
+                Expanded(
+                  child: BidderCardWidget(
+                    position: 2,
+                    bid: Bid(
+                      id: 2,
+                      sum: 121,
+                      worker: Worker(
+                        user: User(
+                            firstName: 'Elijah',
+                            lastName: 'O\'Ryan',
+                            profilePicture:
+                            'https://picsum.photos/id/2/600'),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             SizedBox(height: ThemeConfig.of(context).smallSpacing),
             TextButton(
               onPressed: () => Navigator.pushNamed(
-                  context, JobDetailsScreen.route,
-                  arguments: Job(
-                      // TODO remove this mock job + request to job details endpoint
-                      name: 'Name',
-                      description:
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
-                          'sed do eiusmod tempor incididunt ut labore et dolore magna'
-                          ' aliqua. Ut enim ad minim veniam, quis nostrud exercitation'
-                          ' ullamco laboris nisi ut aliquip ex ea commodo consequat. '
-                          'Duis aute irure dolor in reprehenderit in voluptate velit '
-                          'esse cillum dolore eu fugiat nulla pariatur. Excepteur '
-                          'sint occaecat cupidatat non proident, sunt in culpa qui '
-                          'officia deserunt mollit anim id est laborum',
-                      images: [
-                        'https://picsum.photos/seed/1/600/400',
-                        'https://picsum.photos/seed/2/600/400',
-                        'https://picsum.photos/seed/3/600/400',
-                        'https://picsum.photos/seed/4/600/400',
-                      ].map((url) => JobImage(url: url)).toList())),
+                context,
+                JobDetailsScreen.route,
+                arguments: 1, // TODO current job id
+              ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
