@@ -5,7 +5,6 @@ import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/screens/login.screen.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
-import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
 

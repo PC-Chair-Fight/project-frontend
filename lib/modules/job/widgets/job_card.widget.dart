@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/models/bid.model.dart';
-import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/job/widgets/bidder_card.widget.dart';
 import 'package:project/modules/user/models/user.model.dart';
