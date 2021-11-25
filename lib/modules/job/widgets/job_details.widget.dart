@@ -111,6 +111,7 @@ class _JobDetailsState extends State<JobDetails> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   _bidGridView(context),
+                                  SizedBox(height: ThemeConfig.of(context).mediumSpacing,),
                                   _bidButton(context),
                                 ],
                               ),
@@ -130,7 +131,7 @@ class _JobDetailsState extends State<JobDetails> {
                   child: Center(
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: ThemeConfig.of(context).appMargin,
+                        vertical: ThemeConfig.of(context).appMargin,
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -171,6 +172,7 @@ class _JobDetailsState extends State<JobDetails> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   _bidGridView(context),
+                                  SizedBox(height: ThemeConfig.of(context).mediumSpacing,),
                                   _bidButton(context),
                                 ],
                               ),
@@ -195,33 +197,30 @@ class _JobDetailsState extends State<JobDetails> {
   }
 
   Widget _bidGridView(BuildContext context) {
-    return GridView.count(
-      crossAxisSpacing: ThemeConfig.of(context).smallSpacing,
-      mainAxisSpacing: ThemeConfig.of(context).smallSpacing,
-      childAspectRatio: 3,
-      // TODO somehow compute this
-      shrinkWrap: true,
-      primary: false,
-      padding: EdgeInsets.all(
-        ThemeConfig.of(context).smallSpacing,
-      ),
-      crossAxisCount: 2,
-      children: [
-        BidderCardWidget(),
-        BidderCardWidget(),
-        BidderCardWidget(),
-        BidderCardWidget(),
-      ]
-          .map(
-            (bidderCardWidget) => Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [bidderCardWidget],
+    return LayoutBuilder(
+      builder: (context, size) => Wrap(
+        direction: Axis.horizontal,
+        runSpacing: ThemeConfig.of(context).smallSpacing,
+        spacing: ThemeConfig.of(context).smallSpacing,
+        alignment: WrapAlignment.center,
+        children: [
+          BidderCardWidget(),
+          BidderCardWidget(),
+          BidderCardWidget(),
+          BidderCardWidget(),
+        ]
+            .map(
+              (w) => ConstrainedBox(
+                // make a wrap child be just wide enough to fit two such
+                // children on a row, taking into account the spacing
+                constraints: BoxConstraints(
+                    maxWidth: size.maxWidth / 2 -
+                        ThemeConfig.of(context).smallSpacing),
+                child: w,
               ),
-            ),
-          )
-          .toList(), // TODO fill with fetched bids
+            )
+            .toList(),
+      ),
     );
   }
 

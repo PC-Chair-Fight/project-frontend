@@ -39,7 +39,10 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
                               : Center(
                                   child: CircularProgressIndicator(
                                     value: loadingProgress.expectedTotalBytes !=
-                                            null
+                                                null &&
+                                            loadingProgress
+                                                    .expectedTotalBytes !=
+                                                0
                                         ? loadingProgress
                                                 .cumulativeBytesLoaded /
                                             loadingProgress.expectedTotalBytes!
