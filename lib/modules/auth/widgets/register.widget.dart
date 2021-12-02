@@ -216,7 +216,7 @@ class _RegisterState extends State<Register> {
               passwordController.value.text)
           .whenComplete(() {
         if (authProvider.authToken != null)
-          Navigator.pushNamed(context, PageWrapperScreen.route);
+          Navigator.pushNamed(context, MainWrapperScreen.route);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: authProvider.error == null

@@ -140,7 +140,7 @@ class LoginState extends State<Login> {
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, PageWrapperScreen.route);
+                                context, MainWrapperScreen.route);
                           },
                           child: Text('Skip'),
                         ),
@@ -162,7 +162,7 @@ class LoginState extends State<Login> {
           .login(emailController.value.text, passwordController.value.text)
           .whenComplete(() {
         if (authProvider.authToken != null)
-          Navigator.pushNamed(context, PageWrapperScreen.route);
+          Navigator.pushNamed(context, MainWrapperScreen.route);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: authProvider.error == null

@@ -7,17 +7,21 @@ import 'package:project/modules/main/widgets/app_side_navigation_bar.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
 import 'package:provider/provider.dart';
 
-class PageWrapperScreen extends StatelessWidget {
+class MainWrapperScreen extends StatelessWidget {
   static const String route = '/main';
 
-  const PageWrapperScreen({Key? key}) : super(key: key);
+  const MainWrapperScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final pageProvider = Provider.of<PageProvider>(context);
 
     return Scaffold(
-      appBar: !kIsWeb ? AppBar() : null,
+      appBar: !kIsWeb
+          ? AppBar(
+              automaticallyImplyLeading: false,
+            )
+          : null,
       bottomNavigationBar: !ScreenLayout.isWide(context)
           ? AppBottomNavigationBar(
               context: context,

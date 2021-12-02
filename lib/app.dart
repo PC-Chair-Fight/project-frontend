@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       routes: {
         LoginScreen.route: (context) => LoginScreen(),
         RegisterScreen.route: (context) => RegisterScreen(),
-        PageWrapperScreen.route: (context) => PageWrapperScreen()
+        MainWrapperScreen.route: (context) => MainWrapperScreen()
       },
       initialRoute: LoginScreen.route,
       theme: ThemeConfig.of(context).buildThemeData(),
