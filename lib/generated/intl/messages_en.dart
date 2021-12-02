@@ -73,6 +73,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter an email"),
         "LoginScreen_validator_password_required":
             MessageLookupByLibrary.simpleMessage("Please enter a password"),
+        "Navigation_jobs_page_label":
+            MessageLookupByLibrary.simpleMessage("Jobs"),
+        "Navigation_profile_page_label":
+            MessageLookupByLibrary.simpleMessage("Profile"),
+        "Navigation_workers_page_label":
+            MessageLookupByLibrary.simpleMessage("Workers"),
         "RegisterScreen_back_to_login_button":
             MessageLookupByLibrary.simpleMessage("Back to login"),
         "RegisterScreen_confirm_password_does_not_match":

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
+import 'package:project/modules/main/providers/page.provider.dart';
 import 'package:provider/provider.dart';
 
 class ProviderConfig extends StatelessWidget {
@@ -14,8 +15,12 @@ class ProviderConfig extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<PageProvider>(
+          create: (context) => PageProvider(context),
+        ),
         ChangeNotifierProvider<AuthProvider>(
-            create: (context) => AuthProvider(context)),
+          create: (context) => AuthProvider(context),
+        ),
       ],
       child: child,
     );

@@ -8,6 +8,11 @@
   "Exception_unexpected": "Unexpected error... Please try again later",
   "Exception_connection_timed_out": "Connection timed out... Check your internet connection and try again",
   "Exception_invalid_login_credentials": "Invalid email or password",
+  "@Navigation": {
+  },
+  "Navigation_jobs_page_label": "Jobs",
+  "Navigation_workers_page_label": "Workers",
+  "Navigation_profile_page_label": "Profile",
   "@LoginScreen": {
   },
   "LoginScreen_title": "PC Project",
@@ -57,7 +62,7 @@
   "JobCard_onString": "on",
   "JobsCard_seeJobDetails": "See Job Details",
   "JobsDashboardScreen_search": "Search field...",
-  "@JobsDashboardScreen":{
+  "@JobsDashboardScreen": {
   },
   "JobsDashboardScreen_postJob": "Post a Job"
 }
