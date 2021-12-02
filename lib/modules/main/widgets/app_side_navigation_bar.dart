@@ -54,6 +54,7 @@ class AppSideNavigationBar extends StatelessWidget {
               label: Text(S.of(context).Navigation_profile_page_label),
               onSelected: () => onSelect(AppPage.Profile),
             ),
+            const Divider(),
             Expanded(
               child: Container(),
             ),
