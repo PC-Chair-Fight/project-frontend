@@ -80,6 +80,36 @@ class S {
     );
   }
 
+  /// `The server had trouble processing your request... Please try again later`
+  String get Exception_bad_request {
+    return Intl.message(
+      'The server had trouble processing your request... Please try again later',
+      name: 'Exception_bad_request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are not allowed to perform this action`
+  String get Exception_unauthorized {
+    return Intl.message(
+      'You are not allowed to perform this action',
+      name: 'Exception_unauthorized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item not found`
+  String get Exception_not_found {
+    return Intl.message(
+      'Item not found',
+      name: 'Exception_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Invalid email or password`
   String get Exception_invalid_login_credentials {
     return Intl.message(
@@ -415,6 +445,86 @@ class S {
     return Intl.message(
       'Account created successfully',
       name: 'RegisterScreen_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Job Details`
+  String get JobDetailsScreen_title {
+    return Intl.message(
+      'Job Details',
+      name: 'JobDetailsScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get JobDetailsScreen_name {
+    return Intl.message(
+      'Name',
+      name: 'JobDetailsScreen_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(No name)`
+  String get JobDetailsScreen_no_name {
+    return Intl.message(
+      '(No name)',
+      name: 'JobDetailsScreen_no_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get JobDetailsScreen_description {
+    return Intl.message(
+      'Description',
+      name: 'JobDetailsScreen_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(No description)`
+  String get JobDetailsScreen_no_description {
+    return Intl.message(
+      '(No description)',
+      name: 'JobDetailsScreen_no_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show more`
+  String get JobDetailsScreen_show_more {
+    return Intl.message(
+      'Show more',
+      name: 'JobDetailsScreen_show_more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show less`
+  String get JobDetailsScreen_show_less {
+    return Intl.message(
+      'Show less',
+      name: 'JobDetailsScreen_show_less',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bid`
+  String get JobDetailsScreen_bid_button {
+    return Intl.message(
+      'Bid',
+      name: 'JobDetailsScreen_bid_button',
       desc: '',
       args: [],
     );

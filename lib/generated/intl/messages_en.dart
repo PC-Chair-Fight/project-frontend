@@ -23,14 +23,35 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "App_title": MessageLookupByLibrary.simpleMessage("PC Project"),
+        "Exception_bad_request": MessageLookupByLibrary.simpleMessage(
+            "The server had trouble processing your request... Please try again later"),
         "Exception_connection_timed_out": MessageLookupByLibrary.simpleMessage(
             "Connection timed out... Check your internet connection and try again"),
         "Exception_invalid_login_credentials":
             MessageLookupByLibrary.simpleMessage("Invalid email or password"),
+        "Exception_not_found":
+            MessageLookupByLibrary.simpleMessage("Item not found"),
+        "Exception_unauthorized": MessageLookupByLibrary.simpleMessage(
+            "You are not allowed to perform this action"),
         "Exception_unexpected": MessageLookupByLibrary.simpleMessage(
             "Unexpected error... Please try again later"),
         "JobCard_onString": MessageLookupByLibrary.simpleMessage("on"),
         "JobCard_postedBy": MessageLookupByLibrary.simpleMessage("Posted by"),
+        "JobDetailsScreen_bid_button":
+            MessageLookupByLibrary.simpleMessage("Bid"),
+        "JobDetailsScreen_description":
+            MessageLookupByLibrary.simpleMessage("Description"),
+        "JobDetailsScreen_name": MessageLookupByLibrary.simpleMessage("Name"),
+        "JobDetailsScreen_no_description":
+            MessageLookupByLibrary.simpleMessage("(No description)"),
+        "JobDetailsScreen_no_name":
+            MessageLookupByLibrary.simpleMessage("(No name)"),
+        "JobDetailsScreen_show_less":
+            MessageLookupByLibrary.simpleMessage("Show less"),
+        "JobDetailsScreen_show_more":
+            MessageLookupByLibrary.simpleMessage("Show more"),
+        "JobDetailsScreen_title":
+            MessageLookupByLibrary.simpleMessage("Job Details"),
         "JobSortFilterCard_applyButton":
             MessageLookupByLibrary.simpleMessage("Apply"),
         "JobSortFilterCard_ascending":

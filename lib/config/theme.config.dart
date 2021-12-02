@@ -59,9 +59,9 @@ class ThemeConfig extends InheritedWidget {
   final double LargeElevation = 8;
 
   // Durations
-  final Duration shortDuration = const Duration(milliseconds: 100);
-  final Duration mediumDuration = const Duration(milliseconds: 300);
-  final Duration longDuration = const Duration(milliseconds: 600);
+  final Duration fastDuration = new Duration(milliseconds: 100);
+  final Duration mediumDuration = new Duration(milliseconds: 300);
+  final Duration slowDuration = new Duration(milliseconds: 600);
 
   ThemeConfig({
     Key? key,
