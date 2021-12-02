@@ -30,20 +30,15 @@ class JobsDashboard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       JobsSortFilterCard(),
-                      SizedBox(
-                          width: ThemeConfig.of(context).mediumSpacing),
+                      SizedBox(width: ThemeConfig.of(context).mediumSpacing),
                       ConstrainedBox(
                         constraints: BoxConstraints(
-                          maxWidth:
-                              ThemeConfig.of(context).appMediumWidth,
+                          maxWidth: ThemeConfig.of(context).appMediumWidth,
                         ),
                         child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment.stretch,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            JobCard(
-                                roundEdges:
-                                    !ScreenLayout.isSmall(context)),
+                            JobCard(roundEdges: !ScreenLayout.isSmall(context)),
                           ],
                         ),
                       ),
@@ -56,8 +51,7 @@ class JobsDashboard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        JobCard(
-                            roundEdges: !ScreenLayout.isSmall(context)),
+                        JobCard(roundEdges: !ScreenLayout.isSmall(context)),
                       ],
                     ),
                   ),
