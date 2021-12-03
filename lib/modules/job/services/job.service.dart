@@ -44,4 +44,28 @@ class JobService {
               }
             },
           );
+  
+  Future<List<JobModel>> getJobs(index, count) async =>
+      initializeDio()
+        .get<List<JobModel>>('/Job', queryParameters: {'index': index, 'count': count})
+        .then((response) => response.data ?? <JobModel>[] )
+        .catchError((error) {
+          switch (error.runtimeType){
+            case DioError:
+              switch (error.response?.statusCode) {
+                case null:
+                  throw ConnectionTimedOutException();
+                case 400:
+                  throw ServerSideValidationException.fromJson(
+                    error.response.data,
+                  );
+                case 404:
+                  throw NotFoundException();
+                default:
+                  throw UnexpectedException();
+              }
+            default:
+              throw UnexpectedException();
+          }
+        });
 }

@@ -1,8 +1,9 @@
 import 'package:project/modules/job/models/bid.model.dart';
+import 'package:project/modules/user/models/user.model.dart';
 
 class JobModel {
   int? id;
-  int? userId;
+  User? user;
   String? name;
   String? description;
   List<String> images;
