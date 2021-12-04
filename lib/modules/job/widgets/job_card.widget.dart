@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/core/utils.dart';
 import 'package:project/generated/l10n.dart';
@@ -17,10 +18,9 @@ class JobCard extends StatelessWidget {
       'ornare non sodales nec, tincidunt eu eros. Nam sollicitudin ante ligula. ';
 
   final bool roundEdges;
-  final JobModel job;
+  final Job job;
 
-  const JobCard(
-      {Key? key, required this.roundEdges, required JobModel this.job})
+  const JobCard({Key? key, required this.roundEdges, required Job this.job})
       : super(key: key);
 
   @override
@@ -28,128 +28,96 @@ class JobCard extends StatelessWidget {
     return Card(
       shape: !roundEdges ? Border() : null,
       child: Padding(
-        padding: EdgeInsets.all(ThemeConfig
-            .of(context)
-            .mediumSpacing),
+        padding: EdgeInsets.all(ThemeConfig.of(context).mediumSpacing),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               job.name ?? 'Job Title',
-              style: ThemeConfig
-                  .of(context)
-                  .headline6,
+              style: ThemeConfig.of(context).headline6,
               textAlign: TextAlign.start,
             ),
             Container(
               child: Text(
                 job.description ?? fillerText,
-                style: ThemeConfig
-                    .of(context)
-                    .body1,
+                style: ThemeConfig.of(context).body1,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
             ),
-            SizedBox(height: ThemeConfig
-                .of(context)
-                .smallSpacing),
+            SizedBox(height: ThemeConfig.of(context).smallSpacing),
             Row(
-              mainAxisSize: MainAxisSize.max,
-              children: (job.bids.take(2).map((bid) =>
-                  Expanded(
-                    child: BidderCardWidget(
-                      position: 1,
-                      bid: Bid(
-                        id: bid.id,
-                        sum: bid.sum,
-                        worker: Worker(
-                          user: User(
-                              firstName: bid.worker?.user?.firstName ??
-                                  'Rhiana',
-                              lastName: bid.worker?.user?.lastName ??
-                                  'McDonnell',
-                              profilePicture: bid.worker?.user
-                                  ?.profilePicture ??
-                                  'https://picsum.photos/id/1/600'),
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  ...job.bids.take(2).map(
+                        (bid) => Expanded(
+                          child: BidderCardWidget(
+                            position: 1,
+                            bid: Bid(
+                              id: bid.id,
+                              sum: bid.sum,
+                              worker: Worker(
+                                user: User(
+                                    firstName:
+                                        bid.worker?.user?.firstName ?? 'Rhiana',
+                                    lastName: bid.worker?.user?.lastName ??
+                                        'McDonnell',
+                                    profilePicture:
+                                        bid.worker?.user?.profilePicture ??
+                                            'https://picsum.photos/id/1/600'),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),) as List<Widget>).intersperse(SizedBox(width: 20,)).toList()
-            ),
-            SizedBox(height: ThemeConfig
-                .of(context)
-                .smallSpacing),
+                      )
+                ]
+                    .intersperse(SizedBox(
+                      width: 20,
+                    ))
+                    .toList()),
+            SizedBox(height: ThemeConfig.of(context).smallSpacing),
             TextButton(
-              onPressed: () =>
-                  Navigator.pushNamed(
-                    context,
-                    JobDetailsScreen.route,
-                    arguments: job.id, // TODO current job id
-                  ),
+              onPressed: () => Navigator.pushNamed(
+                context,
+                JobDetailsScreen.route,
+                arguments: job.id, // TODO current job id
+              ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(S
-                      .of(context)
-                      .JobsCard_seeJobDetails),
-                  SizedBox(width: ThemeConfig
-                      .of(context)
-                      .smallSpacing),
+                  Text(S.of(context).JobsCard_seeJobDetails),
+                  SizedBox(width: ThemeConfig.of(context).smallSpacing),
                   Icon(Icons.arrow_forward),
                 ],
               ),
             ),
-            SizedBox(height: ThemeConfig
-                .of(context)
-                .smallSpacing),
+            SizedBox(height: ThemeConfig.of(context).smallSpacing),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  S
-                      .of(context)
-                      .JobCard_postedBy,
-                  style: ThemeConfig
-                      .of(context)
-                      .caption,
+                  S.of(context).JobCard_postedBy,
+                  style: ThemeConfig.of(context).caption,
                 ),
-                SizedBox(width: ThemeConfig
-                    .of(context)
-                    .smallestSpacing),
+                SizedBox(width: ThemeConfig.of(context).smallestSpacing),
                 Icon(Icons.album),
-                SizedBox(width: ThemeConfig
-                    .of(context)
-                    .smallestSpacing),
+                SizedBox(width: ThemeConfig.of(context).smallestSpacing),
                 Text(
                   "${job.user?.firstName ?? ''} ${job.user?.lastName ?? ''}",
-                  style: ThemeConfig
-                      .of(context)
+                  style: ThemeConfig.of(context)
                       .caption
-                      .copyWith(color: ThemeConfig
-                      .of(context)
-                      .primaryColor),
+                      .copyWith(color: ThemeConfig.of(context).primaryColor),
                 ),
-                SizedBox(width: ThemeConfig
-                    .of(context)
-                    .smallestSpacing),
+                SizedBox(width: ThemeConfig.of(context).smallestSpacing),
                 Text(
-                  S
-                      .of(context)
-                      .JobCard_onString,
-                  style: ThemeConfig
-                      .of(context)
-                      .caption,
+                  S.of(context).JobCard_onString,
+                  style: ThemeConfig.of(context).caption,
                 ),
-                SizedBox(width: ThemeConfig
-                    .of(context)
-                    .smallestSpacing),
+                SizedBox(width: ThemeConfig.of(context).smallestSpacing),
                 Text(
-                  job.postDate.toString(),
-                  style: ThemeConfig
-                      .of(context)
-                      .caption,
+                  DateFormat.yMMMMd().format(job.postDate!),
+                  style: ThemeConfig.of(context).caption,
                 )
               ],
             )

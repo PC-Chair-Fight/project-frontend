@@ -8,18 +8,18 @@ import 'package:project/modules/job/services/job.service.dart';
 class JobsDashboardProvider extends AppProvider {
   final _jobService = inject.get<JobService>();
 
-  List<JobModel> _jobs;
+  List<Job> _jobs;
   bool _loading = false;
-  BaseException? _error;
+  dynamic _error;
 
   bool get loading => _loading;
 
-  List<JobModel> get jobs => _jobs;
+  List<Job> get jobs => _jobs;
 
   BaseException? get error => _error;
 
   JobsDashboardProvider(BuildContext ctx)
-      : _jobs = <JobModel>[],
+      : _jobs = <Job>[],
         super(ctx);
 
   Future<void> getJobs(index, count) async {
@@ -32,10 +32,10 @@ class JobsDashboardProvider extends AppProvider {
       _jobs = await _jobService.getJobs(index, count);
       _loading = false;
       notify('getJobs', notificationType: NotificationType.Success);
-    } on BaseException catch (e) {
+    } catch (e) {
       _error = e;
       _loading = false;
-      notify('getJobs', notificationType: NotificationType.Failure);
+      notify('getJobs', notificationType: NotificationType.Failure, error: e);
     }
   }
 }
