@@ -3,7 +3,7 @@ import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
-import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
+import 'package:project/modules/main/screens/main_wrapper.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:project/modules/shared/widgets/app_logo.widget.dart';
 import 'package:project/modules/shared/widgets/labeled_divider.widget.dart';
@@ -140,7 +140,7 @@ class LoginState extends State<Login> {
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, JobsDashboardScreen.route);
+                                context, MainWrapperScreen.route);
                           },
                           child: Text('Skip'),
                         ),
@@ -162,7 +162,7 @@ class LoginState extends State<Login> {
           .login(emailController.value.text, passwordController.value.text)
           .whenComplete(() {
         if (authProvider.authToken != null)
-          Navigator.pushNamed(context, JobsDashboardScreen.route);
+          Navigator.pushNamed(context, MainWrapperScreen.route);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: authProvider.error == null
