@@ -27,6 +27,8 @@ class _JobsDashboardState extends State<JobsDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    jobsDashboardProvider = Provider.of<JobsDashboardProvider>(context);
+
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Column(
@@ -54,9 +56,11 @@ class _JobsDashboardState extends State<JobsDashboard> {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            JobCard(roundEdges: !ScreenLayout.isSmall(context)),
-                          ],
+                          children: jobsDashboardProvider.jobs
+                              .map((e) => JobCard(
+                                  roundEdges: !ScreenLayout.isSmall(context),
+                                  job: e))
+                              .toList(),
                         ),
                       ),
                     ],
@@ -67,9 +71,11 @@ class _JobsDashboardState extends State<JobsDashboard> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        JobCard(roundEdges: !ScreenLayout.isSmall(context)),
-                      ],
+                      children: jobsDashboardProvider.jobs
+                          .map((e) => JobCard(
+                              roundEdges: !ScreenLayout.isSmall(context),
+                              job: e))
+                          .toList(),
                     ),
                   ),
           ),

@@ -8,10 +8,10 @@ class Bid {
   Bid({this.id, this.sum, this.worker});
 
   Bid.fromJson(Map<String, dynamic> json)
-      : id = json['Id'],
-        sum = json['Sum'],
+      : id = json['id'],
+        sum = (json['sum'] as num).toDouble(),
         worker =
             json.containsKey('worker') ? Worker.fromJson(json['worker']) : null;
 
-  Map<String, dynamic> toJson() => {'Id': id, 'Sum': sum, 'worker': worker};
+  Map<String, dynamic> toJson() => {'id': id, 'sum': sum, 'worker': worker};
 }
