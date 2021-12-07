@@ -19,10 +19,10 @@ class UserService {
   Future<User> getUser(int userId) async =>
       User(
         id: 69,
-        firstName: "Vlad-Rares",
-        lastName: "Raducu",
+        firstName: 'Vlad-Rares',
+        lastName: 'Raducu',
         dateOfBirth: DateTime.utc(2000, 6, 8),
-        email: "vlad101vlad@gmail.com",
-        profilePicture: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Mangekyou_Sharingan_Kakashi.svg/2048px-Mangekyou_Sharingan_Kakashi.svg.png"
+        email: 'vlad101vlad@gmail.com',
+        profilePicture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Mangekyou_Sharingan_Kakashi.svg/2048px-Mangekyou_Sharingan_Kakashi.svg.png'
       );
 }

@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:project/modules/user/models/user.model.dart';
-import 'package:project/modules/user/providers/user_profile.provider.dart';
 import 'package:project/modules/user/widgets/user_profile.widget.dart';
-import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatefulWidget {
   static const String route = '/user';
@@ -47,11 +44,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         body: UserProfile(
             activeUser: User(
                 id: 69,
-                firstName: "Vlad-Rares",
-                lastName: "Raducu",
+                firstName: 'Vlad-Rares',
+                lastName: 'Raducu',
                 dateOfBirth: DateTime.utc(2000, 6, 8),
-                email: "vlad101vlad@gmail.com",
+                email: 'vlad101vlad@gmail.com',
                 profilePicture:
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Mangekyou_Sharingan_Kakashi.svg/2048px-Mangekyou_Sharingan_Kakashi.svg.png")));
+                    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Mangekyou_Sharingan_Kakashi.svg/2048px-Mangekyou_Sharingan_Kakashi.svg.png')));
   }
 }

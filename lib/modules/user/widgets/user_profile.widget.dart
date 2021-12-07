@@ -23,7 +23,7 @@ class _UserProfileState extends State<UserProfile> {
       ),
       child: Column(
         children: [
-          Text("User Profile", style: ThemeConfig.of(context).headline4),
+          Text('User Profile', style: ThemeConfig.of(context).headline4),
           SizedBox(
             height: 72,
             width: 72,
@@ -36,7 +36,7 @@ class _UserProfileState extends State<UserProfile> {
             ),
           ),
           Text(
-            "First Name",
+            'First Name',
             style: ThemeConfig.of(context).headline5,
           ),
           Text(
@@ -44,7 +44,7 @@ class _UserProfileState extends State<UserProfile> {
             style: ThemeConfig.of(context).headline6,
           ),
           Text(
-            "Last Name",
+            'Last Name',
             style: ThemeConfig.of(context).headline5,
           ),
           Text(
@@ -52,7 +52,7 @@ class _UserProfileState extends State<UserProfile> {
             style: ThemeConfig.of(context).headline6,
           ),
           Text(
-            "Date of birth",
+            'Date of birth',
             style: ThemeConfig.of(context).headline5,
           ),
           Text(
@@ -60,7 +60,7 @@ class _UserProfileState extends State<UserProfile> {
             style: ThemeConfig.of(context).headline6,
           ),
           Text(
-            "Email",
+            'Email',
             style: ThemeConfig.of(context).headline5,
           ),
           Text(
