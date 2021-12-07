@@ -9,11 +9,10 @@ import 'package:provider/provider.dart';
 class UserProfileScreen extends StatefulWidget {
   static const String route = '/user';
 
+  const UserProfileScreen({Key? key}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
+  State<UserProfileScreen> createState() => _UserProfileScreenState();
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {

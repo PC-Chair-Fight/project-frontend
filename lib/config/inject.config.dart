@@ -6,6 +6,7 @@ import 'package:project/config/dio.config.dart';
 import 'package:project/modules/auth/services/auth.service.dart';
 import 'package:project/modules/job/services/bid.service.dart';
 import 'package:project/modules/job/services/job.service.dart';
+import 'package:project/modules/user/services/user.service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt inject = GetIt.instance;
@@ -19,5 +20,6 @@ void setupDependencyInjection(AppConfig configuredApp) async {
   inject.registerLazySingleton(() => AuthService(configuredApp.authBaseUrl));
   inject.registerLazySingleton(() => JobService(configuredApp.jobBaseUrl));
   inject.registerLazySingleton(() => BidService(configuredApp.bidBaseUrl));
+  inject.registerLazySingleton(() => UserService(configuredApp.userBaseUrl));
 
 }

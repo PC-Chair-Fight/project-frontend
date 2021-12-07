@@ -9,7 +9,9 @@ class UserProfileProvider extends AppProvider{
   final _userService = inject.get<UserService>();
   User? _activeUser;
   bool _loading = false;
+
   BaseException? _error;
+
   UserProfileProvider(BuildContext context) : super(context);
 
   User? get activeUser => _activeUser;

@@ -7,6 +7,7 @@ import 'package:project/modules/auth/screens/login.screen.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
 import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
+import 'package:project/modules/user/screens/user_profile.screen.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -19,7 +20,8 @@ class App extends StatelessWidget {
         LoginScreen.route: (context) => LoginScreen(),
         RegisterScreen.route: (context) => RegisterScreen(),
         JobsDashboardScreen.route: (context) => JobsDashboardScreen(),
-        JobDetailsScreen.route: (context) => JobDetailsScreen()
+        JobDetailsScreen.route: (context) => JobDetailsScreen(),
+        UserProfileScreen.route: (context) => UserProfileScreen()
       },
       initialRoute: LoginScreen.route,
       theme: ThemeConfig.of(context).buildThemeData(),

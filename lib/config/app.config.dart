@@ -7,6 +7,7 @@ class AppConfig extends InheritedWidget {
   final String authBaseUrl;
   final String jobBaseUrl;
   final String bidBaseUrl;
+  final String userBaseUrl;
 
   const AppConfig({
     Key? key,
@@ -16,6 +17,7 @@ class AppConfig extends InheritedWidget {
         authBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
         jobBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
         bidBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
+        userBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
         super(key: key, child: child);
 
   static AppConfig? of(BuildContext context) {

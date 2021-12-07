@@ -6,6 +6,7 @@ import 'package:project/modules/job/models/bid.model.dart';
 import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/job/widgets/bidder_card.widget.dart';
 import 'package:project/modules/user/models/user.model.dart';
+import 'package:project/modules/user/screens/user_profile.screen.dart';
 import 'package:project/modules/worker/models/worker.model.dart';
 
 class JobCard extends StatelessWidget {
@@ -55,8 +56,7 @@ class JobCard extends StatelessWidget {
                         user: User(
                             firstName: 'Rhiana',
                             lastName: 'McDonnell',
-                            profilePicture:
-                                'https://picsum.photos/id/1/600'),
+                            profilePicture: 'https://picsum.photos/id/1/600'),
                       ),
                     ),
                   ),
@@ -72,8 +72,7 @@ class JobCard extends StatelessWidget {
                         user: User(
                             firstName: 'Elijah',
                             lastName: 'O\'Ryan',
-                            profilePicture:
-                            'https://picsum.photos/id/2/600'),
+                            profilePicture: 'https://picsum.photos/id/2/600'),
                       ),
                     ),
                   ),
@@ -107,11 +106,17 @@ class JobCard extends StatelessWidget {
                 SizedBox(width: ThemeConfig.of(context).smallestSpacing),
                 Icon(Icons.album),
                 SizedBox(width: ThemeConfig.of(context).smallestSpacing),
-                Text(
-                  'Username',
-                  style: ThemeConfig.of(context)
-                      .caption
-                      .copyWith(color: ThemeConfig.of(context).primaryColor),
+                TextButton(
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    UserProfileScreen.route,
+                  ),
+                  child: Text(
+                    'Username',
+                    style: ThemeConfig.of(context)
+                        .caption
+                        .copyWith(color: ThemeConfig.of(context).primaryColor),
+                  ),
                 ),
                 SizedBox(width: ThemeConfig.of(context).smallestSpacing),
                 Text(
