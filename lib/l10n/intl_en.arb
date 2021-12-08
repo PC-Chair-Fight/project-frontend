@@ -77,5 +77,8 @@
   "JobsDashboardScreen_search": "Search field...",
   "@JobsDashboardScreen": {
   },
-  "JobsDashboardScreen_postJob": "Post a Job"
+  "JobsDashboardScreen_postJob": "Post a Job",
+  "@UserProfile": {
+  },
+  "UserProfile_title": "User Profile"
 }

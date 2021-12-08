@@ -1,4 +1,5 @@
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
 import 'package:project/core/exceptions/base.exception.dart';
@@ -16,15 +17,18 @@ class AuthProvider extends AppProvider {
   BaseException? error = null;
   AuthService authService = inject.get<AuthService>();
 
+  int? get currentUserId =>
+      authToken != null ? Jwt.parseJwt(authToken!)['sub'] : null;
+
   Future<void> login(String email, String password) async {
     loading = true;
     error = null;
     notify('login', notificationType: NotificationType.Start);
-
     return await authService.login(email, password).then((token) async {
       await _sharedPrefs.then((sharedPrefs) =>
           sharedPrefs.setString(StorageKeys.AUTH_TOKEN, token));
       authToken = token;
+      print(authToken);
       loading = false;
       notify('login', notificationType: NotificationType.Success);
     }).catchError((err) {

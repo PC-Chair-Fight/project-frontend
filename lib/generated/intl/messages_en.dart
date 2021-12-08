@@ -139,7 +139,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Password must contain at least 3 characters"),
         "RegisterScreen_register_button":
             MessageLookupByLibrary.simpleMessage("Register"),
-        "RegisterScreen_success":
-            MessageLookupByLibrary.simpleMessage("Account created successfully")
+        "RegisterScreen_success": MessageLookupByLibrary.simpleMessage(
+            "Account created successfully"),
+        "UserProfile_title":
+            MessageLookupByLibrary.simpleMessage("User Profile")
       };
 }
