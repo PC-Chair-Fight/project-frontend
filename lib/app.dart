@@ -6,8 +6,7 @@ import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/screens/login.screen.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
 import 'package:project/modules/job/screens/job_details.screen.dart';
-import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
-import 'package:project/modules/user/screens/user_profile.screen.dart';
+import 'package:project/modules/main/screens/main_wrapper.screen.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -19,9 +18,8 @@ class App extends StatelessWidget {
       routes: {
         LoginScreen.route: (context) => LoginScreen(),
         RegisterScreen.route: (context) => RegisterScreen(),
-        JobsDashboardScreen.route: (context) => JobsDashboardScreen(),
+        MainWrapperScreen.route: (context) => MainWrapperScreen(),
         JobDetailsScreen.route: (context) => JobDetailsScreen(),
-        UserProfileScreen.route: (context) => UserProfileScreen()
       },
       initialRoute: LoginScreen.route,
       theme: ThemeConfig.of(context).buildThemeData(),
