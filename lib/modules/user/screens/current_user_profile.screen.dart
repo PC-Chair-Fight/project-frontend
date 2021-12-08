@@ -13,7 +13,8 @@ class CurrentUserProfileScreen extends StatefulWidget {
   const CurrentUserProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<CurrentUserProfileScreen> createState() => _CurrentUserProfileScreenState();
+  State<CurrentUserProfileScreen> createState() =>
+      _CurrentUserProfileScreenState();
 }
 
 class _CurrentUserProfileScreenState extends State<CurrentUserProfileScreen> {
@@ -34,6 +35,7 @@ class _CurrentUserProfileScreenState extends State<CurrentUserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _authProvider = Provider.of<AuthProvider>(context);
     _userProfileProvider = Provider.of<UserProfileProvider>(context);
     if (_userProfileProvider.error != null) {
       Navigator.pop(context); //TODO error screen
