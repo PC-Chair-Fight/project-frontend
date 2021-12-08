@@ -120,6 +120,36 @@ class S {
     );
   }
 
+  /// `Jobs`
+  String get Navigation_jobs_page_label {
+    return Intl.message(
+      'Jobs',
+      name: 'Navigation_jobs_page_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workers`
+  String get Navigation_workers_page_label {
+    return Intl.message(
+      'Workers',
+      name: 'Navigation_workers_page_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get Navigation_profile_page_label {
+    return Intl.message(
+      'Profile',
+      name: 'Navigation_profile_page_label',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `PC Project`
   String get LoginScreen_title {
     return Intl.message(

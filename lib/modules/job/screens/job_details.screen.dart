@@ -1,8 +1,8 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/providers/job_details.provider.dart';
 import 'package:project/modules/job/widgets/job_details.widget.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
 
@@ -33,22 +33,25 @@ class _JobDetailsScreenState extends State<JobDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<JobDetailsProvider>(context);
+    final provider = Provider.of<JobDetailsProvider>(context, listen: false);
     if (provider.error != null) {
       Navigator.pop(context); // TODO error screen
     }
     return Scaffold(
-        appBar: kIsWeb
-            ? null
-            : AppBar(
-                title: Text(S.of(context).JobDetailsScreen_title),
+      appBar: kIsWeb
+          ? null
+          : AppBar(
+              title: Text(S.of(context).JobDetailsScreen_title),
+            ),
+      body: provider.loading || provider.jobDetails == null
+          ? Center(
+              child: LoadingIndicator(
+                type: LoadingIndicatorType.Page,
               ),
-        body: provider.loading
-            ? Center(
-                child: LoadingIndicator(
-                  type: LoadingIndicatorType.Page,
-                ),
-              )
-            : JobDetails(job: provider.jobDetails!));
+            )
+          : JobDetails(
+              job: provider.jobDetails!,
+            ),
+    );
   }
 }

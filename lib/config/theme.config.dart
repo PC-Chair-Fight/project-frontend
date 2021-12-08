@@ -63,8 +63,6 @@ class ThemeConfig extends InheritedWidget {
   final Duration mediumDuration = new Duration(milliseconds: 300);
   final Duration slowDuration = new Duration(milliseconds: 600);
 
-  final double elevation = 4;
-
   ThemeConfig({
     Key? key,
     required this.child,
@@ -85,7 +83,7 @@ class ThemeConfig extends InheritedWidget {
         onWarningColor = const Color(0xFFFFFFFF),
         errorColor = const Color(0xFFF54854),
         onErrorColor = const Color(0xFFFFFFFF),
-        dividerColor = const Color(0xFF999999),
+        dividerColor = const Color(0xFFD2D2D2),
         headline1 = TextStyle(
           fontSize: 96,
           fontWeight: FontWeight.w300,
@@ -207,6 +205,11 @@ class ThemeConfig extends InheritedWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
+        ),
+        dividerTheme: DividerThemeData(
+          color: dividerColor,
+          thickness: 1,
+          space: 1,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(

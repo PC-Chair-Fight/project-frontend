@@ -19,7 +19,7 @@ class _JobDescriptionState extends State<JobDescription> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: ThemeConfig.of(context).elevation,
+      elevation: ThemeConfig.of(context).mediumElevation,
       child: Padding(
         padding: EdgeInsets.all(ThemeConfig.of(context).appMargin),
         child: Column(
