@@ -19,6 +19,7 @@ dependencies:
   provider: ^6.0.1
   dio: ^4.0.1
   shared_preferences: ^2.0.8
+  jwt_decode: ^0.3.1
   # UI
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^9.2.0

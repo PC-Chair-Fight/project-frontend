@@ -5,32 +5,31 @@ import 'package:project/core/exceptions/base.exception.dart';
 import 'package:project/modules/user/models/user.model.dart';
 import 'package:project/modules/user/services/user.service.dart';
 
-class UserProfileProvider extends AppProvider{
+class UserProfileProvider extends AppProvider {
   final _userService = inject.get<UserService>();
-  User? _activeUser;
-  bool _loading = false;
-
-  BaseException? _error;
+  User? _user;
+  bool _fetchLoading = false;
+  dynamic _fetchError;
 
   UserProfileProvider(BuildContext context) : super(context);
 
-  User? get activeUser => _activeUser;
+  User? get activeUser => _user;
 
-  BaseException? get error => _error;
+  BaseException? get error => _fetchError;
 
-  bool get loading => _loading;
+  bool get loading => _fetchLoading;
 
-  Future<void> getUser(int userId) async{
-    _loading = true;
-    _error = null;
+  Future<void> getUser(int userId) async {
+    _fetchLoading = true;
+    _fetchError = null;
     notify('getUser', notificationType: NotificationType.Start);
-    try{
-      _activeUser = await _userService.getUser(userId);
-      _loading = false;
+    try {
+      _user = await _userService.getUser(userId);
+      _fetchLoading = false;
       notify('getUser', notificationType: NotificationType.Success);
     } on BaseException catch (e) {
-      _error = e;
-      _loading = false;
+      _fetchError = e;
+      _fetchLoading = false;
       notify('getUser', notificationType: NotificationType.Failure);
     }
   }
