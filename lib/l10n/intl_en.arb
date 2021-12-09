@@ -77,5 +77,14 @@
   "JobsDashboardScreen_search": "Search field...",
   "@JobsDashboardScreen": {
   },
-  "JobsDashboardScreen_postJob": "Post a Job"
+  "JobsDashboardScreen_postJob": "Post a Job",
+  "@CreateJobScreen": {
+  },
+  "CreateJobScreen_title": "Create Job",
+  "CreateJobScreen_form_name": "Name",
+  "CreateJobScreen_form_description": "Description",
+  "CreateJobScreen_validator_name_required": "Please enter a name for the job",
+  "CreateJobScreen_validator_description_required": "Please enter a description for the job",
+  "CreateJobScreen_submit": "Create Job",
+  "CreateJobScreen_back": "Go Back"
 }

@@ -649,6 +649,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Create Job`
+  String get CreateJobScreen_title {
+    return Intl.message(
+      'Create Job',
+      name: 'CreateJobScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get CreateJobScreen_form_name {
+    return Intl.message(
+      'Name',
+      name: 'CreateJobScreen_form_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get CreateJobScreen_form_description {
+    return Intl.message(
+      'Description',
+      name: 'CreateJobScreen_form_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a name for the job`
+  String get CreateJobScreen_validator_name_required {
+    return Intl.message(
+      'Please enter a name for the job',
+      name: 'CreateJobScreen_validator_name_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a description for the job`
+  String get CreateJobScreen_validator_description_required {
+    return Intl.message(
+      'Please enter a description for the job',
+      name: 'CreateJobScreen_validator_description_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Job`
+  String get CreateJobScreen_submit {
+    return Intl.message(
+      'Create Job',
+      name: 'CreateJobScreen_submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Back`
+  String get CreateJobScreen_back {
+    return Intl.message(
+      'Go Back',
+      name: 'CreateJobScreen_back',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

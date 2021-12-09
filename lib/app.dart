@@ -5,6 +5,7 @@ import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/screens/login.screen.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
+import 'package:project/modules/job/screens/create_job.screen.dart';
 import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/main/screens/main_wrapper.screen.dart';
 
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
         RegisterScreen.route: (context) => RegisterScreen(),
         MainWrapperScreen.route: (context) => MainWrapperScreen(),
         JobDetailsScreen.route: (context) => JobDetailsScreen(),
+        CreateJobScreen.route: (context) => CreateJobScreen()
       },
       initialRoute: LoginScreen.route,
       theme: ThemeConfig.of(context).buildThemeData(),

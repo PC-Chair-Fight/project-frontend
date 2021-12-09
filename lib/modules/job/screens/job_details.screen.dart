@@ -33,7 +33,7 @@ class _JobDetailsScreenState extends State<JobDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<JobDetailsProvider>(context, listen: false);
+    final provider = Provider.of<JobDetailsProvider>(context);
     if (provider.error != null) {
       Navigator.pop(context); // TODO error screen
     }
