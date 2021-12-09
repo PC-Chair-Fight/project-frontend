@@ -40,20 +40,17 @@ void showFlushBar(BuildContext context,
 
   final confirmationLayout = Row(children: [
     TextButton(
-        onPressed: () => {yesCallback!(),flushBar!.dismiss(true)},
+        onPressed: () => {yesCallback!(), flushBar!.dismiss(true)},
         child: Text('Yes', style: buttonTextStyle),
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(ThemeConfig.of(context).backgroundColor),
             padding:
                 MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.all(ThemeConfig.of(context).smallSpacing)))),
     TextButton(
-        onPressed: () => {noCallback!(),flushBar!.dismiss(true)},
+        onPressed: () => {noCallback!(), flushBar!.dismiss(true)},
         child: Text('No', style: buttonTextStyle),
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(ThemeConfig.of(context).backgroundColor)))
   ]);
-
-
-
 
   final basicLayout = TextButton(
       onPressed: () => {flushBar!.dismiss(true)},
@@ -63,7 +60,15 @@ void showFlushBar(BuildContext context,
   flushBar = Flushbar(
       messageText: Row(
         children: [
-          Text(message, style: ThemeConfig.of(context).subtitle1.copyWith(letterSpacing: 0.14)),
+          Flexible(
+              child: Container(
+            child: Text(
+              message,
+              style: ThemeConfig.of(context).subtitle1.copyWith(letterSpacing: 0.14, height: 1),
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.clip,
+            ),
+          )),
           messageType == MessageType.Confirmation ? confirmationLayout : basicLayout
         ],
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +80,9 @@ void showFlushBar(BuildContext context,
       boxShadows: [
         BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.251), spreadRadius: 2, blurRadius: 2, offset: Offset(0, 3)),
       ],
-      icon: iconsMap[messageType]);
+      icon: iconsMap[messageType],
+      isDismissible: messageType != MessageType.Confirmation,
+      duration: messageType == MessageType.Confirmation ? null : Duration(seconds: 5));
 
   flushBar..show(context);
 }

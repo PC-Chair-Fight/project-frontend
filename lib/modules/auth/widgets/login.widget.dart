@@ -6,6 +6,7 @@ import 'package:project/modules/auth/screens/register.screen.dart';
 import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:project/modules/shared/widgets/app_logo.widget.dart';
+import 'package:project/modules/shared/widgets/flushbar.widget.dart';
 import 'package:project/modules/shared/widgets/labeled_divider.widget.dart';
 import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
@@ -69,13 +70,10 @@ class LoginState extends State<Login> {
                         TextFormField(
                           controller: emailController,
                           validator: (value) => UtilValidators.guard(value)
-                              .required(S
-                                  .of(context)
-                                  .LoginScreen_validator_email_required)
+                              .required(S.of(context).LoginScreen_validator_email_required)
                               .message,
                           decoration: InputDecoration(
-                            label: Text(
-                                S.of(context).LoginScreen_email_input_label),
+                            label: Text(S.of(context).LoginScreen_email_input_label),
                           ),
                         ),
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
@@ -85,13 +83,10 @@ class LoginState extends State<Login> {
                           autocorrect: false,
                           controller: passwordController,
                           validator: (value) => UtilValidators.guard(value)
-                              .required(S
-                                  .of(context)
-                                  .LoginScreen_validator_password_required)
+                              .required(S.of(context).LoginScreen_validator_password_required)
                               .message,
                           decoration: InputDecoration(
-                            label: Text(
-                                S.of(context).LoginScreen_password_input_label),
+                            label: Text(S.of(context).LoginScreen_password_input_label),
                           ),
                         ),
                       ],
@@ -109,8 +104,7 @@ class LoginState extends State<Login> {
                           child: ElevatedButton(
                             onPressed: () => _login(authProvider),
                             child: authProvider.loading
-                                ? LoadingIndicator(
-                                    type: LoadingIndicatorType.Button)
+                                ? LoadingIndicator(type: LoadingIndicatorType.Button)
                                 : Text(S.of(context).LoginScreen_login_button),
                           ),
                         ),
@@ -120,10 +114,8 @@ class LoginState extends State<Login> {
                         ),
                         SizedBox(height: ThemeConfig.of(context).largeSpacing),
                         OutlinedButton(
-                          onPressed: () => Navigator.pushNamed(
-                              context, RegisterScreen.route),
-                          child:
-                              Text(S.of(context).LoginScreen_register_button),
+                          onPressed: () => Navigator.pushNamed(context, RegisterScreen.route),
+                          child: Text(S.of(context).LoginScreen_register_button),
                         ),
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         ElevatedButton(
@@ -133,14 +125,12 @@ class LoginState extends State<Login> {
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         ElevatedButton(
                           onPressed: null,
-                          child:
-                              Text(S.of(context).LoginScreen_facebook_button),
+                          child: Text(S.of(context).LoginScreen_facebook_button),
                         ),
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, JobsDashboardScreen.route);
+                            Navigator.pushNamed(context, JobsDashboardScreen.route);
                           },
                           child: Text('Skip'),
                         ),
@@ -158,28 +148,11 @@ class LoginState extends State<Login> {
 
   void _login(AuthProvider authProvider) {
     if ((_formKey.currentState?.validate() ?? false) && !authProvider.loading) {
-      authProvider
-          .login(emailController.value.text, passwordController.value.text)
-          .whenComplete(() {
-        if (authProvider.authToken != null)
-          Navigator.pushNamed(context, JobsDashboardScreen.route);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: authProvider.error == null
-                ? ThemeConfig.of(context).successColor
-                : ThemeConfig.of(context).errorColor,
-            content: Text(
-              authProvider.error?.message ?? S.of(context).LoginScreen_success,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: authProvider.error == null
-                    ? ThemeConfig.of(context).onSuccessColor
-                    : ThemeConfig.of(context).onErrorColor,
-              ),
-            ),
-            duration: Duration(seconds: 4),
-          ),
-        );
+      authProvider.login(emailController.value.text, passwordController.value.text).whenComplete(() {
+        if (authProvider.authToken != null) Navigator.pushNamed(context, JobsDashboardScreen.route);
+        showFlushBar(context,
+            message: authProvider.error?.message ?? S.of(context).LoginScreen_success,
+            messageType: authProvider.error == null ? MessageType.Information : MessageType.Error);
       });
     }
   }

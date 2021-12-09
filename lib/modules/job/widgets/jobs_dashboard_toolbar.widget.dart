@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
-import 'package:project/modules/shared/widgets/flushbar.widget.dart';
 
 class JobsDashboardToolbar extends StatelessWidget {
   const JobsDashboardToolbar({Key? key}) : super(key: key);
@@ -33,10 +32,7 @@ class JobsDashboardToolbar extends StatelessWidget {
                   ),
                   SizedBox(width: ThemeConfig.of(context).mediumSpacing),
                   FloatingActionButton.small(
-                    onPressed: () {
-                      log('clicked');
-                      showFlushBar(context, message: 'Are you sure?', messageType: MessageType.Information);
-                    },
+                    onPressed: () {},
                     child: Icon(Icons.note_add),
                   ),
                 ],
