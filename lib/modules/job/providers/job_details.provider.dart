@@ -3,6 +3,7 @@ import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
 import 'package:project/core/exceptions/base.exception.dart';
 import 'package:project/modules/job/models/job.model.dart';
+import 'package:project/modules/job/providers/jobs.provider.dart';
 import 'package:project/modules/job/services/bid.service.dart';
 import 'package:project/modules/job/services/job.service.dart';
 
@@ -12,6 +13,7 @@ class JobDetailsProvider extends AppProvider {
   Job? _jobDetails;
   bool _loading = false;
   BaseException? _error;
+  late JobsProvider _jobsProvider;
 
   Job? get jobDetails => _jobDetails;
 
@@ -21,6 +23,10 @@ class JobDetailsProvider extends AppProvider {
 
   JobDetailsProvider(BuildContext context) : super(context);
 
+  void update(JobsProvider provider) {
+    _jobsProvider = provider;
+  }
+
   Future<void> getJobDetails(int jobId) async {
     _loading = true;
     _error = null;
@@ -29,6 +35,10 @@ class JobDetailsProvider extends AppProvider {
       _jobDetails = await _jobService.getDetails(jobId);
       _jobDetails?.bids = await _bidService.getBids(jobId);
       _loading = false;
+      if (_jobDetails != null) {
+        _jobsProvider.updateJob(_jobDetails!);
+      }
+
       notify('getJobDetails', notificationType: NotificationType.Success);
     } on BaseException catch (e) {
       _error = e;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
 import 'package:project/modules/job/providers/job_details.provider.dart';
-import 'package:project/modules/job/providers/jobs_dashboard.provider.dart';
+import 'package:project/modules/job/providers/jobs.provider.dart';
 import 'package:project/modules/main/providers/page.provider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,11 +23,15 @@ class ProviderConfig extends StatelessWidget {
         ChangeNotifierProvider<AuthProvider>(
           create: (context) => AuthProvider(context),
         ),
-        ChangeNotifierProvider<JobDetailsProvider>(
-          create: (context) => JobDetailsProvider(context),
+        ChangeNotifierProvider<JobsProvider>(
+          create: (context) => JobsProvider(context),
         ),
-        ChangeNotifierProvider<JobsDashboardProvider>(
-            create: (context) => JobsDashboardProvider(context))
+        ChangeNotifierProxyProvider<JobsProvider, JobDetailsProvider>(
+          create: (context) => JobDetailsProvider(context),
+          update: (context, jobsProvider, oldJobDetailsProvider) =>
+              (oldJobDetailsProvider?..update(jobsProvider)) ??
+              JobDetailsProvider(context),
+        ),
       ],
       child: child,
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/config/theme.config.dart';
-import 'package:project/modules/job/providers/jobs_dashboard.provider.dart';
+import 'package:project/modules/job/providers/jobs.provider.dart';
 import 'package:project/modules/job/widgets/job_card.widget.dart';
 import 'package:project/modules/job/widgets/jobs_dashboard_toolbar.widget.dart';
 import 'package:project/modules/job/widgets/jobs_sort_filter_card.widget.dart';
@@ -15,19 +15,19 @@ class JobsDashboard extends StatefulWidget {
 }
 
 class _JobsDashboardState extends State<JobsDashboard> {
-  late JobsDashboardProvider jobsDashboardProvider;
+  late JobsProvider jobsDashboardProvider;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      jobsDashboardProvider.getJobs(0, 10);
+      jobsDashboardProvider.fetchJobs(0, 10);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    jobsDashboardProvider = Provider.of<JobsDashboardProvider>(context);
+    jobsDashboardProvider = Provider.of<JobsProvider>(context);
 
     return SizedBox(
       height: MediaQuery.of(context).size.height,
