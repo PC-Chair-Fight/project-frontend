@@ -24,6 +24,7 @@ class ThemeConfig extends InheritedWidget {
   final Color errorColor;
   final Color onErrorColor;
   final Color dividerColor;
+  final Color boxShadowColor;
 
   // Typography
   final TextStyle headline1;
@@ -62,6 +63,7 @@ class ThemeConfig extends InheritedWidget {
   final Duration fastDuration = new Duration(milliseconds: 100);
   final Duration mediumDuration = new Duration(milliseconds: 300);
   final Duration slowDuration = new Duration(milliseconds: 600);
+  final Duration longDuration = new Duration(seconds: 5);
 
   ThemeConfig({
     Key? key,
@@ -84,6 +86,7 @@ class ThemeConfig extends InheritedWidget {
         errorColor = const Color(0xFFF54854),
         onErrorColor = const Color(0xFFFFFFFF),
         dividerColor = const Color(0xFFD2D2D2),
+        boxShadowColor = const Color(0x45000000),
         headline1 = TextStyle(
           fontSize: 96,
           fontWeight: FontWeight.w300,

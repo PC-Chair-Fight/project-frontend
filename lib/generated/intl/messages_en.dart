@@ -140,6 +140,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "RegisterScreen_register_button":
             MessageLookupByLibrary.simpleMessage("Register"),
         "RegisterScreen_success":
-            MessageLookupByLibrary.simpleMessage("Account created successfully")
+            MessageLookupByLibrary.simpleMessage("Account created successfully"),
+        "Affirmative_button": MessageLookupByLibrary.simpleMessage(
+            "Yes"),
+        "Negative_button": MessageLookupByLibrary.simpleMessage(
+            "No"),
+        "Confirmation_button": MessageLookupByLibrary.simpleMessage(
+          "Ok"
+        )
       };
 }

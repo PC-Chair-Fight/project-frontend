@@ -649,6 +649,33 @@ class S {
       args: [],
     );
   }
+
+  String get Affirmative_button {
+    return Intl.message(
+      'Yes',
+      name: 'Affirmative_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get Negative_button {
+    return Intl.message(
+      'No',
+      name: 'Negative_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get Confirmation_button {
+    return Intl.message(
+      'Ok',
+      name: 'Confirmation_button',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -662,8 +689,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
