@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
-import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
+import 'package:project/modules/main/screens/main_wrapper.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:project/modules/shared/widgets/flushbar.widget.dart';
 import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
@@ -187,7 +187,7 @@ class _RegisterState extends State<Register> {
           .register(firstNameController.value.text, lastNameController.value.text, emailController.value.text,
               _selectedDate, passwordController.value.text)
           .whenComplete(() {
-        if (authProvider.authToken != null) Navigator.pushNamed(context, JobsDashboardScreen.route);
+        if (authProvider.authToken != null) Navigator.pushNamed(context, MainWrapperScreen.route);
         showFlushBar(context,
             message: authProvider.error?.toString() ?? S.of(context).RegisterScreen_success,
             messageType: authProvider.error == null ? MessageType.Information : MessageType.Error);

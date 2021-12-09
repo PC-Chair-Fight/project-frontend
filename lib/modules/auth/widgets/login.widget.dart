@@ -3,7 +3,7 @@ import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
 import 'package:project/modules/auth/screens/register.screen.dart';
-import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
+import 'package:project/modules/main/screens/main_wrapper.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:project/modules/shared/widgets/app_logo.widget.dart';
 import 'package:project/modules/shared/widgets/flushbar.widget.dart';
@@ -130,7 +130,7 @@ class LoginState extends State<Login> {
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, JobsDashboardScreen.route);
+                            Navigator.pushNamed(context, MainWrapperScreen.route);
                           },
                           child: Text('Skip'),
                         ),
@@ -149,7 +149,7 @@ class LoginState extends State<Login> {
   void _login(AuthProvider authProvider) {
     if ((_formKey.currentState?.validate() ?? false) && !authProvider.loading) {
       authProvider.login(emailController.value.text, passwordController.value.text).whenComplete(() {
-        if (authProvider.authToken != null) Navigator.pushNamed(context, JobsDashboardScreen.route);
+        if (authProvider.authToken != null) Navigator.pushNamed(context, MainWrapperScreen.route);
         showFlushBar(context,
             message: authProvider.error?.message ?? S.of(context).LoginScreen_success,
             messageType: authProvider.error == null ? MessageType.Information : MessageType.Error);
