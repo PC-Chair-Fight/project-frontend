@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
-import 'package:project/modules/job/widgets/new_job_grid_entry..widget.dart';
+import 'package:project/modules/shared/widgets/card_grid_entry.widget.dart';
 
 class NewJobImage extends StatelessWidget {
   final ImageProvider image;
@@ -14,7 +14,8 @@ class NewJobImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NewJobGridEntry(
+    return CardGridEntry(
+      aspectRatio: 1.78,
       child: Stack(
         fit: StackFit.expand,
         children: [

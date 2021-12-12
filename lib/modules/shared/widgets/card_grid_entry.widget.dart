@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-class NewJobGridEntry extends StatelessWidget {
+class CardGridEntry extends StatelessWidget {
   final Widget child;
+  final double aspectRatio;
 
-  const NewJobGridEntry({Key? key, required Widget this.child})
-      : super(key: key);
+  const CardGridEntry({
+    Key? key,
+    required double this.aspectRatio,
+    required Widget this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/modules/job/widgets/job_form.widget.dart';
@@ -20,43 +17,47 @@ class _CreateJobState extends State<CreateJob> {
   @override
   Widget build(BuildContext context) {
     return ScreenLayout.isSmall(context)
-        ? CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: ThemeConfig.of(context).appMargin,
+        ? Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: ThemeConfig.of(context).appMargin),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: ThemeConfig.of(context).appMargin,
+                  ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: JobForm(
-                  key: _formKey,
+                SliverToBoxAdapter(
+                  child: JobForm(
+                    key: _formKey,
+                  ),
                 ),
-              ),
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Spacer(),
-                    SizedBox(
-                      height: ThemeConfig.of(context).largeSpacing,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text(S.of(context).CreateJobScreen_submit),
-                    ),
-                    SizedBox(height: ThemeConfig.of(context).mediumSpacing),
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: Text(S.of(context).CreateJobScreen_back),
-                    ),
-                    SizedBox(
-                      height: ThemeConfig.of(context).appMargin,
-                    ),
-                  ],
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Spacer(),
+                      SizedBox(
+                        height: ThemeConfig.of(context).largeSpacing,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text(S.of(context).CreateJobScreen_submit),
+                      ),
+                      SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                      OutlinedButton(
+                        onPressed: () {},
+                        child: Text(S.of(context).CreateJobScreen_back),
+                      ),
+                      SizedBox(
+                        height: ThemeConfig.of(context).appMargin,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         : SingleChildScrollView(
             child: Padding(
@@ -95,7 +96,7 @@ class _CreateJobState extends State<CreateJob> {
                             SizedBox(
                                 height: ThemeConfig.of(context).mediumSpacing),
                             OutlinedButton(
-                              onPressed: () {},
+                              onPressed: () => Navigator.of(context).pop(),
                               child: Text(S.of(context).CreateJobScreen_back),
                             ),
                           ],
