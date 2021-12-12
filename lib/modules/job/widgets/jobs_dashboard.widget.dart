@@ -2,14 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/modules/job/providers/jobs.provider.dart';
 import 'package:project/modules/job/widgets/job_card.widget.dart';
 import 'package:project/modules/job/widgets/jobs_dashboard_toolbar.widget.dart';
 import 'package:project/modules/job/widgets/jobs_sort_filter_card.widget.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
+import 'package:provider/provider.dart';
 
-class JobsDashboard extends StatelessWidget {
+class JobsDashboard extends StatefulWidget {
+  @override
+  State<JobsDashboard> createState() => _JobsDashboardState();
+}
+
+class _JobsDashboardState extends State<JobsDashboard> {
+  late JobsProvider jobsDashboardProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      jobsDashboardProvider.fetchJobs(0, 10);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    jobsDashboardProvider = Provider.of<JobsProvider>(context);
+
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Column(
@@ -37,9 +56,11 @@ class JobsDashboard extends StatelessWidget {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            JobCard(roundEdges: !ScreenLayout.isSmall(context)),
-                          ],
+                          children: jobsDashboardProvider.jobs
+                              .map((e) => JobCard(
+                                  roundEdges: !ScreenLayout.isSmall(context),
+                                  job: e))
+                              .toList(),
                         ),
                       ),
                     ],
@@ -50,9 +71,11 @@ class JobsDashboard extends StatelessWidget {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        JobCard(roundEdges: !ScreenLayout.isSmall(context)),
-                      ],
+                      children: jobsDashboardProvider.jobs
+                          .map((e) => JobCard(
+                              roundEdges: !ScreenLayout.isSmall(context),
+                              job: e))
+                          .toList(),
                     ),
                   ),
           ),

@@ -8,7 +8,7 @@ class AppProvider extends ChangeNotifier {
 
   AppProvider(this.context);
 
-  void notify(String message, {NotificationType? notificationType}) {
+  void notify(String message, {NotificationType? notificationType, Object? error}) {
     if (AppConfig.of(context)?.logProviders ?? false) {
       var logMessage = message;
       switch (notificationType) {
@@ -32,6 +32,8 @@ class AppProvider extends ChangeNotifier {
         name: runtimeType.toString(),
         time: DateTime.now(),
       );
+      if (error != null)
+        log(error.toString());
     }
     notifyListeners();
   }

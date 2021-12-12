@@ -1,8 +1,9 @@
 import 'package:project/modules/job/models/bid.model.dart';
+import 'package:project/modules/user/models/user.model.dart';
 
 class Job {
   int? id;
-  int? userId;
+  User? user;
   String? name;
   String? description;
   List<String> images;
@@ -25,7 +26,10 @@ class Job {
         name = json['name'],
         description = json['description'],
         images = json['images'] as List<String>? ?? [],
-        bids = json['bids'] as List<Bid>? ?? [],
+        bids = (json['bids'] as List<dynamic>)
+            .map((json) => Bid.fromJson(json))
+            .toList(),
+        user = json.containsKey('user') ? User.fromJson(json['user']) : null,
         postDate = DateTime.parse(json['postDate'] as String),
         done = json['done'];
 
