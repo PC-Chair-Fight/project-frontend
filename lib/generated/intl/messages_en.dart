@@ -28,8 +28,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Description"),
         "CreateJobScreen_form_name":
             MessageLookupByLibrary.simpleMessage("Name"),
+        "CreateJobScreen_see_job":
+            MessageLookupByLibrary.simpleMessage("See Job"),
         "CreateJobScreen_submit":
             MessageLookupByLibrary.simpleMessage("Create Job"),
+        "CreateJobScreen_success":
+            MessageLookupByLibrary.simpleMessage("Job Created"),
         "CreateJobScreen_title":
             MessageLookupByLibrary.simpleMessage("Create Job"),
         "CreateJobScreen_validator_description_required":

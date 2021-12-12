@@ -86,5 +86,7 @@
   "CreateJobScreen_validator_name_required": "Please enter a name for the job",
   "CreateJobScreen_validator_description_required": "Please enter a description for the job",
   "CreateJobScreen_submit": "Create Job",
-  "CreateJobScreen_back": "Go Back"
+  "CreateJobScreen_back": "Go Back",
+  "CreateJobScreen_success": "Job Created",
+  "CreateJobScreen_see_job": "See Job"
 }

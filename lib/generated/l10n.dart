@@ -719,6 +719,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Job Created`
+  String get CreateJobScreen_success {
+    return Intl.message(
+      'Job Created',
+      name: 'CreateJobScreen_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See Job`
+  String get CreateJobScreen_see_job {
+    return Intl.message(
+      'See Job',
+      name: 'CreateJobScreen_see_job',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

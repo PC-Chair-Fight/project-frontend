@@ -47,15 +47,17 @@ class JobService {
         },
       );
 
-  Future<Job> createJob(Job job, List<Uint8List> images) async =>
+  Future<Job> createJob(
+    String name,
+    String description,
+    List<Uint8List> images,
+  ) async =>
       initializeDio()
           .post(
             '/Job/Add',
-            data: {
-              'name': job.name,
-              'description': job.description,
-              // assume server will receive a list of multipart files, each
-              // with type application/octet-stream
+            data: FormData.fromMap({
+              'name': name,
+              'description': description,
               'images': (await Future.wait(
                 images.map(
                   (bytes) async {
@@ -67,28 +69,28 @@ class JobService {
               ))
                   .where((file) => file != null)
                   .toList()
-            },
+            }),
           )
           .then((response) => Job.fromJson(response.data))
           .catchError(
-            (error) {
-              switch (error.runtimeType) {
-                case DioError:
-                  switch (error.response?.statusCode) {
-                    case null:
-                      throw ConnectionTimedOutException();
-                    case 400:
-                      throw ServerSideValidationException.fromJson(
-                        error.response.data,
-                      );
-                    default:
-                      throw UnexpectedException();
-                  }
+        (error) {
+          switch (error.runtimeType) {
+            case DioError:
+              switch (error.response?.statusCode) {
+                case null:
+                  throw ConnectionTimedOutException();
+                case 400:
+                  throw ServerSideValidationException.fromJson(
+                    error.response.data,
+                  );
                 default:
                   throw UnexpectedException();
               }
-            },
-          );
+            default:
+              throw UnexpectedException();
+          }
+        },
+      );
 
   Future<List<Job>> getJobs(index, count) async => initializeDio()
       .post('/Job', data: {'index': index, 'count': count})

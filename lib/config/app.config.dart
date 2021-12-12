@@ -13,9 +13,9 @@ class AppConfig extends InheritedWidget {
     required this.child,
   })  : logProviders = true,
         logServices = true,
-        authBaseUrl = 'http://localhost:5000/',
-        jobBaseUrl = 'http://localhost:5000/',
-        bidBaseUrl = 'http://localhost:5000/',
+        authBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
+        jobBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
+        bidBaseUrl = 'http://chairfightbackend.azurewebsites.net/',
         super(key: key, child: child);
 
   static AppConfig? of(BuildContext context) {

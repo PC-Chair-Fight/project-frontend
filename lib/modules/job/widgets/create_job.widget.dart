@@ -1,8 +1,14 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/modules/job/models/job.model.dart';
+import 'package:project/modules/job/providers/jobs.provider.dart';
+import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/job/widgets/job_form.widget.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
 import 'package:project/generated/l10n.dart';
+import 'package:provider/provider.dart';
 
 class CreateJob extends StatefulWidget {
   const CreateJob({Key? key}) : super(key: key);
@@ -16,6 +22,8 @@ class _CreateJobState extends State<CreateJob> {
 
   @override
   Widget build(BuildContext context) {
+    final jobsProvider = Provider.of<JobsProvider>(context);
+
     return ScreenLayout.isSmall(context)
         ? Padding(
             padding: EdgeInsets.symmetric(
@@ -90,7 +98,16 @@ class _CreateJobState extends State<CreateJob> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                final formResult =
+                                    _formKey.currentState?.submit();
+                                if (formResult != null)
+                                  _addJob(
+                                    jobsProvider,
+                                    formResult.jobModel,
+                                    formResult.images,
+                                  );
+                              },
                               child: Text(S.of(context).CreateJobScreen_submit),
                             ),
                             SizedBox(
@@ -108,5 +125,40 @@ class _CreateJobState extends State<CreateJob> {
               ),
             ),
           );
+  }
+
+  void _addJob(JobsProvider provider, Job job, List<Uint8List> images) {
+    provider.addJob(job.name!, job.description!, images).then(
+      (job) {
+        if (provider.addError == null) Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: provider.addError == null
+                ? ThemeConfig.of(context).successColor
+                : ThemeConfig.of(context).errorColor,
+            content: Text(
+              provider.addError?.message ??
+                  S.of(context).CreateJobScreen_success,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: provider.addError == null
+                    ? ThemeConfig.of(context).onSuccessColor
+                    : ThemeConfig.of(context).onErrorColor,
+              ),
+            ),
+            action: job?.id != null
+                ? SnackBarAction(
+                    label: S.of(context).CreateJobScreen_see_job,
+                    onPressed: () => Navigator.of(context).pushNamed(
+                      JobDetailsScreen.route,
+                      arguments: job!.id!,
+                    ),
+                  )
+                : null,
+            duration: Duration(seconds: 4),
+          ),
+        );
+      },
+    );
   }
 }
