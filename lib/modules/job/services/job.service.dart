@@ -22,9 +22,9 @@ class JobService {
     return _dio;
   }
 
-  Future<JobModel> getDetails(int jobId) async => initializeDio()
+  Future<Job> getDetails(int jobId) async => initializeDio()
       .get('/Job/Details', queryParameters: {'id': jobId})
-      .then((response) => JobModel.fromJson(response.data))
+      .then((response) => Job.fromJson(response.data))
       .catchError(
         (error) {
           switch (error.runtimeType) {
@@ -47,7 +47,7 @@ class JobService {
         },
       );
 
-  Future<JobModel> createJob(JobModel job, List<Uint8List> images) async =>
+  Future<Job> createJob(Job job, List<Uint8List> images) async =>
       initializeDio()
           .post(
             '/Job/Add',
@@ -69,7 +69,7 @@ class JobService {
                   .toList()
             },
           )
-          .then((response) => JobModel.fromJson(response.data))
+          .then((response) => Job.fromJson(response.data))
           .catchError(
             (error) {
               switch (error.runtimeType) {

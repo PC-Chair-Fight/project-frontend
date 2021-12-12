@@ -1,6 +1,6 @@
 import 'package:project/modules/job/models/bid.model.dart';
 
-class JobModel {
+class Job {
   int? id;
   int? userId;
   String? name;
@@ -10,7 +10,7 @@ class JobModel {
   DateTime? postDate;
   bool? done;
 
-  JobModel({
+  Job({
     this.id,
     this.name,
     this.description,
@@ -20,7 +20,7 @@ class JobModel {
     this.done,
   });
 
-  JobModel.fromJson(Map<String, dynamic> json)
+  Job.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['name'],
         description = json['description'],

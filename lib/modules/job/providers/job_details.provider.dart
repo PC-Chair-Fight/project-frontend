@@ -9,11 +9,11 @@ import 'package:project/modules/job/services/job.service.dart';
 class JobDetailsProvider extends AppProvider {
   final _jobService = inject.get<JobService>();
   final _bidService = inject.get<BidService>();
-  JobModel? _jobDetails;
+  Job? _jobDetails;
   bool _loading = false;
   BaseException? _error;
 
-  JobModel? get jobDetails => _jobDetails;
+  Job? get jobDetails => _jobDetails;
 
   bool get loading => _loading;
 

@@ -40,7 +40,7 @@ class JobFormState extends State<JobForm> {
   JobFormResult? submit() {
     if (_formKey.currentState?.validate() ?? false) {
       return JobFormResult(
-        JobModel(
+        Job(
           name: _nameController.text,
           description: _descriptionController.text,
         ),
@@ -197,7 +197,7 @@ class JobFormState extends State<JobForm> {
 }
 
 class JobFormResult {
-  final JobModel jobModel;
+  final Job jobModel;
   final List<Uint8List> images;
 
   JobFormResult(this.jobModel, this.images);
