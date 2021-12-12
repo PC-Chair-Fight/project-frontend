@@ -19,29 +19,53 @@ class JobService {
     return _dio;
   }
 
-  Future<JobModel> getDetails(int jobId) async =>
-      initializeDio()
-          .get('/Job/Details', queryParameters: {'id': jobId})
-          .then((response) => JobModel.fromJson(response.data))
-          .catchError(
-            (error) {
-              switch (error.runtimeType) {
-                case DioError:
-                  switch (error.response?.statusCode) {
-                    case null:
-                      throw ConnectionTimedOutException();
-                    case 400:
-                      throw ServerSideValidationException.fromJson(
-                        error.response.data,
-                      );
-                    case 404:
-                      throw NotFoundException();
-                    default:
-                      throw UnexpectedException();
-                  }
+  Future<Job> getDetails(int jobId) async => initializeDio()
+      .get('/Job/Details', queryParameters: {'id': jobId})
+      .then((response) => Job.fromJson(response.data))
+      .catchError(
+        (error) {
+          switch (error.runtimeType) {
+            case DioError:
+              switch (error.response?.statusCode) {
+                case null:
+                  throw ConnectionTimedOutException();
+                case 400:
+                  throw ServerSideValidationException.fromJson(
+                    error.response.data,
+                  );
+                case 404:
+                  throw NotFoundException();
                 default:
                   throw UnexpectedException();
               }
-            },
-          );
+            default:
+              throw UnexpectedException();
+          }
+        },
+      );
+
+  Future<List<Job>> getJobs(index, count) async => initializeDio()
+      .post('/Job', data: {'index': index, 'count': count})
+      .then((response) => (response.data['jobs'] as List<dynamic>)
+          .map((json) => Job.fromJson(json))
+          .toList())
+      .catchError((error) {
+        switch (error.runtimeType) {
+          case DioError:
+            switch (error.response?.statusCode) {
+              case null:
+                throw ConnectionTimedOutException();
+              case 400:
+                throw ServerSideValidationException.fromJson(
+                  error.response.data,
+                );
+              case 404:
+                throw NotFoundException();
+              default:
+                throw UnexpectedException();
+            }
+          default:
+            throw UnexpectedException();
+        }
+      });
 }

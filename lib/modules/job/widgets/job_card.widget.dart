@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/core/utils.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/models/bid.model.dart';
+import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/job/widgets/bidder_card.widget.dart';
 import 'package:project/modules/user/models/user.model.dart';
@@ -15,8 +18,10 @@ class JobCard extends StatelessWidget {
       'ornare non sodales nec, tincidunt eu eros. Nam sollicitudin ante ligula. ';
 
   final bool roundEdges;
+  final Job job;
 
-  const JobCard({Key? key, required this.roundEdges}) : super(key: key);
+  const JobCard({Key? key, required this.roundEdges, required Job this.job})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +34,13 @@ class JobCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Job Title',
+              job.name ?? 'Job Title',
               style: ThemeConfig.of(context).headline6,
               textAlign: TextAlign.start,
             ),
             Container(
               child: Text(
-                fillerText,
+                job.description ?? fillerText,
                 style: ThemeConfig.of(context).body1,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
@@ -43,49 +48,40 @@ class JobCard extends StatelessWidget {
             ),
             SizedBox(height: ThemeConfig.of(context).smallSpacing),
             Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: BidderCardWidget(
-                    position: 1,
-                    bid: Bid(
-                      id: 1,
-                      sum: 120,
-                      worker: Worker(
-                        user: User(
-                            firstName: 'Rhiana',
-                            lastName: 'McDonnell',
-                            profilePicture:
-                                'https://picsum.photos/id/1/600'),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 20),
-                Expanded(
-                  child: BidderCardWidget(
-                    position: 2,
-                    bid: Bid(
-                      id: 2,
-                      sum: 121,
-                      worker: Worker(
-                        user: User(
-                            firstName: 'Elijah',
-                            lastName: 'O\'Ryan',
-                            profilePicture:
-                            'https://picsum.photos/id/2/600'),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  ...job.bids.take(2).map(
+                        (bid) => Expanded(
+                          child: BidderCardWidget(
+                            position: 1,
+                            bid: Bid(
+                              id: bid.id,
+                              sum: bid.sum,
+                              worker: Worker(
+                                user: User(
+                                    firstName:
+                                        bid.worker?.user?.firstName ?? 'Rhiana',
+                                    lastName: bid.worker?.user?.lastName ??
+                                        'McDonnell',
+                                    profilePicture:
+                                        bid.worker?.user?.profilePicture ??
+                                            'https://picsum.photos/id/1/600'),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                ]
+                    .intersperse(SizedBox(
+                      width: 20,
+                    ))
+                    .toList()),
             SizedBox(height: ThemeConfig.of(context).smallSpacing),
             TextButton(
               onPressed: () => Navigator.pushNamed(
                 context,
                 JobDetailsScreen.route,
-                arguments: 1, // TODO current job id
+                arguments: job.id, // TODO current job id
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -108,7 +104,7 @@ class JobCard extends StatelessWidget {
                 Icon(Icons.album),
                 SizedBox(width: ThemeConfig.of(context).smallestSpacing),
                 Text(
-                  'Username',
+                  "${job.user?.firstName ?? ''} ${job.user?.lastName ?? ''}",
                   style: ThemeConfig.of(context)
                       .caption
                       .copyWith(color: ThemeConfig.of(context).primaryColor),
@@ -120,7 +116,7 @@ class JobCard extends StatelessWidget {
                 ),
                 SizedBox(width: ThemeConfig.of(context).smallestSpacing),
                 Text(
-                  '99/88/2000',
+                  DateFormat.yMMMMd().format(job.postDate!),
                   style: ThemeConfig.of(context).caption,
                 )
               ],

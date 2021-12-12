@@ -10,9 +10,9 @@ import 'package:project/modules/job/widgets/job_description.widget.dart';
 import 'package:project/modules/shared/widgets/image_carousel.widget.dart';
 
 class JobDetails extends StatefulWidget {
-  final JobModel job;
+  final Job job;
 
-  const JobDetails({Key? key, required JobModel this.job}) : super(key: key);
+  const JobDetails({Key? key, required Job this.job}) : super(key: key);
 
   @override
   State<JobDetails> createState() => _JobDetailsState();
