@@ -17,14 +17,14 @@ class JobsProvider extends AppProvider {
 
   bool get fetchLoading => _fetchLoading;
 
-  BaseException? get fetchError => _fetchError;
+  dynamic get fetchError => _fetchError;
 
   bool _addLoading = false;
   dynamic _addError;
 
   bool get addLoading => _addLoading;
 
-  BaseException? get addError => _addError;
+  dynamic get addError => _addError;
 
   List<Job> get jobs => _jobs;
 

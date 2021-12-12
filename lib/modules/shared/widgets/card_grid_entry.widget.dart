@@ -15,7 +15,7 @@ class CardGridEntry extends StatelessWidget {
     return Card(
       clipBehavior: Clip.hardEdge,
       child: AspectRatio(
-        aspectRatio: 1.78,
+        aspectRatio: aspectRatio,
         child: child,
       ),
     );
