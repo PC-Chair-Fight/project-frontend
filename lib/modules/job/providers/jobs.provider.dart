@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
-import 'package:project/core/exceptions/base.exception.dart';
 import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/services/job.service.dart';
 
