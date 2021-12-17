@@ -50,12 +50,21 @@ class _CreateJobState extends State<CreateJob> {
                         height: ThemeConfig.of(context).largeSpacing,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          final formResult =
+                          _formKey.currentState?.submit();
+                          if (formResult != null)
+                            _addJob(
+                              jobsProvider,
+                              formResult.jobModel,
+                              formResult.images,
+                            );
+                        },
                         child: Text(S.of(context).CreateJobScreen_submit),
                       ),
                       SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                       OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.of(context).pop(),
                         child: Text(S.of(context).CreateJobScreen_back),
                       ),
                       SizedBox(
@@ -146,15 +155,6 @@ class _CreateJobState extends State<CreateJob> {
                     : ThemeConfig.of(context).onErrorColor,
               ),
             ),
-            action: job?.id != null
-                ? SnackBarAction(
-                    label: S.of(context).CreateJobScreen_see_job,
-                    onPressed: () => Navigator.of(context).pushNamed(
-                      JobDetailsScreen.route,
-                      arguments: job!.id!,
-                    ),
-                  )
-                : null,
             duration: Duration(seconds: 4),
           ),
         );

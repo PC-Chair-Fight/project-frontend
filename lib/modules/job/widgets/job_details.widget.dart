@@ -7,6 +7,7 @@ import 'package:project/modules/job/models/bid.model.dart';
 import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/widgets/bidder_card.widget.dart';
 import 'package:project/modules/job/widgets/job_description.widget.dart';
+import 'package:project/modules/shared/utils/authenticated_network_image.utils.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
 import 'package:project/modules/shared/widgets/column_count_grid.widget.dart';
 import 'package:project/modules/shared/widgets/image_carousel.widget.dart';
@@ -194,7 +195,9 @@ class _JobDetailsState extends State<JobDetails> {
   Widget _carousel(BuildContext context) {
     return ImageCarouselWidget(
       height: 400,
-      images: widget.job.images.map((image) => NetworkImage(image)).toList(),
+      images: widget.job.images
+          .map((image) => authNetworkImage(context, image))
+          .toList(),
     );
   }
 

@@ -729,16 +729,6 @@ class S {
       args: [],
     );
   }
-
-  /// `See Job`
-  String get CreateJobScreen_see_job {
-    return Intl.message(
-      'See Job',
-      name: 'CreateJobScreen_see_job',
-      desc: '',
-      args: [],
-    );
-  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -51,46 +51,54 @@ class JobService {
     String name,
     String description,
     List<Uint8List> images,
-  ) async =>
-      initializeDio()
-          .post(
-            '/Job/Add',
-            data: FormData.fromMap({
-              'name': name,
-              'description': description,
-              'images': (await Future.wait(
-                images.map(
-                  (bytes) async {
-                    final img = decodeImage(bytes);
-                    if (img == null) return null;
-                    return await MultipartFile.fromBytes(encodeJpg(img));
-                  },
-                ),
-              ))
-                  .where((file) => file != null)
-                  .toList()
-            }),
-          )
-          .then((response) => Job.fromJson(response.data))
-          .catchError(
-        (error) {
-          switch (error.runtimeType) {
-            case DioError:
-              switch (error.response?.statusCode) {
-                case null:
-                  throw ConnectionTimedOutException();
-                case 400:
-                  throw ServerSideValidationException.fromJson(
-                    error.response.data,
-                  );
-                default:
-                  throw UnexpectedException();
-              }
-            default:
-              throw UnexpectedException();
-          }
+  ) async {
+    final formData = FormData.fromMap({
+      'name': name,
+      'description': description,
+    });
+    int requestFileUniqueId = 0;
+
+    await Future.wait(
+      images.map(
+        (bytes) async {
+          final img = decodeImage(bytes);
+          if (img == null) return null;
+          formData.files.add(
+            MapEntry(
+              'images',
+              await MultipartFile.fromBytes(
+                encodeJpg(img),
+                filename: (requestFileUniqueId++).toString(),
+              ),
+            ),
+          );
         },
-      );
+      ),
+    );
+
+    return initializeDio()
+        .post('/Job/Add', data: formData)
+        .then((response) => Job.fromJson(response.data))
+        .catchError(
+      (error) {
+        switch (error.runtimeType) {
+          case DioError:
+            switch (error.response?.statusCode) {
+              case null:
+                throw ConnectionTimedOutException();
+              case 400:
+                throw ServerSideValidationException.fromJson(
+                  error.response.data,
+                );
+              default:
+                throw UnexpectedException();
+            }
+          default:
+            throw UnexpectedException();
+        }
+      },
+    );
+  }
 
   Future<List<Job>> getJobs(index, count) async => initializeDio()
       .post('/Job', data: {'index': index, 'count': count})
