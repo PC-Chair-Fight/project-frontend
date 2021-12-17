@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/providers/jobs.provider.dart';
-import 'package:project/modules/job/screens/job_details.screen.dart';
 import 'package:project/modules/job/widgets/job_form.widget.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
 import 'package:project/generated/l10n.dart';
