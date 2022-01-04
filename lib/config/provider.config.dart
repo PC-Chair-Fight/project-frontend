@@ -25,20 +25,25 @@ class ProviderConfig extends StatelessWidget {
         ChangeNotifierProvider<AuthProvider>(
           create: (context) => AuthProvider(context),
         ),
-        ChangeNotifierProvider<JobsProvider>(
+        ChangeNotifierProvider<JobSortProvider>(
+          create: (context) => JobSortProvider(context),
+        ),
+        ChangeNotifierProvider<JobFilterProvider>(
+          create: (context) => JobFilterProvider(context),
+        ),
+        ChangeNotifierProxyProvider2<JobSortProvider, JobFilterProvider,
+            JobsProvider>(
           create: (context) => JobsProvider(context),
+          update: (context, jobSortProvider, jobFilterProvider,
+                  oldJobsProvider) =>
+              (oldJobsProvider?..update(jobSortProvider, jobFilterProvider)) ??
+              JobsProvider(context),
         ),
         ChangeNotifierProxyProvider<JobsProvider, JobDetailsProvider>(
           create: (context) => JobDetailsProvider(context),
           update: (context, jobsProvider, oldJobDetailsProvider) =>
               (oldJobDetailsProvider?..update(jobsProvider)) ??
               JobDetailsProvider(context),
-        ),
-        ChangeNotifierProvider<JobSortProvider>(
-          create: (context) => JobSortProvider(context),
-        ),
-        ChangeNotifierProvider<JobFilterProvider>(
-          create: (context) => JobFilterProvider(context),
         ),
       ],
       child: child,

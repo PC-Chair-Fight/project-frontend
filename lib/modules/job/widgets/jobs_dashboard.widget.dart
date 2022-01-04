@@ -17,19 +17,19 @@ class JobsDashboard extends StatefulWidget {
 }
 
 class _JobsDashboardState extends State<JobsDashboard> {
-  late JobsProvider jobsDashboardProvider;
+  late JobsProvider _jobsProvider;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      jobsDashboardProvider.fetchJobs(0, 10);
+      _fetchJobs();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    jobsDashboardProvider = Provider.of<JobsProvider>(context);
+    _jobsProvider = Provider.of<JobsProvider>(context);
 
     return SizedBox(
       height: MediaQuery.of(context).size.height,
@@ -94,12 +94,16 @@ class _JobsDashboardState extends State<JobsDashboard> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Card(
-                              child: JobSortForm(),
+                              child: JobSortForm(
+                                onChanged: _fetchJobs,
+                              ),
                             ),
                             SizedBox(
                                 height: ThemeConfig.of(context).mediumSpacing),
                             Card(
-                              child: JobFilterForm(),
+                              child: JobFilterForm(
+                                onChanged: _fetchJobs,
+                              ),
                             ),
                           ],
                         ),
@@ -111,7 +115,7 @@ class _JobsDashboardState extends State<JobsDashboard> {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: jobsDashboardProvider.jobs
+                          children: _jobsProvider.jobs
                               .map((e) => JobCard(
                                   roundEdges: !ScreenLayout.isSmall(context),
                                   job: e))
@@ -133,7 +137,7 @@ class _JobsDashboardState extends State<JobsDashboard> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: jobsDashboardProvider.jobs
+                      children: _jobsProvider.jobs
                           .map((e) => JobCard(
                               roundEdges: !ScreenLayout.isSmall(context),
                               job: e))
@@ -174,14 +178,22 @@ class _JobsDashboardState extends State<JobsDashboard> {
   _showFilterDialog() {
     showModalBottomSheet(
       context: context,
-      builder: (context) => JobFilterForm(),
+      builder: (context) => JobFilterForm(
+        onChanged: _fetchJobs,
+      ),
     );
   }
 
   _showSortDialog() {
     showModalBottomSheet(
       context: context,
-      builder: (context) => JobSortForm(),
+      builder: (context) => JobSortForm(
+        onChanged: _fetchJobs,
+      ),
     );
+  }
+
+  _fetchJobs() {
+    _jobsProvider.fetchJobs(0, 100);
   }
 }

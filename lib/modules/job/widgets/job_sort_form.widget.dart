@@ -3,14 +3,11 @@ import 'package:project/config/theme.config.dart';
 import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:provider/provider.dart';
 
-class JobSortForm extends StatefulWidget {
-  const JobSortForm({Key? key}) : super(key: key);
+class JobSortForm extends StatelessWidget {
+  final Function()? onChanged;
 
-  @override
-  _JobSortFormState createState() => _JobSortFormState();
-}
+  const JobSortForm({Key? key, this.onChanged}) : super(key: key);
 
-class _JobSortFormState extends State<JobSortForm> {
   @override
   Widget build(BuildContext context) {
     final jobSortProvider = Provider.of<JobSortProvider>(context);
@@ -32,7 +29,10 @@ class _JobSortFormState extends State<JobSortForm> {
               Text('Ascending*'),
               Switch(
                 value: jobSortProvider.ascending,
-                onChanged: (value) => jobSortProvider.setAscending(value),
+                onChanged: (value) {
+                  onChanged?.call();
+                  jobSortProvider.setAscending(value);
+                },
               ),
             ],
           ),
@@ -40,14 +40,19 @@ class _JobSortFormState extends State<JobSortForm> {
         RadioListTile(
           value: SortCriteria.PostDate,
           groupValue: jobSortProvider.sortCriteria,
-          onChanged: (_) =>
-              jobSortProvider.setSortCriteria(SortCriteria.PostDate),
+          onChanged: (_) {
+            onChanged?.call();
+            jobSortProvider.setSortCriteria(SortCriteria.PostDate);
+          },
           title: Text('Post date*'),
         ),
         RadioListTile(
           value: SortCriteria.Other,
           groupValue: jobSortProvider.sortCriteria,
-          onChanged: (_) => jobSortProvider.setSortCriteria(SortCriteria.Other),
+          onChanged: (_) {
+            onChanged?.call();
+            jobSortProvider.setSortCriteria(SortCriteria.Other);
+          },
           title: Text('Other*'),
         ),
         SizedBox(

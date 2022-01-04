@@ -6,17 +6,19 @@ import 'package:project/modules/job/providers/job_filter.provider.dart';
 import 'package:provider/provider.dart';
 
 class JobFilterForm extends StatefulWidget {
-  const JobFilterForm({Key? key}) : super(key: key);
+  final Function()? onChanged;
+
+  const JobFilterForm({Key? key, this.onChanged}) : super(key: key);
 
   @override
   _JobFilterFormState createState() => _JobFilterFormState();
 }
 
 class _JobFilterFormState extends State<JobFilterForm> {
+  late JobFilterProvider _jobFilterProvider;
+
   GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController _postDateRangeController = TextEditingController();
-
-  late JobFilterProvider _jobFilterProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,10 @@ class _JobFilterFormState extends State<JobFilterForm> {
                 ),
                 if (canClearFilters)
                   TextButton(
-                    onPressed: _jobFilterProvider.clear,
+                    onPressed: () {
+                      widget.onChanged?.call();
+                      _jobFilterProvider.clear();
+                    },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -86,6 +91,7 @@ class _JobFilterFormState extends State<JobFilterForm> {
       lastDate: DateTime.now(),
     ).then((value) {
       if (value != null) {
+        widget.onChanged?.call();
         _jobFilterProvider.setPostDateRange(value);
       }
     });
