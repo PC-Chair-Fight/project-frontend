@@ -530,71 +530,61 @@ class S {
     );
   }
 
-  /// `Clear`
-  String get JobSortFilterCard_clearButton {
+  /// `Sort Jobs`
+  String get JobSortForm_sortJobs {
     return Intl.message(
-      'Clear',
-      name: 'JobSortFilterCard_clearButton',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Apply`
-  String get JobSortFilterCard_applyButton {
-    return Intl.message(
-      'Apply',
-      name: 'JobSortFilterCard_applyButton',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Deadline date range`
-  String get JobSortFilterCard_deadlineDateRange {
-    return Intl.message(
-      'Deadline date range',
-      name: 'JobSortFilterCard_deadlineDateRange',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Post date range`
-  String get JobSortFilterCard_postDateRange {
-    return Intl.message(
-      'Post date range',
-      name: 'JobSortFilterCard_postDateRange',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Filter Jobs`
-  String get JobSortFilterCard_filterJobs {
-    return Intl.message(
-      'Filter Jobs',
-      name: 'JobSortFilterCard_filterJobs',
+      'Sort Jobs',
+      name: 'JobSortForm_sortJobs',
       desc: '',
       args: [],
     );
   }
 
   /// `Ascending`
-  String get JobSortFilterCard_ascending {
+  String get JobSortForm_ascending {
     return Intl.message(
       'Ascending',
-      name: 'JobSortFilterCard_ascending',
+      name: 'JobSortForm_ascending',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sort Jobs`
-  String get JobSortFilterCard_sortJobs {
+  /// `Post date criteria`
+  String get JobSortForm_postDateCriteria {
     return Intl.message(
-      'Sort Jobs',
-      name: 'JobSortFilterCard_sortJobs',
+      'Post date criteria',
+      name: 'JobSortForm_postDateCriteria',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Jobs`
+  String get JobFilterForm_filterJobs {
+    return Intl.message(
+      'Filter Jobs',
+      name: 'JobFilterForm_filterJobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post date range`
+  String get JobFilterForm_postDateRange {
+    return Intl.message(
+      'Post date range',
+      name: 'JobFilterForm_postDateRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear`
+  String get JobFilterForm_clear {
+    return Intl.message(
+      'Clear',
+      name: 'JobFilterForm_clear',
       desc: '',
       args: [],
     );

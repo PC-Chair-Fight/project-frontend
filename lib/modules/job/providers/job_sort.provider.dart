@@ -24,5 +24,4 @@ class JobSortProvider extends AppProvider {
 
 enum SortCriteria {
   PostDate,
-  Other,
 }

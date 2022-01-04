@@ -52,19 +52,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Show more"),
         "JobDetailsScreen_title":
             MessageLookupByLibrary.simpleMessage("Job Details"),
-        "JobSortFilterCard_applyButton":
-            MessageLookupByLibrary.simpleMessage("Apply"),
-        "JobSortFilterCard_ascending":
-            MessageLookupByLibrary.simpleMessage("Ascending"),
-        "JobSortFilterCard_clearButton":
-            MessageLookupByLibrary.simpleMessage("Clear"),
-        "JobSortFilterCard_deadlineDateRange":
-            MessageLookupByLibrary.simpleMessage("Deadline date range"),
-        "JobSortFilterCard_filterJobs":
+        "JobFilterForm_clear": MessageLookupByLibrary.simpleMessage("Clear"),
+        "JobFilterForm_filterJobs":
             MessageLookupByLibrary.simpleMessage("Filter Jobs"),
-        "JobSortFilterCard_postDateRange":
+        "JobFilterForm_postDateRange":
             MessageLookupByLibrary.simpleMessage("Post date range"),
-        "JobSortFilterCard_sortJobs":
+        "JobSortForm_ascending":
+            MessageLookupByLibrary.simpleMessage("Ascending"),
+        "JobSortForm_postDateCriteria":
+            MessageLookupByLibrary.simpleMessage("Post date criteria"),
+        "JobSortForm_sortJobs":
             MessageLookupByLibrary.simpleMessage("Sort Jobs"),
         "JobsCard_seeJobDetails":
             MessageLookupByLibrary.simpleMessage("See Job Details"),

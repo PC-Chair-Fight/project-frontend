@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/providers/job_filter.provider.dart';
 import 'package:provider/provider.dart';
 
@@ -33,17 +34,17 @@ class _JobFilterFormState extends State<JobFilterForm> {
 
     return Form(
       key: _formKey,
-      child: Padding(
-        padding: EdgeInsets.all(ThemeConfig.of(context).appMargin),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(ThemeConfig.of(context).appMargin),
+            child: Row(
               children: [
                 Expanded(
                   child: Text(
-                    'Filter Jobs*',
+                    S.of(context).JobFilterForm_filterJobs,
                     style: ThemeConfig.of(context).headline5,
                   ),
                 ),
@@ -56,7 +57,7 @@ class _JobFilterFormState extends State<JobFilterForm> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('Clear*'),
+                        Text(S.of(context).JobFilterForm_clear),
                         SizedBox(width: ThemeConfig.of(context).smallSpacing),
                         Icon(FontAwesomeIcons.eraser, size: 16),
                       ],
@@ -64,22 +65,26 @@ class _JobFilterFormState extends State<JobFilterForm> {
                   ),
               ],
             ),
-            SizedBox(height: ThemeConfig.of(context).appMargin),
-            TextFormField(
+          ),
+          Divider(),
+          SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+          Padding(
+            padding: EdgeInsets.all(ThemeConfig.of(context).appMargin),
+            child: TextFormField(
               controller: _postDateRangeController,
               readOnly: true,
               onTap: _onPostDateRangeFieldTap,
               decoration: InputDecoration(
-                label: Text('Post date range*'),
+                label: Text(S.of(context).JobFilterForm_postDateRange),
                 suffixIcon: Icon(
                   FontAwesomeIcons.calendar,
                   color: ThemeConfig.of(context).primaryColor,
                 ),
               ),
             ),
-            SizedBox(height: ThemeConfig.of(context).mediumSpacing),
-          ],
-        ),
+          ),
+          SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+        ],
       ),
     );
   }
