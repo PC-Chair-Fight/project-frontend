@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/modules/job/providers/job_sort.provider.dart';
+import 'package:provider/provider.dart';
 
 class JobSortForm extends StatefulWidget {
   const JobSortForm({Key? key}) : super(key: key);
@@ -11,6 +13,8 @@ class JobSortForm extends StatefulWidget {
 class _JobSortFormState extends State<JobSortForm> {
   @override
   Widget build(BuildContext context) {
+    final jobSortProvider = Provider.of<JobSortProvider>(context);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,35 +31,24 @@ class _JobSortFormState extends State<JobSortForm> {
               ),
               Text('Ascending*'),
               Switch(
-                value: false,
-                onChanged: (_) {},
+                value: jobSortProvider.ascending,
+                onChanged: (value) => jobSortProvider.setAscending(value),
               ),
             ],
           ),
         ),
         RadioListTile(
-          value: false,
-          groupValue: false,
-          onChanged: (_) {},
-          title: Text('Sort Criteria 1'),
+          value: SortCriteria.PostDate,
+          groupValue: jobSortProvider.sortCriteria,
+          onChanged: (_) =>
+              jobSortProvider.setSortCriteria(SortCriteria.PostDate),
+          title: Text('Post date*'),
         ),
         RadioListTile(
-          value: false,
-          groupValue: false,
-          onChanged: (_) {},
-          title: Text('Sort Criteria 2'),
-        ),
-        RadioListTile(
-          value: false,
-          groupValue: false,
-          onChanged: (_) {},
-          title: Text('Sort Criteria 3'),
-        ),
-        RadioListTile(
-          value: false,
-          groupValue: false,
-          onChanged: (_) {},
-          title: Text('Sort Criteria 4'),
+          value: SortCriteria.Other,
+          groupValue: jobSortProvider.sortCriteria,
+          onChanged: (_) => jobSortProvider.setSortCriteria(SortCriteria.Other),
+          title: Text('Other*'),
         ),
         SizedBox(
           height: ThemeConfig.of(context).appMargin,

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
 import 'package:project/core/exceptions/base.exception.dart';
@@ -18,14 +18,13 @@ class JobsProvider extends AppProvider {
 
   BaseException? get fetchError => _fetchError;
 
-  JobsProvider(BuildContext ctx)
-      : super(ctx);
+  JobsProvider(BuildContext ctx) : super(ctx);
 
   Future<void> updateJob(Job job) async {
     notify('updateJob', notificationType: NotificationType.Start);
 
     final found = _jobs.indexWhere((element) => element.id == job.id);
-    if (found == -1){
+    if (found == -1) {
       return;
     }
 

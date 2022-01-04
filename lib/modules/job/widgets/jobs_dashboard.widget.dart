@@ -109,17 +109,13 @@ class _JobsDashboardState extends State<JobsDashboard> {
                         constraints: BoxConstraints.tightFor(
                           width: ThemeConfig.of(context).appMediumWidth,
                         ),
-                        child: Container(
-                          height: 20,
-                          color: Colors.red,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: jobsDashboardProvider.jobs
-                                .map((e) => JobCard(
-                                    roundEdges: !ScreenLayout.isSmall(context),
-                                    job: e))
-                                .toList(),
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: jobsDashboardProvider.jobs
+                              .map((e) => JobCard(
+                                  roundEdges: !ScreenLayout.isSmall(context),
+                                  job: e))
+                              .toList(),
                         ),
                       ),
                       Flexible(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project/modules/auth/providers/auth.provider.dart';
 import 'package:project/modules/job/providers/job_details.provider.dart';
-import 'package:project/modules/main/providers/page.provider.dart';
+import 'package:project/modules/job/providers/job_filter.provider.dart';
+import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:project/modules/job/providers/jobs.provider.dart';
+import 'package:project/modules/main/providers/page.provider.dart';
 import 'package:provider/provider.dart';
 
 class ProviderConfig extends StatelessWidget {
@@ -31,6 +33,12 @@ class ProviderConfig extends StatelessWidget {
           update: (context, jobsProvider, oldJobDetailsProvider) =>
               (oldJobDetailsProvider?..update(jobsProvider)) ??
               JobDetailsProvider(context),
+        ),
+        ChangeNotifierProvider<JobSortProvider>(
+          create: (context) => JobSortProvider(context),
+        ),
+        ChangeNotifierProvider<JobFilterProvider>(
+          create: (context) => JobFilterProvider(context),
         ),
       ],
       child: child,

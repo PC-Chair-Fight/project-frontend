@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/modules/job/providers/job_filter.provider.dart';
+import 'package:provider/provider.dart';
 
 class JobFilterForm extends StatefulWidget {
   const JobFilterForm({Key? key}) : super(key: key);
@@ -14,8 +16,19 @@ class _JobFilterFormState extends State<JobFilterForm> {
   GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController _postDateRangeController = TextEditingController();
 
+  late JobFilterProvider _jobFilterProvider;
+
   @override
   Widget build(BuildContext context) {
+    _jobFilterProvider = Provider.of<JobFilterProvider>(context);
+
+    _postDateRangeController.text = _jobFilterProvider.postDateRange != null
+        ? DateFormat.yMMMd().format(_jobFilterProvider.postDateRange!.start) +
+            ' - ' +
+            DateFormat.yMMMd().format(_jobFilterProvider.postDateRange!.end)
+        : '';
+    final canClearFilters = _jobFilterProvider.postDateRange != null;
+
     return Form(
       key: _formKey,
       child: Padding(
@@ -24,9 +37,27 @@ class _JobFilterFormState extends State<JobFilterForm> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              'Filter Jobs*',
-              style: ThemeConfig.of(context).headline5,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Filter Jobs*',
+                    style: ThemeConfig.of(context).headline5,
+                  ),
+                ),
+                if (canClearFilters)
+                  TextButton(
+                    onPressed: _jobFilterProvider.clear,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Clear*'),
+                        SizedBox(width: ThemeConfig.of(context).smallSpacing),
+                        Icon(FontAwesomeIcons.eraser, size: 16),
+                      ],
+                    ),
+                  ),
+              ],
             ),
             SizedBox(height: ThemeConfig.of(context).appMargin),
             TextFormField(
@@ -41,24 +72,7 @@ class _JobFilterFormState extends State<JobFilterForm> {
                 ),
               ),
             ),
-            SizedBox(height: ThemeConfig.of(context).largeSpacing),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Clear*'),
-                  ),
-                ),
-                SizedBox(width: ThemeConfig.of(context).appMargin),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Apply*'),
-                  ),
-                ),
-              ],
-            ),
+            SizedBox(height: ThemeConfig.of(context).mediumSpacing),
           ],
         ),
       ),
@@ -72,9 +86,7 @@ class _JobFilterFormState extends State<JobFilterForm> {
       lastDate: DateTime.now(),
     ).then((value) {
       if (value != null) {
-        _postDateRangeController.text = DateFormat.yMMMd().format(value.start) +
-            ' - ' +
-            DateFormat.yMMMd().format(value.end);
+        _jobFilterProvider.setPostDateRange(value);
       }
     });
   }
