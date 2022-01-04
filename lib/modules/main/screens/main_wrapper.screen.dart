@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/screens/jobs_dashboard.screen.dart';
 import 'package:project/modules/main/providers/page.provider.dart';
 import 'package:project/modules/main/widgets/app_bottom_navigation_bar.dart';
@@ -20,6 +21,13 @@ class MainWrapperScreen extends StatelessWidget {
       appBar: !kIsWeb
           ? AppBar(
               automaticallyImplyLeading: false,
+              title: Text(
+                pageProvider.currentPage == AppPage.Profile
+                    ? S.of(context).Navigation_profile_page_label
+                    : pageProvider.currentPage == AppPage.Jobs
+                        ? S.of(context).Navigation_jobs_page_label
+                        : S.of(context).Navigation_workers_page_label,
+              ),
             )
           : null,
       bottomNavigationBar: !ScreenLayout.isWide(context)

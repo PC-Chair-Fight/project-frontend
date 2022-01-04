@@ -24,6 +24,13 @@ class JobsDashboardToolbar extends StatelessWidget {
             ),
             child: Row(
               children: [
+                if (ScreenLayout.isWide(context))
+                  ConstrainedBox(
+                    constraints: BoxConstraints.tightFor(
+                      width: ThemeConfig.of(context).buttonHeight +
+                          ThemeConfig.of(context).mediumSpacing,
+                    ),
+                  ),
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(

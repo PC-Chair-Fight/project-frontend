@@ -24,6 +24,7 @@ class ThemeConfig extends InheritedWidget {
   final Color errorColor;
   final Color onErrorColor;
   final Color dividerColor;
+  final Color shadowColor;
 
   // Typography
   final TextStyle headline1;
@@ -84,6 +85,7 @@ class ThemeConfig extends InheritedWidget {
         errorColor = const Color(0xFFF54854),
         onErrorColor = const Color(0xFFFFFFFF),
         dividerColor = const Color(0xFFD2D2D2),
+        shadowColor = const Color(0xFF000000),
         headline1 = TextStyle(
           fontSize: 96,
           fontWeight: FontWeight.w300,
@@ -204,6 +206,14 @@ class ThemeConfig extends InheritedWidget {
           margin: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
+          ),
+        ),
+        bottomSheetTheme: BottomSheetThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(borderRadius),
+              topRight: Radius.circular(borderRadius),
+            ),
           ),
         ),
         dividerTheme: DividerThemeData(
