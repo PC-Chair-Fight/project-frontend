@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/providers/jobs.provider.dart';
 import 'package:project/modules/job/widgets/job_card.widget.dart';
 import 'package:project/modules/job/widgets/job_filter_form.widget.dart';
@@ -53,7 +54,7 @@ class _JobsDashboardState extends State<JobsDashboard> {
                         children: [
                           Icon(FontAwesomeIcons.filter, size: 14),
                           SizedBox(width: ThemeConfig.of(context).smallSpacing),
-                          Text('Filter*'),
+                          Text(S.of(context).JobsDashboardScreen_filterButton),
                         ],
                       ),
                     ),
@@ -67,7 +68,7 @@ class _JobsDashboardState extends State<JobsDashboard> {
                         children: [
                           Icon(FontAwesomeIcons.sort, size: 14),
                           SizedBox(width: ThemeConfig.of(context).smallSpacing),
-                          Text('Sort*'),
+                          Text(S.of(context).JobsDashboardScreen_sortButton),
                         ],
                       ),
                     ),

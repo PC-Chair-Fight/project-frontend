@@ -60,15 +60,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "JobSortForm_ascending":
             MessageLookupByLibrary.simpleMessage("Ascending"),
         "JobSortForm_postDateCriteria":
-            MessageLookupByLibrary.simpleMessage("Post date criteria"),
+            MessageLookupByLibrary.simpleMessage("Sort by post date"),
         "JobSortForm_sortJobs":
             MessageLookupByLibrary.simpleMessage("Sort Jobs"),
         "JobsCard_seeJobDetails":
             MessageLookupByLibrary.simpleMessage("See Job Details"),
+        "JobsDashboardScreen_filterButton":
+            MessageLookupByLibrary.simpleMessage("Filter"),
         "JobsDashboardScreen_postJob":
             MessageLookupByLibrary.simpleMessage("Post a Job"),
         "JobsDashboardScreen_search":
             MessageLookupByLibrary.simpleMessage("Search field..."),
+        "JobsDashboardScreen_sortButton":
+            MessageLookupByLibrary.simpleMessage("Sort"),
         "LoginScreen_email_input_label":
             MessageLookupByLibrary.simpleMessage("Email"),
         "LoginScreen_error_generic":

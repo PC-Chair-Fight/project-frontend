@@ -64,7 +64,7 @@
   },
   "JobSortForm_sortJobs": "Sort Jobs",
   "JobSortForm_ascending": "Ascending",
-  "JobSortForm_postDateCriteria": "Post date criteria",
+  "JobSortForm_postDateCriteria": "Sort by post date",
   "@JobFilterForm": {
   },
   "JobFilterForm_filterJobs": "Filter Jobs",
@@ -78,5 +78,7 @@
   "JobsDashboardScreen_search": "Search field...",
   "@JobsDashboardScreen": {
   },
-  "JobsDashboardScreen_postJob": "Post a Job"
+  "JobsDashboardScreen_postJob": "Post a Job",
+  "JobsDashboardScreen_filterButton": "Filter",
+  "JobsDashboardScreen_sortButton": "Sort"
 }
