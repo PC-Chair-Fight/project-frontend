@@ -49,23 +49,16 @@ class LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                    height: 128,
-                    width: 128,
+                    height: 64,
                     child: AppLogo(),
                   ),
-                  SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                  SizedBox(height: ThemeConfig.of(context).largestSpacing),
                   ConstrainedBox(
                     constraints: BoxConstraints(
                       maxWidth: ThemeConfig.of(context).appMediumWidth,
                     ),
                     child: Column(
                       children: [
-                        Text(
-                          S.of(context).LoginScreen_title,
-                          style: Theme.of(context).textTheme.headline4,
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: ThemeConfig.of(context).largeSpacing),
                         TextFormField(
                           controller: emailController,
                           validator: (value) => UtilValidators.guard(value)
