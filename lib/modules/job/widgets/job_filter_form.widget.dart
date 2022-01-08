@@ -97,7 +97,10 @@ class _JobFilterFormState extends State<JobFilterForm> {
     ).then((value) {
       if (value != null) {
         widget.onChanged?.call();
-        _jobFilterProvider.setPostDateRange(value);
+        _jobFilterProvider.setPostDateRange(DateTimeRange(
+          start: value.start,
+          end: value.end.add(Duration(days: 1)),
+        ));
       }
     });
   }

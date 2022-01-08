@@ -45,9 +45,7 @@ class JobService {
         },
       );
 
-  Future<List<Job>> getJobs(JobQuery query) async {
-    print(query.toJson());
-    return initializeDio()
+  Future<List<Job>> getJobs(JobQuery query) async => initializeDio()
         .post('/Job', data: query.toJson())
         .then((response) => (response.data['jobs'] as List<dynamic>)
             .map((json) => Job.fromJson(json))
@@ -71,5 +69,4 @@ class JobService {
           throw UnexpectedException();
       }
     });
-  }
 }
