@@ -6,6 +6,8 @@ class JobSearchProvider extends AppProvider {
 
   JobSearchProvider(BuildContext ctx) : super(ctx);
 
+  String get searchText => _searchText;
+
   void setSearchText(String value) {
     _searchText = value;
     notify('setSearchText', notificationType: NotificationType.Success);
