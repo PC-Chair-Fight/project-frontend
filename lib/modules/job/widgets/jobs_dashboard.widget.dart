@@ -1,8 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/generated/l10n.dart';
+import 'package:project/modules/job/models/job_order_field.enum.dart';
+import 'package:project/modules/job/providers/job_filter.provider.dart';
+import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:project/modules/job/providers/jobs.provider.dart';
 import 'package:project/modules/job/widgets/job_card.widget.dart';
 import 'package:project/modules/job/widgets/job_filter_form.widget.dart';
@@ -18,6 +23,8 @@ class JobsDashboard extends StatefulWidget {
 
 class _JobsDashboardState extends State<JobsDashboard> {
   late JobsProvider _jobsProvider;
+  late JobFilterProvider _filterProvider;
+  late JobSortProvider _sortProvider;
 
   @override
   void initState() {
@@ -30,6 +37,8 @@ class _JobsDashboardState extends State<JobsDashboard> {
   @override
   Widget build(BuildContext context) {
     _jobsProvider = Provider.of<JobsProvider>(context);
+    _filterProvider = Provider.of<JobFilterProvider>(context);
+    _sortProvider = Provider.of<JobSortProvider>(context);
 
     return SizedBox(
       height: MediaQuery.of(context).size.height,
@@ -38,41 +47,25 @@ class _JobsDashboardState extends State<JobsDashboard> {
         children: [
           JobsDashboardToolbar(),
           if (!ScreenLayout.isWide(context))
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: ThemeConfig.of(context).mediumSpacing,
-                vertical: ThemeConfig.of(context).smallSpacing,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: _buildToolbarButton(
-                      onPressed: _showFilterDialog,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(FontAwesomeIcons.filter, size: 14),
-                          SizedBox(width: ThemeConfig.of(context).smallSpacing),
-                          Text('Filter*'),
-                        ],
-                      ),
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxWidth: ThemeConfig.of(context).appMediumWidth),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: ThemeConfig.of(context).mediumSpacing,
+                  vertical: ThemeConfig.of(context).smallSpacing,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildFilterButton(),
                     ),
-                  ),
-                  SizedBox(width: ThemeConfig.of(context).mediumSpacing),
-                  Expanded(
-                    child: _buildToolbarButton(
-                      onPressed: _showSortDialog,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(FontAwesomeIcons.sort, size: 14),
-                          SizedBox(width: ThemeConfig.of(context).smallSpacing),
-                          Text('Sort*'),
-                        ],
-                      ),
+                    SizedBox(width: ThemeConfig.of(context).mediumSpacing),
+                    Expanded(
+                      child: _buildSortButton(),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           Padding(
@@ -150,29 +143,58 @@ class _JobsDashboardState extends State<JobsDashboard> {
     );
   }
 
-  Widget _buildToolbarButton({
-    required Function() onPressed,
-    required Widget child,
-  }) =>
-      ElevatedButton(
-        onPressed: onPressed,
-        child: child,
-        style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(ThemeConfig.of(context).surfaceColor),
-          foregroundColor:
-              MaterialStateProperty.all(ThemeConfig.of(context).primaryColor),
-          overlayColor: MaterialStateProperty.all(
-              ThemeConfig.of(context).primaryColor.withOpacity(.25)),
-          shadowColor:
-              MaterialStateProperty.all(ThemeConfig.of(context).shadowColor),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(ThemeConfig.of(context).borderRadius),
-            ),
+  Widget _buildFilterButton() => ElevatedButton(
+        onPressed: _showFilterDialog,
+        child: FittedBox(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(FontAwesomeIcons.filter, size: 14),
+              SizedBox(width: ThemeConfig.of(context).smallSpacing),
+              Text(S.of(context).JobsDashboardScreen_filter),
+            ],
           ),
         ),
+        style: ThemeConfig.of(context).appElevatedButtonAltStyle().copyWith(
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      ThemeConfig.of(context).borderRadius),
+                  side: _filterProvider.hasFilters
+                      ? BorderSide(
+                          color: ThemeConfig.of(context).primaryColor, width: 2)
+                      : BorderSide.none,
+                ),
+              ),
+            ),
+      );
+
+  Widget _buildSortButton() => ElevatedButton(
+        onPressed: _showSortDialog,
+        child: FittedBox(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                _sortProvider.ascending
+                    ? FontAwesomeIcons.sortAmountUp
+                    : FontAwesomeIcons.sortAmountDown,
+                size: 14,
+              ),
+              SizedBox(width: ThemeConfig.of(context).smallSpacing),
+              Text(S.of(context).JobsDashboardScreen_sortingBy),
+              SizedBox(width: ThemeConfig.of(context).smallestSpacing),
+              Text(
+                {
+                  JobOrderField.PostDate:
+                      S.of(context).JobSortForm_postDateCriteria
+                }[_sortProvider.sortOrderField]!,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+        style: ThemeConfig.of(context).appElevatedButtonAltStyle(),
       );
 
   _showFilterDialog() {
@@ -194,6 +216,12 @@ class _JobsDashboardState extends State<JobsDashboard> {
   }
 
   _fetchJobs() {
-    _jobsProvider.fetchJobs(0, 100);
+    // This action is delayed by zero to wrap this call inside a coroutine.
+    // Without this delay, the jobProvider would start fetchJobs before it would be internally notified by
+    // the filter & sort provider (since that notification is also defined as a coroutine and is scheduled
+    // to execute after this bit of synchronous code... I think).
+    Future.delayed(Duration.zero, () {
+      _jobsProvider.fetchJobs();
+    });
   }
 }

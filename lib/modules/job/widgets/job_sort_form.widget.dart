@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
+import 'package:project/modules/job/models/job_order_field.enum.dart';
 import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:provider/provider.dart';
 
@@ -42,11 +43,11 @@ class JobSortForm extends StatelessWidget {
         Divider(),
         SizedBox(height: ThemeConfig.of(context).appMargin),
         RadioListTile(
-          value: SortCriteria.PostDate,
-          groupValue: jobSortProvider.sortCriteria,
+          value: JobOrderField.PostDate,
+          groupValue: jobSortProvider.sortOrderField,
           onChanged: (_) {
             onChanged?.call();
-            jobSortProvider.setSortCriteria(SortCriteria.PostDate);
+            jobSortProvider.setSortOrderField(JobOrderField.PostDate);
           },
           title: Text(S.of(context).JobSortForm_postDateCriteria),
         ),

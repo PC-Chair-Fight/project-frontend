@@ -550,10 +550,10 @@ class S {
     );
   }
 
-  /// `Post date criteria`
+  /// `Post date`
   String get JobSortForm_postDateCriteria {
     return Intl.message(
-      'Post date criteria',
+      'Post date',
       name: 'JobSortForm_postDateCriteria',
       desc: '',
       args: [],
@@ -635,6 +635,26 @@ class S {
     return Intl.message(
       'Post a Job',
       name: 'JobsDashboardScreen_postJob',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter`
+  String get JobsDashboardScreen_filter {
+    return Intl.message(
+      'Filter',
+      name: 'JobsDashboardScreen_filter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorting by`
+  String get JobsDashboardScreen_sortingBy {
+    return Intl.message(
+      'Sorting by',
+      name: 'JobsDashboardScreen_sortingBy',
       desc: '',
       args: [],
     );

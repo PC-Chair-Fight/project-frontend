@@ -7,11 +7,11 @@ import 'package:provider/provider.dart';
 
 class JobsDashboardToolbar extends StatelessWidget {
   const JobsDashboardToolbar({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     final jobSearchProvider = Provider.of<JobSearchProvider>(context);
-    
+
     return Material(
       elevation: ScreenLayout.isWide(context)
           ? 0
@@ -36,13 +36,19 @@ class JobsDashboardToolbar extends StatelessWidget {
                     ),
                   ),
                 Expanded(
-                  child: TextField(
-                    onChanged: (value) {
-                      jobSearchProvider.setSearchText(value);
-                   },
-                    decoration: InputDecoration(
-                      hintText: S.of(context).JobsDashboardScreen_search,
-                      prefixIcon: Icon(Icons.search),
+                  child: Theme(
+                    data: ThemeData(
+                      inputDecorationTheme: ThemeConfig.of(context)
+                          .appSearchInputDecorationTheme(),
+                    ),
+                    child: TextField(
+                      onChanged: (value) {
+                        jobSearchProvider.setSearchText(value);
+                      },
+                      decoration: InputDecoration(
+                        hintText: S.of(context).JobsDashboardScreen_search,
+                        prefixIcon: Icon(Icons.search),
+                      ),
                     ),
                   ),
                 ),

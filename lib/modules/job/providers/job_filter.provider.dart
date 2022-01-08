@@ -6,6 +6,8 @@ class JobFilterProvider extends AppProvider {
 
   DateTimeRange? get postDateRange => _postDateRange;
 
+  bool get hasFilters => postDateRange != null;
+
   JobFilterProvider(BuildContext ctx) : super(ctx);
 
   void setPostDateRange(DateTimeRange? value) {

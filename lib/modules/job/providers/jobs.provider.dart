@@ -3,6 +3,7 @@ import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
 import 'package:project/core/exceptions/base.exception.dart';
 import 'package:project/modules/job/models/job.model.dart';
+import 'package:project/modules/job/models/job_query.model.dart';
 import 'package:project/modules/job/providers/job_filter.provider.dart';
 import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:project/modules/job/services/job.service.dart';
@@ -42,12 +43,19 @@ class JobsProvider extends AppProvider {
     }
   }
 
-  Future<void> fetchJobs(int index, int count) async {
+  Future<void> fetchJobs() async {
     _fetchLoading = true;
     _fetchError = null;
     notify('getJobs', notificationType: NotificationType.Start);
     try {
-      _jobs = await _jobService.getJobs(index, count);
+      _jobs = await _jobService.getJobs(JobQuery(
+        index: 0,
+        count: 100,
+        orderBy: [_jobSortProvider.sortOrderField],
+        ascending: [_jobSortProvider.ascending],
+        newerThan: _jobFilterProvider.postDateRange?.start,
+        olderThan: _jobFilterProvider.postDateRange?.end,
+      ));
       _fetchLoading = false;
       notify('getJobs', notificationType: NotificationType.Success);
     } catch (e) {
