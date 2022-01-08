@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:project/core/app_provider.dart';
+import 'package:project/modules/job/models/job_order_field.enum.dart';
 
 class JobSortProvider extends AppProvider {
-  SortCriteria _sortCriteria = SortCriteria.PostDate;
+  JobOrderField _sortOrderField = JobOrderField.PostDate;
   bool _ascending = true;
 
-  SortCriteria get sortCriteria => _sortCriteria;
+  JobOrderField get sortOrderField => _sortOrderField;
 
   bool get ascending => _ascending;
 
   JobSortProvider(BuildContext ctx) : super(ctx);
 
-  void setSortCriteria(SortCriteria value) {
-    _sortCriteria = value;
-    notify('setSortCriteria', notificationType: NotificationType.Success);
+  void setSortOrderField(JobOrderField value) {
+    _sortOrderField = value;
+    notify('setSortOrderField', notificationType: NotificationType.Success);
   }
 
   void setAscending(bool value) {
     _ascending = value;
     notify('setAscending', notificationType: NotificationType.Success);
   }
-}
-
-enum SortCriteria {
-  PostDate,
 }

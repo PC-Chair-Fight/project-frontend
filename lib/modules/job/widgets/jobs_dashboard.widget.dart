@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
+import 'package:project/modules/job/models/job_order_field.enum.dart';
 import 'package:project/modules/job/providers/job_filter.provider.dart';
 import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:project/modules/job/providers/jobs.provider.dart';
@@ -185,9 +186,9 @@ class _JobsDashboardState extends State<JobsDashboard> {
               SizedBox(width: ThemeConfig.of(context).smallestSpacing),
               Text(
                 {
-                  SortCriteria.PostDate:
+                  JobOrderField.PostDate:
                       S.of(context).JobSortForm_postDateCriteria
-                }[_sortProvider.sortCriteria]!,
+                }[_sortProvider.sortOrderField]!,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -215,6 +216,12 @@ class _JobsDashboardState extends State<JobsDashboard> {
   }
 
   _fetchJobs() {
-    _jobsProvider.fetchJobs(0, 100);
+    // This action is delayed by zero to wrap this call inside a coroutine.
+    // Without this delay, the jobProvider would start fetchJobs before it would be internally notified by
+    // the filter & sort provider (since that notification is also defined as a coroutine and is scheduled
+    // to execute after this bit of synchronous code... I think).
+    Future.delayed(Duration.zero, () {
+      _jobsProvider.fetchJobs();
+    });
   }
 }

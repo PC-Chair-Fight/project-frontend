@@ -24,6 +24,7 @@ class ThemeConfig extends InheritedWidget {
   final Color errorColor;
   final Color onErrorColor;
   final Color dividerColor;
+  final Color inputFillColor;
   final Color shadowColor;
 
   // Typography
@@ -85,6 +86,7 @@ class ThemeConfig extends InheritedWidget {
         errorColor = const Color(0xFFF54854),
         onErrorColor = const Color(0xFFFFFFFF),
         dividerColor = const Color(0xFFD2D2D2),
+        inputFillColor = const Color(0xFFEFEFEF),
         shadowColor = const Color(0xFF000000),
         headline1 = TextStyle(
           fontSize: 96,
@@ -242,13 +244,7 @@ class ThemeConfig extends InheritedWidget {
             height: buttonHeight,
           ),
         ),
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: mediumSpacing,
-            vertical: smallSpacing,
-          ),
-        ),
+        inputDecorationTheme: appInputDecorationTheme(),
       );
 
   ButtonStyle appElevatedButtonStyle() => ButtonStyle(
@@ -279,6 +275,29 @@ class ThemeConfig extends InheritedWidget {
           borderRadius: BorderRadius.circular(borderRadius),
         )),
         side: _mpAll(BorderSide(color: primaryColor, width: 1)),
+      );
+
+  InputDecorationTheme appInputDecorationTheme() => InputDecorationTheme(
+        filled: true,
+        fillColor: inputFillColor,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: mediumSpacing,
+          vertical: smallSpacing,
+        ),
+      );
+
+  InputDecorationTheme appSearchInputDecorationTheme() => InputDecorationTheme(
+        filled: true,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: smallSpacing,
+          vertical: smallSpacing,
+        ),
+        fillColor: inputFillColor,
+        constraints: BoxConstraints(maxHeight: buttonHeight),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(buttonHeight / 2),
+          borderSide: BorderSide.none,
+        ),
       );
 
   // Shorthand

@@ -32,10 +32,16 @@ class JobsDashboardToolbar extends StatelessWidget {
                     ),
                   ),
                 Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: S.of(context).JobsDashboardScreen_search,
-                      prefixIcon: Icon(Icons.search),
+                  child: Theme(
+                    data: ThemeData(
+                      inputDecorationTheme: ThemeConfig.of(context)
+                          .appSearchInputDecorationTheme(),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: S.of(context).JobsDashboardScreen_search,
+                        prefixIcon: Icon(Icons.search),
+                      ),
                     ),
                   ),
                 ),
