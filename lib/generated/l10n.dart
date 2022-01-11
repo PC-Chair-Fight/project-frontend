@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `PC Project`
+  /// `Bid Grid`
   String get App_title {
     return Intl.message(
-      'PC Project',
+      'Bid Grid',
       name: 'App_title',
       desc: '',
       args: [],
@@ -145,16 +145,6 @@ class S {
     return Intl.message(
       'Profile',
       name: 'Navigation_profile_page_label',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `PC Project`
-  String get LoginScreen_title {
-    return Intl.message(
-      'PC Project',
-      name: 'LoginScreen_title',
       desc: '',
       args: [],
     );
