@@ -6,6 +6,7 @@ import 'package:project/modules/auth/screens/register.screen.dart';
 import 'package:project/modules/main/screens/main_wrapper.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:project/modules/shared/widgets/app_logo.widget.dart';
+import 'package:project/modules/shared/widgets/flushbar.widget.dart';
 import 'package:project/modules/shared/widgets/labeled_divider.widget.dart';
 import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
@@ -160,23 +161,12 @@ class LoginState extends State<Login> {
           .whenComplete(() {
         if (authProvider.authToken != null)
           Navigator.pushNamed(context, MainWrapperScreen.route);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: authProvider.error == null
-                ? ThemeConfig.of(context).successColor
-                : ThemeConfig.of(context).errorColor,
-            content: Text(
-              authProvider.error?.message ?? S.of(context).LoginScreen_success,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: authProvider.error == null
-                    ? ThemeConfig.of(context).onSuccessColor
-                    : ThemeConfig.of(context).onErrorColor,
-              ),
-            ),
-            duration: Duration(seconds: 4),
-          ),
-        );
+        showFlushBar(context,
+            message: authProvider.error?.message ??
+                S.of(context).LoginScreen_success,
+            messageType: authProvider.error == null
+                ? MessageType.Information
+                : MessageType.Error);
       });
     }
   }

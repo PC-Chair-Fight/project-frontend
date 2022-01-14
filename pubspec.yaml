@@ -31,6 +31,7 @@ dependencies:
   # Translations
   intl: ^0.17.0
   intl_utils: ^2.5.0
+  another_flushbar: ^1.10.26
 
 dev_dependencies:
   flutter_test:

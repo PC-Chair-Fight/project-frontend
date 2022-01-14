@@ -52,6 +52,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "You are not allowed to perform this action"),
         "Exception_unexpected": MessageLookupByLibrary.simpleMessage(
             "Unexpected error... Please try again later"),
+        "General_no": MessageLookupByLibrary.simpleMessage("No"),
+        "General_ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "General_yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "JobCard_onString": MessageLookupByLibrary.simpleMessage("on"),
         "JobCard_postedBy": MessageLookupByLibrary.simpleMessage("Posted by"),
         "JobDetailsScreen_bid_button":

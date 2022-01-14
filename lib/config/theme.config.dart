@@ -64,6 +64,7 @@ class ThemeConfig extends InheritedWidget {
   final Duration fastDuration = new Duration(milliseconds: 100);
   final Duration mediumDuration = new Duration(milliseconds: 300);
   final Duration slowDuration = new Duration(milliseconds: 600);
+  final Duration longDuration = new Duration(seconds: 5);
 
   ThemeConfig({
     Key? key,

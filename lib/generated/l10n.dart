@@ -60,6 +60,36 @@ class S {
     );
   }
 
+  /// `Yes`
+  String get General_yes {
+    return Intl.message(
+      'Yes',
+      name: 'General_yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get General_no {
+    return Intl.message(
+      'No',
+      name: 'General_no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get General_ok {
+    return Intl.message(
+      'Ok',
+      name: 'General_ok',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Unexpected error... Please try again later`
   String get Exception_unexpected {
     return Intl.message(

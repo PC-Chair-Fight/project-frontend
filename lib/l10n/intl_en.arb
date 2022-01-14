@@ -3,6 +3,11 @@
   "@App": {
   },
   "App_title": "Bid Grid",
+  "@General": {
+  },
+  "General_yes": "Yes",
+  "General_no": "No",
+  "General_ok": "Ok",
   "@Exception": {
   },
   "Exception_unexpected": "Unexpected error... Please try again later",
