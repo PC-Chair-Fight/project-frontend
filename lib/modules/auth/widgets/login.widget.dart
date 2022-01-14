@@ -50,23 +50,16 @@ class LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                    height: 128,
-                    width: 128,
+                    height: 64,
                     child: AppLogo(),
                   ),
-                  SizedBox(height: ThemeConfig.of(context).mediumSpacing),
+                  SizedBox(height: ThemeConfig.of(context).largestSpacing),
                   ConstrainedBox(
                     constraints: BoxConstraints(
                       maxWidth: ThemeConfig.of(context).appMediumWidth,
                     ),
                     child: Column(
                       children: [
-                        Text(
-                          S.of(context).LoginScreen_title,
-                          style: Theme.of(context).textTheme.headline4,
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: ThemeConfig.of(context).largeSpacing),
                         TextFormField(
                           controller: emailController,
                           validator: (value) => UtilValidators.guard(value)
@@ -106,34 +99,38 @@ class LoginState extends State<Login> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        SizedBox(
-                          child: ElevatedButton(
-                            onPressed: () => _login(authProvider),
-                            child: authProvider.loading
-                                ? LoadingIndicator(
-                                    type: LoadingIndicatorType.Button)
-                                : Text(S.of(context).LoginScreen_login_button),
-                          ),
+                        ElevatedButton(
+                          onPressed: () => _login(authProvider),
+                          child: authProvider.loading
+                              ? LoadingIndicator(
+                                  type: LoadingIndicatorType.Button)
+                              : Text(S.of(context).LoginScreen_login_button),
                         ),
                         SizedBox(height: ThemeConfig.of(context).largeSpacing),
                         LabeledDivider(
                           label: Text(S.of(context).LoginScreen_or),
                         ),
                         SizedBox(height: ThemeConfig.of(context).largeSpacing),
-                        OutlinedButton(
+                        ElevatedButton(
                           onPressed: () => Navigator.pushNamed(
                               context, RegisterScreen.route),
+                          style: ThemeConfig.of(context)
+                              .appElevatedButtonAltStyle(),
                           child:
                               Text(S.of(context).LoginScreen_register_button),
                         ),
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         ElevatedButton(
-                          onPressed: null,
+                          onPressed: () {},
+                          style: ThemeConfig.of(context)
+                              .appElevatedButtonAltStyle(),
                           child: Text(S.of(context).LoginScreen_google_button),
                         ),
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         ElevatedButton(
-                          onPressed: null,
+                          onPressed: () {},
+                          style: ThemeConfig.of(context)
+                              .appElevatedButtonAltStyle(),
                           child:
                               Text(S.of(context).LoginScreen_facebook_button),
                         ),

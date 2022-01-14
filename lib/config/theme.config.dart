@@ -24,7 +24,8 @@ class ThemeConfig extends InheritedWidget {
   final Color errorColor;
   final Color onErrorColor;
   final Color dividerColor;
-  final Color boxShadowColor;
+  final Color inputFillColor;
+  final Color shadowColor;
 
   // Typography
   final TextStyle headline1;
@@ -86,7 +87,8 @@ class ThemeConfig extends InheritedWidget {
         errorColor = const Color(0xFFF54854),
         onErrorColor = const Color(0xFFFFFFFF),
         dividerColor = const Color(0xFFD2D2D2),
-        boxShadowColor = const Color(0x45000000),
+        inputFillColor = const Color(0xFFEFEFEF),
+        shadowColor = const Color(0xFF000000),
         headline1 = TextStyle(
           fontSize: 96,
           fontWeight: FontWeight.w300,
@@ -209,53 +211,32 @@ class ThemeConfig extends InheritedWidget {
             borderRadius: BorderRadius.circular(borderRadius),
           ),
         ),
+        bottomSheetTheme: BottomSheetThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(borderRadius),
+              topRight: Radius.circular(borderRadius),
+            ),
+          ),
+        ),
         dividerTheme: DividerThemeData(
           color: dividerColor,
           thickness: 1,
           space: 1,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(primaryColor),
-            foregroundColor: MaterialStateProperty.all(onPrimaryColor),
-            shadowColor: MaterialStateProperty.all(primaryColor),
-            minimumSize:
-                MaterialStateProperty.all(Size.fromRadius(buttonHeight / 2)),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadius),
-              ),
-            ),
-          ),
+          style: appElevatedButtonStyle(),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(primaryColor),
-            minimumSize:
-                MaterialStateProperty.all(Size.fromRadius(buttonHeight / 2)),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadius),
-              ),
-            ),
-            side: MaterialStateProperty.all(
-              BorderSide(
-                color: primaryColor,
-                width: 1,
-              ),
-            ),
-          ),
+          style: appOutlinedButtonStyle(),
         ),
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
-            minimumSize:
-                MaterialStateProperty.all(Size.fromRadius(buttonHeight / 2)),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadius),
-              ),
-            ),
-            textStyle: MaterialStateProperty.all(subtitle2),
+            minimumSize: _mpAll(Size.fromRadius(buttonHeight / 2)),
+            shape: _mpAll(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+            )),
+            textStyle: _mpAll(subtitle2),
           ),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -264,12 +245,63 @@ class ThemeConfig extends InheritedWidget {
             height: buttonHeight,
           ),
         ),
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: mediumSpacing,
-            vertical: smallSpacing,
-          ),
+        inputDecorationTheme: appInputDecorationTheme(),
+      );
+
+  ButtonStyle appElevatedButtonStyle() => ButtonStyle(
+        backgroundColor: _mpAll(primaryColor),
+        foregroundColor: _mpAll(onPrimaryColor),
+        shadowColor: _mpAll(primaryColor),
+        minimumSize: _mpAll(Size.fromRadius(buttonHeight / 2)),
+        shape: _mpAll(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+        )),
+      );
+
+  ButtonStyle appElevatedButtonAltStyle() => ButtonStyle(
+        backgroundColor: _mpAll(surfaceColor),
+        foregroundColor: _mpAll(primaryColor),
+        overlayColor: _mpAll(primaryColor.withOpacity(.25)),
+        shadowColor: _mpAll(shadowColor),
+        minimumSize: _mpAll(Size.fromRadius(buttonHeight / 2)),
+        shape: _mpAll(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+        )),
+      );
+
+  ButtonStyle appOutlinedButtonStyle() => ButtonStyle(
+        foregroundColor: _mpAll(primaryColor),
+        minimumSize: _mpAll(Size.fromRadius(buttonHeight / 2)),
+        shape: _mpAll(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+        )),
+        side: _mpAll(BorderSide(color: primaryColor, width: 1)),
+      );
+
+  InputDecorationTheme appInputDecorationTheme() => InputDecorationTheme(
+        filled: true,
+        fillColor: inputFillColor,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: mediumSpacing,
+          vertical: smallSpacing,
         ),
       );
+
+  InputDecorationTheme appSearchInputDecorationTheme() => InputDecorationTheme(
+        filled: true,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: smallSpacing,
+          vertical: smallSpacing,
+        ),
+        fillColor: inputFillColor,
+        constraints: BoxConstraints(maxHeight: buttonHeight),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(buttonHeight / 2),
+          borderSide: BorderSide.none,
+        ),
+      );
+
+  // Shorthand
+  MaterialStateProperty<T> _mpAll<T>(T value) =>
+      MaterialStateProperty.all<T>(value);
 }

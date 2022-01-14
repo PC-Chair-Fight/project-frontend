@@ -22,7 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "App_title": MessageLookupByLibrary.simpleMessage("PC Project"),
+        "App_title": MessageLookupByLibrary.simpleMessage("Bid Grid"),
+        "CreateJobScreen_back": MessageLookupByLibrary.simpleMessage("Go Back"),
+        "CreateJobScreen_form_description":
+            MessageLookupByLibrary.simpleMessage("Description"),
+        "CreateJobScreen_form_name":
+            MessageLookupByLibrary.simpleMessage("Name"),
+        "CreateJobScreen_submit":
+            MessageLookupByLibrary.simpleMessage("Create Job"),
+        "CreateJobScreen_success":
+            MessageLookupByLibrary.simpleMessage("Job Created"),
+        "CreateJobScreen_title":
+            MessageLookupByLibrary.simpleMessage("Create Job"),
+        "CreateJobScreen_validator_description_required":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a description for the job"),
+        "CreateJobScreen_validator_name_required":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a name for the job"),
         "Exception_bad_request": MessageLookupByLibrary.simpleMessage(
             "The server had trouble processing your request... Please try again later"),
         "Exception_connection_timed_out": MessageLookupByLibrary.simpleMessage(
@@ -52,26 +69,27 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Show more"),
         "JobDetailsScreen_title":
             MessageLookupByLibrary.simpleMessage("Job Details"),
-        "JobSortFilterCard_applyButton":
-            MessageLookupByLibrary.simpleMessage("Apply"),
-        "JobSortFilterCard_ascending":
-            MessageLookupByLibrary.simpleMessage("Ascending"),
-        "JobSortFilterCard_clearButton":
-            MessageLookupByLibrary.simpleMessage("Clear"),
-        "JobSortFilterCard_deadlineDateRange":
-            MessageLookupByLibrary.simpleMessage("Deadline date range"),
-        "JobSortFilterCard_filterJobs":
+        "JobFilterForm_clear": MessageLookupByLibrary.simpleMessage("Clear"),
+        "JobFilterForm_filterJobs":
             MessageLookupByLibrary.simpleMessage("Filter Jobs"),
-        "JobSortFilterCard_postDateRange":
+        "JobFilterForm_postDateRange":
             MessageLookupByLibrary.simpleMessage("Post date range"),
-        "JobSortFilterCard_sortJobs":
+        "JobSortForm_ascending":
+            MessageLookupByLibrary.simpleMessage("Ascending"),
+        "JobSortForm_postDateCriteria":
+            MessageLookupByLibrary.simpleMessage("Post date"),
+        "JobSortForm_sortJobs":
             MessageLookupByLibrary.simpleMessage("Sort Jobs"),
         "JobsCard_seeJobDetails":
             MessageLookupByLibrary.simpleMessage("See Job Details"),
+        "JobsDashboardScreen_filter":
+            MessageLookupByLibrary.simpleMessage("Filter"),
         "JobsDashboardScreen_postJob":
             MessageLookupByLibrary.simpleMessage("Post a Job"),
         "JobsDashboardScreen_search":
             MessageLookupByLibrary.simpleMessage("Search field..."),
+        "JobsDashboardScreen_sortingBy":
+            MessageLookupByLibrary.simpleMessage("Sorting by"),
         "LoginScreen_email_input_label":
             MessageLookupByLibrary.simpleMessage("Email"),
         "LoginScreen_error_generic":
@@ -89,7 +107,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Register"),
         "LoginScreen_success":
             MessageLookupByLibrary.simpleMessage("Authentication successful"),
-        "LoginScreen_title": MessageLookupByLibrary.simpleMessage("PC Project"),
         "LoginScreen_validator_email_required":
             MessageLookupByLibrary.simpleMessage("Please enter an email"),
         "LoginScreen_validator_password_required":

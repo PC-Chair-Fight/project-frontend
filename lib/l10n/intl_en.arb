@@ -2,7 +2,7 @@
   "@@locale": "en",
   "@App": {
   },
-  "App_title": "PC Project",
+  "App_title": "Bid Grid",
   "@Exception": {
   },
   "Exception_unexpected": "Unexpected error... Please try again later",
@@ -18,7 +18,6 @@
   "Navigation_profile_page_label": "Profile",
   "@LoginScreen": {
   },
-  "LoginScreen_title": "PC Project",
   "LoginScreen_email_input_label": "Email",
   "LoginScreen_password_input_label": "Password",
   "LoginScreen_login_button": "Login",
@@ -60,15 +59,16 @@
   "JobDetailsScreen_show_more": "Show more",
   "JobDetailsScreen_show_less": "Show less",
   "JobDetailsScreen_bid_button": "Bid",
-  "@JobSortFilterCard": {
+  "@JobSortForm": {
   },
-  "JobSortFilterCard_clearButton": "Clear",
-  "JobSortFilterCard_applyButton": "Apply",
-  "JobSortFilterCard_deadlineDateRange": "Deadline date range",
-  "JobSortFilterCard_postDateRange": "Post date range",
-  "JobSortFilterCard_filterJobs": "Filter Jobs",
-  "JobSortFilterCard_ascending": "Ascending",
-  "JobSortFilterCard_sortJobs": "Sort Jobs",
+  "JobSortForm_sortJobs": "Sort Jobs",
+  "JobSortForm_ascending": "Ascending",
+  "JobSortForm_postDateCriteria": "Post date",
+  "@JobFilterForm": {
+  },
+  "JobFilterForm_filterJobs": "Filter Jobs",
+  "JobFilterForm_postDateRange": "Post date range",
+  "JobFilterForm_clear": "Clear",
   "@JobCard": {
   },
   "JobCard_postedBy": "Posted by",
@@ -77,5 +77,17 @@
   "JobsDashboardScreen_search": "Search field...",
   "@JobsDashboardScreen": {
   },
-  "JobsDashboardScreen_postJob": "Post a Job"
+  "JobsDashboardScreen_postJob": "Post a Job",
+  "JobsDashboardScreen_filter": "Filter",
+  "JobsDashboardScreen_sortingBy": "Sorting by",
+  "@CreateJobScreen": {
+  },
+  "CreateJobScreen_title": "Create Job",
+  "CreateJobScreen_form_name": "Name",
+  "CreateJobScreen_form_description": "Description",
+  "CreateJobScreen_validator_name_required": "Please enter a name for the job",
+  "CreateJobScreen_validator_description_required": "Please enter a description for the job",
+  "CreateJobScreen_submit": "Create Job",
+  "CreateJobScreen_back": "Go Back",
+  "CreateJobScreen_success": "Job Created"
 }

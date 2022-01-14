@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `PC Project`
+  /// `Bid Grid`
   String get App_title {
     return Intl.message(
-      'PC Project',
+      'Bid Grid',
       name: 'App_title',
       desc: '',
       args: [],
@@ -145,16 +145,6 @@ class S {
     return Intl.message(
       'Profile',
       name: 'Navigation_profile_page_label',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `PC Project`
-  String get LoginScreen_title {
-    return Intl.message(
-      'PC Project',
-      name: 'LoginScreen_title',
       desc: '',
       args: [],
     );
@@ -530,71 +520,61 @@ class S {
     );
   }
 
-  /// `Clear`
-  String get JobSortFilterCard_clearButton {
+  /// `Sort Jobs`
+  String get JobSortForm_sortJobs {
     return Intl.message(
-      'Clear',
-      name: 'JobSortFilterCard_clearButton',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Apply`
-  String get JobSortFilterCard_applyButton {
-    return Intl.message(
-      'Apply',
-      name: 'JobSortFilterCard_applyButton',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Deadline date range`
-  String get JobSortFilterCard_deadlineDateRange {
-    return Intl.message(
-      'Deadline date range',
-      name: 'JobSortFilterCard_deadlineDateRange',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Post date range`
-  String get JobSortFilterCard_postDateRange {
-    return Intl.message(
-      'Post date range',
-      name: 'JobSortFilterCard_postDateRange',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Filter Jobs`
-  String get JobSortFilterCard_filterJobs {
-    return Intl.message(
-      'Filter Jobs',
-      name: 'JobSortFilterCard_filterJobs',
+      'Sort Jobs',
+      name: 'JobSortForm_sortJobs',
       desc: '',
       args: [],
     );
   }
 
   /// `Ascending`
-  String get JobSortFilterCard_ascending {
+  String get JobSortForm_ascending {
     return Intl.message(
       'Ascending',
-      name: 'JobSortFilterCard_ascending',
+      name: 'JobSortForm_ascending',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sort Jobs`
-  String get JobSortFilterCard_sortJobs {
+  /// `Post date`
+  String get JobSortForm_postDateCriteria {
     return Intl.message(
-      'Sort Jobs',
-      name: 'JobSortFilterCard_sortJobs',
+      'Post date',
+      name: 'JobSortForm_postDateCriteria',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Jobs`
+  String get JobFilterForm_filterJobs {
+    return Intl.message(
+      'Filter Jobs',
+      name: 'JobFilterForm_filterJobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post date range`
+  String get JobFilterForm_postDateRange {
+    return Intl.message(
+      'Post date range',
+      name: 'JobFilterForm_postDateRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear`
+  String get JobFilterForm_clear {
+    return Intl.message(
+      'Clear',
+      name: 'JobFilterForm_clear',
       desc: '',
       args: [],
     );
@@ -650,28 +630,101 @@ class S {
     );
   }
 
-  String get Affirmative_button {
+  /// `Filter`
+  String get JobsDashboardScreen_filter {
     return Intl.message(
-      'Yes',
-      name: 'Affirmative_button',
+      'Filter',
+      name: 'JobsDashboardScreen_filter',
       desc: '',
       args: [],
     );
   }
 
-  String get Negative_button {
+  /// `Sorting by`
+  String get JobsDashboardScreen_sortingBy {
     return Intl.message(
-      'No',
-      name: 'Negative_button',
+      'Sorting by',
+      name: 'JobsDashboardScreen_sortingBy',
       desc: '',
       args: [],
     );
   }
 
-  String get Confirmation_button {
+  /// `Create Job`
+  String get CreateJobScreen_title {
     return Intl.message(
-      'Ok',
-      name: 'Confirmation_button',
+      'Create Job',
+      name: 'CreateJobScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get CreateJobScreen_form_name {
+    return Intl.message(
+      'Name',
+      name: 'CreateJobScreen_form_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get CreateJobScreen_form_description {
+    return Intl.message(
+      'Description',
+      name: 'CreateJobScreen_form_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a name for the job`
+  String get CreateJobScreen_validator_name_required {
+    return Intl.message(
+      'Please enter a name for the job',
+      name: 'CreateJobScreen_validator_name_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a description for the job`
+  String get CreateJobScreen_validator_description_required {
+    return Intl.message(
+      'Please enter a description for the job',
+      name: 'CreateJobScreen_validator_description_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Job`
+  String get CreateJobScreen_submit {
+    return Intl.message(
+      'Create Job',
+      name: 'CreateJobScreen_submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Back`
+  String get CreateJobScreen_back {
+    return Intl.message(
+      'Go Back',
+      name: 'CreateJobScreen_back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Job Created`
+  String get CreateJobScreen_success {
+    return Intl.message(
+      'Job Created',
+      name: 'CreateJobScreen_success',
       desc: '',
       args: [],
     );
@@ -689,10 +742,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

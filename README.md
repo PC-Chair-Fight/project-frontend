@@ -1,6 +1,6 @@
-# project-frontend
+# bid-grid
 
-This is the web, android and ios project for the `unnamed` application.
+This is the web, android and ios project for the `Bid Grid` application.
 
 ## Docs & Tutorials
 

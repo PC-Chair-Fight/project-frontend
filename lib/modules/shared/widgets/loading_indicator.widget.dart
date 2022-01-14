@@ -12,11 +12,14 @@ class LoadingIndicator extends StatelessWidget {
       case LoadingIndicatorType.Regular:
         return CircularProgressIndicator();
       case LoadingIndicatorType.Button:
+      case LoadingIndicatorType.OutlinedButton:
         return SizedBox(
           width: ThemeConfig.of(context).buttonHeight / 2,
           height: ThemeConfig.of(context).buttonHeight / 2,
           child: CircularProgressIndicator(
-            color: ThemeConfig.of(context).onPrimaryColor,
+            color: type == LoadingIndicatorType.Button
+                ? ThemeConfig.of(context).onPrimaryColor
+                : ThemeConfig.of(context).primaryColor,
           ),
         );
       case LoadingIndicatorType.Page:
@@ -28,5 +31,6 @@ class LoadingIndicator extends StatelessWidget {
 enum LoadingIndicatorType {
   Regular,
   Button,
+  OutlinedButton,
   Page,
 }

@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
+import 'package:project/modules/job/screens/create_job.screen.dart';
+import 'package:project/modules/job/providers/job_search.provider.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
+import 'package:provider/provider.dart';
 
 class JobsDashboardToolbar extends StatelessWidget {
-  const JobsDashboardToolbar({Key? key}) : super(key: key);
+  final Function()? onChanged;
+
+  const JobsDashboardToolbar({Key? key, this.onChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final jobSearchProvider = Provider.of<JobSearchProvider>(context);
+
     return Material(
       elevation: ScreenLayout.isWide(context)
           ? 0
@@ -24,17 +31,35 @@ class JobsDashboardToolbar extends StatelessWidget {
             ),
             child: Row(
               children: [
+                if (ScreenLayout.isWide(context))
+                  ConstrainedBox(
+                    constraints: BoxConstraints.tightFor(
+                      width: ThemeConfig.of(context).buttonHeight +
+                          ThemeConfig.of(context).mediumSpacing,
+                    ),
+                  ),
                 Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: S.of(context).JobsDashboardScreen_search,
-                      prefixIcon: Icon(Icons.search),
+                  child: Theme(
+                    data: ThemeData(
+                      inputDecorationTheme: ThemeConfig.of(context)
+                          .appSearchInputDecorationTheme(),
+                    ),
+                    child: TextField(
+                      onChanged: (value) {
+                        jobSearchProvider.setSearchText(value);
+                        onChanged?.call();
+                      },
+                      decoration: InputDecoration(
+                        hintText: S.of(context).JobsDashboardScreen_search,
+                        prefixIcon: Icon(Icons.search),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(width: ThemeConfig.of(context).mediumSpacing),
                 FloatingActionButton.small(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.pushNamed(context, CreateJobScreen.route),
                   child: Icon(Icons.note_add),
                 ),
               ],

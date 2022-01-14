@@ -7,6 +7,7 @@ import 'package:project/modules/auth/providers/auth.provider.dart';
 import 'package:project/modules/main/screens/main_wrapper.screen.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
 import 'package:project/modules/shared/widgets/flushbar.widget.dart';
+import 'package:project/modules/shared/widgets/app_logo.widget.dart';
 import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
 
@@ -50,6 +51,11 @@ class _RegisterState extends State<Register> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 64,
+              child: AppLogo(),
+            ),
+            SizedBox(height: ThemeConfig.of(context).largestSpacing),
             ConstrainedBox(
               constraints: BoxConstraints(
                 maxWidth: ThemeConfig.of(context).appMediumWidth,
@@ -63,7 +69,9 @@ class _RegisterState extends State<Register> {
                     validator: (value) =>
                         UtilValidators.guard(value).required(S.of(context).RegisterScreen_first_name_required).message,
                     decoration: InputDecoration(
-                      label: Text(S.of(context).RegisterScreen_first_name_input_label),
+                      label: Text(S
+                          .of(context)
+                          .RegisterScreen_first_name_input_label),
                     ),
                   ),
                   SizedBox(height: ThemeConfig.of(context).mediumSpacing),
@@ -81,10 +89,13 @@ class _RegisterState extends State<Register> {
                     textInputAction: TextInputAction.next,
                     controller: emailController,
                     validator: (value) => UtilValidators.guard(value)
-                        .required(S.of(context).LoginScreen_validator_email_required)
+                        .required(S
+                            .of(context)
+                            .LoginScreen_validator_email_required)
                         .message,
                     decoration: InputDecoration(
-                      label: Text(S.of(context).LoginScreen_email_input_label),
+                      label:
+                          Text(S.of(context).LoginScreen_email_input_label),
                     ),
                   ),
                   SizedBox(height: ThemeConfig.of(context).mediumSpacing),
@@ -93,7 +104,9 @@ class _RegisterState extends State<Register> {
                     onTap: () => _selectDate(context),
                     controller: dateOfBirthController,
                     validator: (value) => UtilValidators.guard(value)
-                        .required(S.of(context).RegisterScreen_date_of_birth_required)
+                        .required(S
+                            .of(context)
+                            .RegisterScreen_date_of_birth_required)
                         .message,
                     decoration: InputDecoration(
                       label: Text(S.of(context).RegisterScreen_date_of_birth_input_label),
@@ -111,10 +124,16 @@ class _RegisterState extends State<Register> {
                     textInputAction: TextInputAction.next,
                     controller: passwordController,
                     validator: (value) => UtilValidators.guard(value)
-                        .required(S.of(context).RegisterScreen_password_required)
-                        .atLeast(3, S.of(context).RegisterScreen_password_too_short)
-                        .contains(" !\"#\$%&'()*+,-./:;<=>?@[]^_`{|}~", 1,
-                            S.of(context).RegisterScreen_password_no_special_characters)
+                        .required(
+                            S.of(context).RegisterScreen_password_required)
+                        .atLeast(3,
+                            S.of(context).RegisterScreen_password_too_short)
+                        .contains(
+                            " !\"#\$%&'()*+,-./:;<=>?@[]^_`{|}~",
+                            1,
+                            S
+                                .of(context)
+                                .RegisterScreen_password_no_special_characters)
                         .message,
                     decoration: InputDecoration(
                       label: Text('Password'),
@@ -156,7 +175,8 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: Text(S.of(context).RegisterScreen_back_to_login_button),
+                    child: Text(
+                        S.of(context).RegisterScreen_back_to_login_button),
                   ),
                 ],
               ),

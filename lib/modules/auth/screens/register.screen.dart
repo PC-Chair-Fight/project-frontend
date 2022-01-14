@@ -9,9 +9,10 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Center(
-        child: SingleChildScrollView(child: Register()),
+        child: SingleChildScrollView(
+          child: Register(),
+        ),
       ),
     );
   }
