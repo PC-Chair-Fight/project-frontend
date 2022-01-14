@@ -26,7 +26,7 @@ class BidderCardWidget extends StatelessWidget {
                 child: ClipOval(
                   child: Image(
                       image: (bid.worker?.user?.profilePicture == null
-                              ? AssetImage('assets/blank-profile-picture.png')
+                              ? AssetImage('assets/images/placeholder/blank-profile-picture.png')
                               : authNetworkImage(
                                   context, bid.worker!.user!.profilePicture!))
                           as ImageProvider),

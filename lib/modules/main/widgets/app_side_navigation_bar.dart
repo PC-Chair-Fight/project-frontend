@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/main/providers/page.provider.dart';
+import 'package:project/modules/shared/widgets/app_logo.widget.dart';
 
 class AppSideNavigationBar extends StatelessWidget {
   final AppPage currentPage;
@@ -23,13 +24,11 @@ class AppSideNavigationBar extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
+            Container(
+              width: 192,
               padding: EdgeInsets.all(ThemeConfig.of(context).mediumSpacing),
-              child: SizedBox(
-                height: 64,
-                child: FittedBox(
-                  child: FlutterLogo(),
-                ),
+              child: FittedBox(
+                child: AppLogo(),
               ),
             ),
             const Divider(),

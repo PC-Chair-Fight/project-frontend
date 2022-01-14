@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "App_title": MessageLookupByLibrary.simpleMessage("PC Project"),
+        "App_title": MessageLookupByLibrary.simpleMessage("Bid Grid"),
         "CreateJobScreen_back": MessageLookupByLibrary.simpleMessage("Go Back"),
         "CreateJobScreen_form_description":
             MessageLookupByLibrary.simpleMessage("Description"),
@@ -106,7 +106,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Register"),
         "LoginScreen_success":
             MessageLookupByLibrary.simpleMessage("Authentication successful"),
-        "LoginScreen_title": MessageLookupByLibrary.simpleMessage("PC Project"),
         "LoginScreen_validator_email_required":
             MessageLookupByLibrary.simpleMessage("Please enter an email"),
         "LoginScreen_validator_password_required":
