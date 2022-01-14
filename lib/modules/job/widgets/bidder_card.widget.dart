@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/modules/job/models/bid.model.dart';
+import 'package:project/modules/shared/utils/authenticated_network_image.utils.dart';
 
 class BidderCardWidget extends StatelessWidget {
   final Bid bid;
@@ -26,7 +27,8 @@ class BidderCardWidget extends StatelessWidget {
                   child: Image(
                       image: (bid.worker?.user?.profilePicture == null
                               ? AssetImage('assets/images/placeholder/blank-profile-picture.png')
-                              : NetworkImage(bid.worker!.user!.profilePicture!))
+                              : authNetworkImage(
+                                  context, bid.worker!.user!.profilePicture!))
                           as ImageProvider),
                 ),
               ),

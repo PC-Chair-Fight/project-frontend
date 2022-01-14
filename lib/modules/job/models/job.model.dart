@@ -25,8 +25,10 @@ class Job {
       : id = json['id'],
         name = json['name'],
         description = json['description'],
-        images = json['images'] as List<String>? ?? [],
-        bids = (json['bids'] as List<dynamic>)
+        images = (json['images'] as List? ?? [])
+            .map((e) => e.toString())
+            .toList(),
+        bids = (json['bids'] as List? ?? [])
             .map((json) => Bid.fromJson(json))
             .toList(),
         user = json.containsKey('user') ? User.fromJson(json['user']) : null,
