@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chairfight.project">
    <application
-        android:label="project"
+        android:label="Bid Grid"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

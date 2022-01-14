@@ -1,6 +1,6 @@
-# project-frontend
+# bid-grid
 
-This is the web, android and ios project for the `unnamed` application.
+This is the web, android and ios project for the `Bid Grid` application.
 
 ## Docs & Tutorials
 
@@ -8,6 +8,7 @@ This is the web, android and ios project for the `unnamed` application.
 - [Pub Dev: Official Flutter & Dart package repository](https://pub.dev)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 - [CodeLab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Example Application: Contains common layouts (bad state management)](https://github.com/darius-calugar/flutter-presentation-project)
 
 # Project Information
 
@@ -22,14 +23,16 @@ These credentials would ideally be *hardcoded* into the database, so that they a
 
 ### Running instructions
 
-- ensure the latest flutter sdk is installed ([Flutter Install](https://flutter.dev/docs/get-started/install)).
-- run `pub get` for loading the packages (can be ran directly from the UI of some IDEs such as Android Studio) (do **
-  not** also run `pub upgrade` as that will change all the plugin versions).
+- ensure the latest flutter sdk is
+  installed ([Flutter Install](https://flutter.dev/docs/get-started/install)).
+- run `flutter pub get` for loading the packages (can be ran directly from the UI of some IDEs such
+  as Android Studio) (do **not** also run `flutter pub upgrade` as that will change all the plugin
+  versions).
 - run `flutter run`.
 
 ### IDE setup
 
-- Make sure the dart max line length to **120** from the IDE settings
+- Make sure the dart max line length to **80** from the IDE settings
 - Auto-reformat (`Ctrl+Alt+L`) should be used as often as possible when writing Flutter code
 
 ### File Structure
@@ -55,24 +58,24 @@ Suggested file structure:
         - **screens/'screen_name'.screen.dart**
         - **widgets/'widget_name'.widget.dart**
         - **utils/'util_name'.util.dart**
-    - **test/'test_name'.test.dart**
-    - **pubspec.yaml** - package config file
-    - **pubspec.lock** - package version lock file (not modified directly)
+- **test/'test_name'.test.dart**
+- **pubspec.yaml** - package config file
+- **pubspec.lock** - package version lock file (not modified directly)
 
 # Version Control
 
 ### Branches
 
-- **release/'release-version'**
 - **main**
 - **development**
-- **feature/'issue-code'/'issue-name-or-short-description'**
+- **'dev-name'/'issue-code'/'issue-name-or-short-description'**
 
 ### Pull Requests, Reviews & Merging
 
-- Active pull requests require at least **2** reviews approvals with at least **1** from a coordinator, although reviews
-  from all people is highly advised.
+- Active pull requests require at least **2** reviews approvals with at least **1** from a
+  coordinator, although reviews from all people is highly advised.
 - Reviews are made through comments on the pull request.
-- When a certain comment is resolved, the developer should leave a **thumbs-up** reaction to the initial comment.
+- When a certain comment is resolved, the developer should leave a **thumbs-up** reaction to the
+  initial comment.
 - Only the reviewer is allowed to mark a conversation as `Resolved`.
 - Feature branches are merged into develop using the `Squash and merge` option.
