@@ -50,7 +50,7 @@ void showFlushBar(
           flushBar!.dismiss(true);
         },
         child: Text(
-          S.of(context).Affirmative_button,
+          S.of(context).General_yes,
           style: buttonTextStyle,
         ),
         style: ButtonStyle(
@@ -64,7 +64,7 @@ void showFlushBar(
           flushBar!.dismiss(true);
         },
         child: Text(
-          S.of(context).Negative_button,
+          S.of(context).General_no,
           style: buttonTextStyle,
         ),
         style: ButtonStyle(
@@ -75,7 +75,7 @@ void showFlushBar(
   final basicLayout = TextButton(
       onPressed: () => flushBar!.dismiss(true),
       child: Text(
-        S.of(context).Confirmation_button,
+        S.of(context).General_ok,
         style: buttonTextStyle,
       ),
       style: ButtonStyle(
@@ -107,7 +107,7 @@ void showFlushBar(
     padding: EdgeInsets.all(ThemeConfig.of(context).mediumSpacing),
     boxShadows: [
       BoxShadow(
-        color: ThemeConfig.of(context).boxShadowColor,
+        color: ThemeConfig.of(context).shadowColor.withOpacity(.25),
         spreadRadius: ThemeConfig.of(context).smallestSpacing,
         blurRadius: ThemeConfig.of(context).smallestSpacing,
         offset: Offset(0, ThemeConfig.of(context).smallestSpacing),

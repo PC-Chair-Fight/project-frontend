@@ -52,6 +52,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "You are not allowed to perform this action"),
         "Exception_unexpected": MessageLookupByLibrary.simpleMessage(
             "Unexpected error... Please try again later"),
+        "General_no": MessageLookupByLibrary.simpleMessage("No"),
+        "General_ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "General_yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "JobCard_onString": MessageLookupByLibrary.simpleMessage("on"),
         "JobCard_postedBy": MessageLookupByLibrary.simpleMessage("Posted by"),
         "JobDetailsScreen_bid_button":
@@ -157,13 +160,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "RegisterScreen_register_button":
             MessageLookupByLibrary.simpleMessage("Register"),
         "RegisterScreen_success":
-            MessageLookupByLibrary.simpleMessage("Account created successfully"),
-        "Affirmative_button": MessageLookupByLibrary.simpleMessage(
-            "Yes"),
-        "Negative_button": MessageLookupByLibrary.simpleMessage(
-            "No"),
-        "Confirmation_button": MessageLookupByLibrary.simpleMessage(
-          "Ok"
-        )
+            MessageLookupByLibrary.simpleMessage("Account created successfully")
       };
 }

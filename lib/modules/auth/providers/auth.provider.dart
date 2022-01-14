@@ -19,8 +19,8 @@ class AuthProvider extends AppProvider {
   Future<void> login(String email, String password) async {
     loading = true;
     error = null;
+    authToken = null;
     notify('login', notificationType: NotificationType.Start);
-
     return await authService.login(email, password).then((token) async {
       await _sharedPrefs.then((sharedPrefs) =>
           sharedPrefs.setString(StorageKeys.AUTH_TOKEN, token));
@@ -38,6 +38,7 @@ class AuthProvider extends AppProvider {
       DateTime dateOfBirth, String password) async {
     loading = true;
     error = null;
+    authToken = null;
     notify('register', notificationType: NotificationType.Start);
     return await authService
         .register(firstName, lastName, email, dateOfBirth, password)
