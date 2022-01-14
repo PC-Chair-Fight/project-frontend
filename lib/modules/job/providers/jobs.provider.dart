@@ -1,13 +1,22 @@
 import 'dart:typed_data';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
 import 'package:project/modules/job/models/job.model.dart';
+import 'package:project/modules/job/models/job_filter_field.enum.dart';
+import 'package:project/modules/job/models/job_query.model.dart';
+import 'package:project/modules/job/providers/job_filter.provider.dart';
+import 'package:project/modules/job/providers/job_search.provider.dart';
+import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:project/modules/job/services/job.service.dart';
 
 class JobsProvider extends AppProvider {
   final _jobService = inject.get<JobService>();
+
+  late JobSortProvider _jobSortProvider;
+  late JobFilterProvider _jobFilterProvider;
+  late JobSearchProvider _jobSearchProvider;
 
   List<Job> _jobs = [];
 
@@ -29,6 +38,50 @@ class JobsProvider extends AppProvider {
 
   JobsProvider(BuildContext ctx) : super(ctx);
 
+  void update(
+    JobSortProvider jobSortProvider,
+    JobFilterProvider jobFilterProvider,
+    JobSearchProvider jobSearchProvider,
+  ) {
+    _jobSortProvider = jobSortProvider;
+    _jobFilterProvider = jobFilterProvider;
+    _jobSearchProvider = jobSearchProvider;
+  }
+
+  Future<void> updateJob(Job job) async {
+    notify('updateJob', notificationType: NotificationType.Start);
+    final found = _jobs.indexWhere((element) => element.id == job.id);
+    if (found >= 0) {
+      _jobs[found] = job;
+      notify('updateJob', notificationType: NotificationType.Success);
+    }
+  }
+
+  Future<void> fetchJobs() async {
+    _fetchLoading = true;
+    _fetchError = null;
+    notify('getJobs', notificationType: NotificationType.Start);
+    try {
+      _jobs = await _jobService.getJobs(JobQuery(
+        index: 0,
+        count: 100,
+        orderBy: [_jobSortProvider.sortOrderField],
+        ascending: [_jobSortProvider.ascending],
+        filterFields: [JobFilterField.Name],
+        filterValues: [_jobSearchProvider.searchText],
+        exactFilters: [false],
+        newerThan: _jobFilterProvider.postDateRange?.start,
+        olderThan: _jobFilterProvider.postDateRange?.end,
+      ));
+      _fetchLoading = false;
+      notify('getJobs', notificationType: NotificationType.Success);
+    } catch (e) {
+      _fetchError = e;
+      _fetchLoading = false;
+      notify('getJobs', notificationType: NotificationType.Failure, error: e);
+    }
+  }
+
   Future<Job?> addJob(
     String name,
     String description,
@@ -39,8 +92,7 @@ class JobsProvider extends AppProvider {
     notify('addJob', notificationType: NotificationType.Start);
 
     try {
-      final createdJob = await _jobService.createJob(
-          name, description, images);
+      final createdJob = await _jobService.createJob(name, description, images);
       _addLoading = false;
       notify('addJob', notificationType: NotificationType.Success);
       return createdJob;
@@ -48,35 +100,6 @@ class JobsProvider extends AppProvider {
       _addError = e;
       _addLoading = false;
       notify('addJob', notificationType: NotificationType.Failure, error: e);
-    }
-  }
-
-  Future<void> updateJob(Job job) async {
-    notify('updateJob', notificationType: NotificationType.Start);
-
-    final found = _jobs.indexWhere((element) => element.id == job.id);
-    if (found == -1) {
-      return;
-    }
-
-    _jobs[found] = job;
-    notify('updateJob', notificationType: NotificationType.Success);
-  }
-
-  Future<void> fetchJobs(int index, int count) async {
-    _fetchLoading = true;
-    _fetchError = null;
-
-    notify('getJobs', notificationType: NotificationType.Start);
-
-    try {
-      _jobs = await _jobService.getJobs(index, count);
-      _fetchLoading = false;
-      notify('getJobs', notificationType: NotificationType.Success);
-    } catch (e) {
-      _fetchError = e;
-      _fetchLoading = false;
-      notify('getJobs', notificationType: NotificationType.Failure, error: e);
     }
   }
 }

@@ -98,34 +98,38 @@ class LoginState extends State<Login> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        SizedBox(
-                          child: ElevatedButton(
-                            onPressed: () => _login(authProvider),
-                            child: authProvider.loading
-                                ? LoadingIndicator(
-                                    type: LoadingIndicatorType.Button)
-                                : Text(S.of(context).LoginScreen_login_button),
-                          ),
+                        ElevatedButton(
+                          onPressed: () => _login(authProvider),
+                          child: authProvider.loading
+                              ? LoadingIndicator(
+                                  type: LoadingIndicatorType.Button)
+                              : Text(S.of(context).LoginScreen_login_button),
                         ),
                         SizedBox(height: ThemeConfig.of(context).largeSpacing),
                         LabeledDivider(
                           label: Text(S.of(context).LoginScreen_or),
                         ),
                         SizedBox(height: ThemeConfig.of(context).largeSpacing),
-                        OutlinedButton(
+                        ElevatedButton(
                           onPressed: () => Navigator.pushNamed(
                               context, RegisterScreen.route),
+                          style: ThemeConfig.of(context)
+                              .appElevatedButtonAltStyle(),
                           child:
                               Text(S.of(context).LoginScreen_register_button),
                         ),
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         ElevatedButton(
-                          onPressed: null,
+                          onPressed: () {},
+                          style: ThemeConfig.of(context)
+                              .appElevatedButtonAltStyle(),
                           child: Text(S.of(context).LoginScreen_google_button),
                         ),
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         ElevatedButton(
-                          onPressed: null,
+                          onPressed: () {},
+                          style: ThemeConfig.of(context)
+                              .appElevatedButtonAltStyle(),
                           child:
                               Text(S.of(context).LoginScreen_facebook_button),
                         ),

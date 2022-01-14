@@ -59,15 +59,16 @@
   "JobDetailsScreen_show_more": "Show more",
   "JobDetailsScreen_show_less": "Show less",
   "JobDetailsScreen_bid_button": "Bid",
-  "@JobSortFilterCard": {
+  "@JobSortForm": {
   },
-  "JobSortFilterCard_clearButton": "Clear",
-  "JobSortFilterCard_applyButton": "Apply",
-  "JobSortFilterCard_deadlineDateRange": "Deadline date range",
-  "JobSortFilterCard_postDateRange": "Post date range",
-  "JobSortFilterCard_filterJobs": "Filter Jobs",
-  "JobSortFilterCard_ascending": "Ascending",
-  "JobSortFilterCard_sortJobs": "Sort Jobs",
+  "JobSortForm_sortJobs": "Sort Jobs",
+  "JobSortForm_ascending": "Ascending",
+  "JobSortForm_postDateCriteria": "Post date",
+  "@JobFilterForm": {
+  },
+  "JobFilterForm_filterJobs": "Filter Jobs",
+  "JobFilterForm_postDateRange": "Post date range",
+  "JobFilterForm_clear": "Clear",
   "@JobCard": {
   },
   "JobCard_postedBy": "Posted by",
@@ -77,6 +78,8 @@
   "@JobsDashboardScreen": {
   },
   "JobsDashboardScreen_postJob": "Post a Job",
+  "JobsDashboardScreen_filter": "Filter",
+  "JobsDashboardScreen_sortingBy": "Sorting by",
   "@CreateJobScreen": {
   },
   "CreateJobScreen_title": "Create Job",
