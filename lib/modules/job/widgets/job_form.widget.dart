@@ -5,14 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/models/job.model.dart';
-import 'package:project/modules/shared/widgets/card_grid_entry.widget.dart';
 import 'package:project/modules/job/widgets/new_job_image.widget.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
 import 'package:project/modules/shared/utils/validators.utils.dart';
-import 'package:project/generated/l10n.dart';
+import 'package:project/modules/shared/widgets/card_grid_entry.widget.dart';
 import 'package:project/modules/shared/widgets/column_count_grid.widget.dart';
-
 import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 
 class JobForm extends StatefulWidget {
@@ -114,7 +113,7 @@ class JobFormState extends State<JobForm> {
                   onPressed: _shouldDisableAddPictureButton
                       ? null
                       : () async {
-                          late final Future<XFile?> imageFuture;
+                          Future<XFile?> imageFuture = Future.value(null);
                           if (kIsWeb)
                             imageFuture = _imagePicker.pickImage(
                               source: ImageSource.gallery,

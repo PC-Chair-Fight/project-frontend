@@ -35,8 +35,6 @@ class JobsProvider extends AppProvider {
 
   JobsProvider(BuildContext ctx) : super(ctx);
 
-  JobsProvider(BuildContext ctx) : super(ctx);
-
   void update(
     JobSortProvider jobSortProvider,
     JobFilterProvider jobFilterProvider,

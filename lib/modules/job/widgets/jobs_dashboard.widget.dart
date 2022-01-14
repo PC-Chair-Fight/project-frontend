@@ -46,97 +46,111 @@ class _JobsDashboardState extends State<JobsDashboard> {
         mainAxisSize: MainAxisSize.min,
         children: [
           JobsDashboardToolbar(),
-          if (!ScreenLayout.isWide(context))
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                  maxWidth: ThemeConfig.of(context).appMediumWidth),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: ThemeConfig.of(context).mediumSpacing,
-                  vertical: ThemeConfig.of(context).smallSpacing,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: _buildFilterButton(),
-                    ),
-                    SizedBox(width: ThemeConfig.of(context).mediumSpacing),
-                    Expanded(
-                      child: _buildSortButton(),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: ThemeConfig.of(context).appMargin,
-              horizontal: ScreenLayout.isSmall(context)
-                  ? 0
-                  : ThemeConfig.of(context).appMargin,
-            ),
-            child: ScreenLayout.isWide(context)
-                ? Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: ThemeConfig.of(context).appSmallWidth,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
+          Expanded(
+            child: RefreshIndicator(
+              onRefresh: () async {
+                _fetchJobs();
+              },
+              child: ListView(
+                children: [
+                  if (!ScreenLayout.isWide(context))
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                          maxWidth: ThemeConfig.of(context).appMediumWidth),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: ThemeConfig.of(context).mediumSpacing,
+                          vertical: ThemeConfig.of(context).smallSpacing,
+                        ),
+                        child: Row(
                           children: [
-                            Card(
-                              child: JobSortForm(
-                                onChanged: _fetchJobs,
-                              ),
+                            Expanded(
+                              child: _buildFilterButton(),
                             ),
                             SizedBox(
-                                height: ThemeConfig.of(context).mediumSpacing),
-                            Card(
-                              child: JobFilterForm(
-                                onChanged: _fetchJobs,
-                              ),
+                                width: ThemeConfig.of(context).mediumSpacing),
+                            Expanded(
+                              child: _buildSortButton(),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(width: ThemeConfig.of(context).mediumSpacing),
-                      ConstrainedBox(
-                        constraints: BoxConstraints.tightFor(
-                          width: ThemeConfig.of(context).appMediumWidth,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: _jobsProvider.jobs
-                              .map((e) => JobCard(
-                                  roundEdges: !ScreenLayout.isSmall(context),
-                                  job: e))
-                              .toList(),
-                        ),
-                      ),
-                      Flexible(
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints.tightFor(
-                            width: ThemeConfig.of(context).appSmallWidth,
+                    ),
+                  ScreenLayout.isWide(context)
+                      ? Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: ThemeConfig.of(context).appSmallWidth,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Card(
+                                    child: JobSortForm(
+                                      onChanged: _fetchJobs,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      height:
+                                          ThemeConfig.of(context).mediumSpacing),
+                                  Card(
+                                    child: JobFilterForm(
+                                      onChanged: _fetchJobs,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                                width: ThemeConfig.of(context).mediumSpacing),
+                            ConstrainedBox(
+                              constraints: BoxConstraints.tightFor(
+                                width: ThemeConfig.of(context).appMediumWidth,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: _jobsProvider.jobs
+                                    .map((e) => JobCard(
+                                        roundEdges:
+                                            !ScreenLayout.isSmall(context),
+                                        job: e))
+                                    .toList(),
+                              ),
+                            ),
+                            Flexible(
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints.tightFor(
+                                  width: ThemeConfig.of(context).appSmallWidth,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxWidth: ThemeConfig.of(context).appLargeWidth,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: _jobsProvider.jobs
+                                .map((e) => Padding(
+                                      padding: EdgeInsets.only(
+                                          bottom: ThemeConfig.of(context)
+                                              .mediumSpacing),
+                                      child: JobCard(
+                                        roundEdges:
+                                            !ScreenLayout.isSmall(context),
+                                        job: e,
+                                      ),
+                                    ))
+                                .toList(),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                : ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: ThemeConfig.of(context).appLargeWidth,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: _jobsProvider.jobs
-                          .map((e) => JobCard(
-                              roundEdges: !ScreenLayout.isSmall(context),
-                              job: e))
-                          .toList(),
-                    ),
-                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
