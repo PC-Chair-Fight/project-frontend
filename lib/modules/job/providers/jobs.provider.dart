@@ -7,9 +7,9 @@ import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/models/job_filter_field.enum.dart';
 import 'package:project/modules/job/models/job_query.model.dart';
 import 'package:project/modules/job/providers/job_filter.provider.dart';
+import 'package:project/modules/job/providers/job_search.provider.dart';
 import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:project/modules/job/services/job.service.dart';
-import 'package:project/modules/job/providers/job_search.provider.dart';
 
 class JobsProvider extends AppProvider {
   final _jobService = inject.get<JobService>();
@@ -83,17 +83,16 @@ class JobsProvider extends AppProvider {
   }
 
   Future<Job?> addJob(
-      String name,
-      String description,
-      List<Uint8List> images,
-      ) async {
+    String name,
+    String description,
+    List<Uint8List> images,
+  ) async {
     _addLoading = false;
     _addError = null;
     notify('addJob', notificationType: NotificationType.Start);
 
     try {
-      final createdJob = await _jobService.createJob(
-          name, description, images);
+      final createdJob = await _jobService.createJob(name, description, images);
       _addLoading = false;
       notify('addJob', notificationType: NotificationType.Success);
       return createdJob;
