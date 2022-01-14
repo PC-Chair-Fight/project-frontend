@@ -2,7 +2,7 @@
   "@@locale": "en",
   "@App": {
   },
-  "App_title": "PC Project",
+  "App_title": "Bid Grid",
   "@Exception": {
   },
   "Exception_unexpected": "Unexpected error... Please try again later",
@@ -18,7 +18,6 @@
   "Navigation_profile_page_label": "Profile",
   "@LoginScreen": {
   },
-  "LoginScreen_title": "PC Project",
   "LoginScreen_email_input_label": "Email",
   "LoginScreen_password_input_label": "Password",
   "LoginScreen_login_button": "Login",
@@ -80,5 +79,15 @@
   },
   "JobsDashboardScreen_postJob": "Post a Job",
   "JobsDashboardScreen_filter": "Filter",
-  "JobsDashboardScreen_sortingBy": "Sorting by"
+  "JobsDashboardScreen_sortingBy": "Sorting by",
+  "@CreateJobScreen": {
+  },
+  "CreateJobScreen_title": "Create Job",
+  "CreateJobScreen_form_name": "Name",
+  "CreateJobScreen_form_description": "Description",
+  "CreateJobScreen_validator_name_required": "Please enter a name for the job",
+  "CreateJobScreen_validator_description_required": "Please enter a description for the job",
+  "CreateJobScreen_submit": "Create Job",
+  "CreateJobScreen_back": "Go Back",
+  "CreateJobScreen_success": "Job Created"
 }

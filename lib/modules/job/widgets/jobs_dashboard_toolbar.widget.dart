@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
 import 'package:project/generated/l10n.dart';
+import 'package:project/modules/job/screens/create_job.screen.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
 
 class JobsDashboardToolbar extends StatelessWidget {
@@ -47,7 +48,8 @@ class JobsDashboardToolbar extends StatelessWidget {
                 ),
                 SizedBox(width: ThemeConfig.of(context).mediumSpacing),
                 FloatingActionButton.small(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.pushNamed(context, CreateJobScreen.route),
                   child: Icon(Icons.note_add),
                 ),
               ],

@@ -7,6 +7,9 @@ import 'package:project/modules/job/models/bid.model.dart';
 import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/widgets/bidder_card.widget.dart';
 import 'package:project/modules/job/widgets/job_description.widget.dart';
+import 'package:project/modules/shared/utils/authenticated_network_image.utils.dart';
+import 'package:project/modules/shared/utils/screen_layout.utils.dart';
+import 'package:project/modules/shared/widgets/column_count_grid.widget.dart';
 import 'package:project/modules/shared/widgets/image_carousel.widget.dart';
 
 class JobDetails extends StatefulWidget {
@@ -23,11 +26,8 @@ class _JobDetailsState extends State<JobDetails> {
 
   @override
   Widget build(BuildContext context) {
-    final wideLayout = MediaQuery.of(context).size.width > 1100;
-    final smallLayout = MediaQuery.of(context).size.width < 800;
-
     // setup differentiated based on platform (web or not)
-    return smallLayout
+    return ScreenLayout.isSmall(context)
         ? CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -62,7 +62,7 @@ class _JobDetailsState extends State<JobDetails> {
               )
             ],
           )
-        : wideLayout
+        : ScreenLayout.isWide(context)
             ? SingleChildScrollView(
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
@@ -195,34 +195,28 @@ class _JobDetailsState extends State<JobDetails> {
   Widget _carousel(BuildContext context) {
     return ImageCarouselWidget(
       height: 400,
-      images: widget.job.images.map((image) => NetworkImage(image)).toList(),
+      images: widget.job.images
+          .map((image) => authNetworkImage(context, image))
+          .toList(),
     );
   }
 
   Widget _bidGridView(BuildContext context) {
     int bidPosition = 1;
-    return LayoutBuilder(
-      builder: (context, size) => Wrap(
-        direction: Axis.horizontal,
-        runSpacing: ThemeConfig.of(context).smallSpacing,
-        spacing: ThemeConfig.of(context).smallSpacing,
-        alignment: WrapAlignment.center,
-        children: widget.job.bids
-            .map(
-              (b) => ConstrainedBox(
-                // make a wrap child be just wide enough to fit two such
-                // children on a row, taking into account the spacing
-                constraints: BoxConstraints(
-                    maxWidth: size.maxWidth / 2 -
-                        ThemeConfig.of(context).smallSpacing),
-                child: BidderCardWidget(
-                  position: bidPosition++,
-                  bid: b,
-                ),
-              ),
-            )
-            .toList(),
-      ),
+
+    return ColumnCountGrid(
+      count: 2,
+      rowSpacing: ThemeConfig.of(context).smallSpacing,
+      columnSpacing: ThemeConfig.of(context).smallSpacing,
+      columnAlignment: WrapAlignment.start,
+      children: widget.job.bids
+          .map(
+            (b) => BidderCardWidget(
+              position: bidPosition++,
+              bid: b,
+            ),
+          )
+          .toList(),
     );
   }
 

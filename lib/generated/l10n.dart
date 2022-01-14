@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `PC Project`
+  /// `Bid Grid`
   String get App_title {
     return Intl.message(
-      'PC Project',
+      'Bid Grid',
       name: 'App_title',
       desc: '',
       args: [],
@@ -145,16 +145,6 @@ class S {
     return Intl.message(
       'Profile',
       name: 'Navigation_profile_page_label',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `PC Project`
-  String get LoginScreen_title {
-    return Intl.message(
-      'PC Project',
-      name: 'LoginScreen_title',
       desc: '',
       args: [],
     );
@@ -655,6 +645,86 @@ class S {
     return Intl.message(
       'Sorting by',
       name: 'JobsDashboardScreen_sortingBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Job`
+  String get CreateJobScreen_title {
+    return Intl.message(
+      'Create Job',
+      name: 'CreateJobScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get CreateJobScreen_form_name {
+    return Intl.message(
+      'Name',
+      name: 'CreateJobScreen_form_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get CreateJobScreen_form_description {
+    return Intl.message(
+      'Description',
+      name: 'CreateJobScreen_form_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a name for the job`
+  String get CreateJobScreen_validator_name_required {
+    return Intl.message(
+      'Please enter a name for the job',
+      name: 'CreateJobScreen_validator_name_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a description for the job`
+  String get CreateJobScreen_validator_description_required {
+    return Intl.message(
+      'Please enter a description for the job',
+      name: 'CreateJobScreen_validator_description_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Job`
+  String get CreateJobScreen_submit {
+    return Intl.message(
+      'Create Job',
+      name: 'CreateJobScreen_submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Back`
+  String get CreateJobScreen_back {
+    return Intl.message(
+      'Go Back',
+      name: 'CreateJobScreen_back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Job Created`
+  String get CreateJobScreen_success {
+    return Intl.message(
+      'Job Created',
+      name: 'CreateJobScreen_success',
       desc: '',
       args: [],
     );

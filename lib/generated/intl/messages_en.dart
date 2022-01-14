@@ -22,7 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "App_title": MessageLookupByLibrary.simpleMessage("PC Project"),
+        "App_title": MessageLookupByLibrary.simpleMessage("Bid Grid"),
+        "CreateJobScreen_back": MessageLookupByLibrary.simpleMessage("Go Back"),
+        "CreateJobScreen_form_description":
+            MessageLookupByLibrary.simpleMessage("Description"),
+        "CreateJobScreen_form_name":
+            MessageLookupByLibrary.simpleMessage("Name"),
+        "CreateJobScreen_submit":
+            MessageLookupByLibrary.simpleMessage("Create Job"),
+        "CreateJobScreen_success":
+            MessageLookupByLibrary.simpleMessage("Job Created"),
+        "CreateJobScreen_title":
+            MessageLookupByLibrary.simpleMessage("Create Job"),
+        "CreateJobScreen_validator_description_required":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a description for the job"),
+        "CreateJobScreen_validator_name_required":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a name for the job"),
         "Exception_bad_request": MessageLookupByLibrary.simpleMessage(
             "The server had trouble processing your request... Please try again later"),
         "Exception_connection_timed_out": MessageLookupByLibrary.simpleMessage(
@@ -90,7 +107,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Register"),
         "LoginScreen_success":
             MessageLookupByLibrary.simpleMessage("Authentication successful"),
-        "LoginScreen_title": MessageLookupByLibrary.simpleMessage("PC Project"),
         "LoginScreen_validator_email_required":
             MessageLookupByLibrary.simpleMessage("Please enter an email"),
         "LoginScreen_validator_password_required":

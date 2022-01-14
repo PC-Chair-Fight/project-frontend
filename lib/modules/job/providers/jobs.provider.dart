@@ -1,7 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:project/config/inject.config.dart';
 import 'package:project/core/app_provider.dart';
-import 'package:project/core/exceptions/base.exception.dart';
 import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/models/job_query.model.dart';
 import 'package:project/modules/job/providers/job_filter.provider.dart';
@@ -15,14 +16,24 @@ class JobsProvider extends AppProvider {
   late JobFilterProvider _jobFilterProvider;
 
   List<Job> _jobs = [];
+
   bool _fetchLoading = false;
   dynamic _fetchError;
 
   bool get fetchLoading => _fetchLoading;
 
+  dynamic get fetchError => _fetchError;
+
+  bool _addLoading = false;
+  dynamic _addError;
+
+  bool get addLoading => _addLoading;
+
+  dynamic get addError => _addError;
+
   List<Job> get jobs => _jobs;
 
-  BaseException? get fetchError => _fetchError;
+  JobsProvider(BuildContext ctx) : super(ctx);
 
   JobsProvider(BuildContext ctx) : super(ctx);
 
@@ -62,6 +73,28 @@ class JobsProvider extends AppProvider {
       _fetchError = e;
       _fetchLoading = false;
       notify('getJobs', notificationType: NotificationType.Failure, error: e);
+    }
+  }
+
+  Future<Job?> addJob(
+      String name,
+      String description,
+      List<Uint8List> images,
+      ) async {
+    _addLoading = false;
+    _addError = null;
+    notify('addJob', notificationType: NotificationType.Start);
+
+    try {
+      final createdJob = await _jobService.createJob(
+          name, description, images);
+      _addLoading = false;
+      notify('addJob', notificationType: NotificationType.Success);
+      return createdJob;
+    } catch (e) {
+      _addError = e;
+      _addLoading = false;
+      notify('addJob', notificationType: NotificationType.Failure, error: e);
     }
   }
 }
