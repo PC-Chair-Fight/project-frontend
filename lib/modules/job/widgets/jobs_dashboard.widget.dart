@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -25,6 +27,7 @@ class _JobsDashboardState extends State<JobsDashboard> {
   late JobsProvider _jobsProvider;
   late JobFilterProvider _filterProvider;
   late JobSortProvider _sortProvider;
+  Timer? searchDebounceTimer;
 
   @override
   void initState() {
@@ -32,6 +35,12 @@ class _JobsDashboardState extends State<JobsDashboard> {
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       _fetchJobs();
     });
+  }
+
+  @override
+  void dispose() {
+    searchDebounceTimer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -45,7 +54,14 @@ class _JobsDashboardState extends State<JobsDashboard> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          JobsDashboardToolbar(),
+          JobsDashboardToolbar(
+            onChanged: () {
+              if (searchDebounceTimer?.isActive ?? false)
+                searchDebounceTimer!.cancel();
+              searchDebounceTimer =
+                  Timer(Duration(milliseconds: 300), _fetchJobs);
+            },
+          ),
           if (!ScreenLayout.isWide(context))
             ConstrainedBox(
               constraints: BoxConstraints(
