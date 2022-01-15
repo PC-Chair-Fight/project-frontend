@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:project/config/inject.config.dart';
+import 'package:project/core/exceptions/connection_timed_out.exception.dart';
+import 'package:project/core/exceptions/not_found.exception.dart';
+import 'package:project/core/exceptions/server_side_validation.exception.dart';
+import 'package:project/core/exceptions/unexpected.exception.dart';
 import 'package:project/modules/job/models/bid.model.dart';
-import 'package:project/modules/user/models/user.model.dart';
-import 'package:project/modules/worker/models/worker.model.dart';
 
 class BidService {
   final _dio = inject.get<Dio>();
@@ -17,47 +19,28 @@ class BidService {
     return _dio;
   }
 
-  // TODO replace mock
-  Future<List<Bid>> getBids(int jobId) async => [
-        Bid(
-          id: 1,
-          sum: 120,
-          worker: Worker(
-            user: User(
-                firstName: 'Rhiana',
-                lastName: 'McDonnell',
-                profilePicture: 'https://picsum.photos/id/1/600'),
-          ),
-        ),
-        Bid(
-          id: 2,
-          sum: 121,
-          worker: Worker(
-            user: User(
-                firstName: 'Elijah',
-                lastName: 'O\'Ryan',
-                profilePicture: 'https://picsum.photos/id/2/600'),
-          ),
-        ),
-        Bid(
-          id: 3,
-          sum: 122,
-          worker: Worker(
-            user: User(
-                firstName: 'Ibrahim',
-                lastName: 'Mckay',
-                profilePicture: 'https://picsum.photos/id/3/600'),
-          ),
-        ),
-        Bid(
-          id: 4,
-          sum: 123,
-          worker: Worker(
-            user: User(
-                firstName: 'Jolie',
-                lastName: 'Moss',
-                profilePicture: 'https://picsum.photos/id/4/600'),
-          ),
-        ),
-      ];
+  Future<List<Bid>> getBids(int jobId, int index, int count) async => initializeDio()
+      .get('/Job/Bids', queryParameters: {'jobId': jobId, 'index': index, 'count': count})
+      .then((response) => (response.data['bids'] as List<dynamic>)
+      .map((json) => Bid.fromJson(json))
+      .toList())
+      .catchError((error) {
+    switch (error.runtimeType) {
+      case DioError:
+        switch (error.response?.statusCode) {
+          case null:
+            throw ConnectionTimedOutException();
+          case 400:
+            throw ServerSideValidationException.fromJson(
+              error.response.data,
+            );
+          case 404:
+            throw NotFoundException();
+          default:
+            throw UnexpectedException();
+        }
+      default:
+        throw UnexpectedException();
+    }
+  });
 }
