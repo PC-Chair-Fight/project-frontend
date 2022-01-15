@@ -52,7 +52,14 @@ class JobsProvider extends AppProvider {
     notify('updateJob', notificationType: NotificationType.Start);
     final found = _jobs.indexWhere((element) => element.id == job.id);
     if (found >= 0) {
-      _jobs[found] = job;
+      final foundJob = _jobs[found].toJson() as Map<String, dynamic>;
+      final updateJob = job.toJson() as Map<String, dynamic>;
+      updateJob.forEach((key, value) {
+        if (value != null) {
+          foundJob[key] = value;
+        }
+      });
+      _jobs[found] = Job.fromJson(foundJob);
       notify('updateJob', notificationType: NotificationType.Success);
     }
   }
