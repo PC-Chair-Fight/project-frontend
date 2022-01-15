@@ -33,7 +33,7 @@ class JobDetailsProvider extends AppProvider {
     notify('getJobDetails', notificationType: NotificationType.Start);
     try {
       _jobDetails = await _jobService.getDetails(jobId);
-      _jobDetails?.bids = await _bidService.getBids(jobId);
+      _jobDetails?.bids = await _bidService.getBids(jobId, 0, 100);
       _loading = false;
       if (_jobDetails != null) {
         _jobsProvider.updateJob(_jobDetails!);

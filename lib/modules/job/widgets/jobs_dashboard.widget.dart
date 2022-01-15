@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/core/utils.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/models/job_order_field.enum.dart';
 import 'package:project/modules/job/providers/job_filter.provider.dart';
@@ -99,6 +100,8 @@ class _JobsDashboardState extends State<JobsDashboard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
+                                width: ThemeConfig.of(context).mediumSpacing),
+                            SizedBox(
                               width: ThemeConfig.of(context).appSmallWidth,
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -109,8 +112,8 @@ class _JobsDashboardState extends State<JobsDashboard> {
                                     ),
                                   ),
                                   SizedBox(
-                                      height:
-                                          ThemeConfig.of(context).mediumSpacing),
+                                      height: ThemeConfig.of(context)
+                                          .mediumSpacing),
                                   Card(
                                     child: JobFilterForm(
                                       onChanged: _fetchJobs,
@@ -127,11 +130,15 @@ class _JobsDashboardState extends State<JobsDashboard> {
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: _jobsProvider.jobs
-                                    .map((e) => JobCard(
-                                        roundEdges:
-                                            !ScreenLayout.isSmall(context),
-                                        job: e))
+                                children: <Widget>[
+                                  ..._jobsProvider.jobs.map((e) => JobCard(
+                                      roundEdges:
+                                          !ScreenLayout.isSmall(context),
+                                      job: e))
+                                ]
+                                    .intersperse(SizedBox(
+                                        height: ThemeConfig.of(context)
+                                            .smallSpacing))
                                     .toList(),
                               ),
                             ),

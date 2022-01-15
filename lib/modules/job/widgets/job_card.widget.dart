@@ -59,13 +59,11 @@ class JobCard extends StatelessWidget {
                               sum: bid.sum,
                               worker: Worker(
                                 user: User(
-                                    firstName:
-                                        bid.worker?.user?.firstName ?? 'Rhiana',
-                                    lastName: bid.worker?.user?.lastName ??
-                                        'McDonnell',
-                                    profilePicture:
-                                        bid.worker?.user?.profilePicture ??
-                                            'https://picsum.photos/id/1/600'),
+                                  firstName: bid.worker?.user?.firstName,
+                                  lastName: bid.worker?.user?.lastName,
+                                  profilePicture:
+                                      bid.worker?.user?.profilePicture,
+                                ),
                               ),
                             ),
                           ),
