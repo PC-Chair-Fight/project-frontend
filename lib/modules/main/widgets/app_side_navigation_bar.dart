@@ -17,7 +17,8 @@ class AppSideNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicWidth(
+    return SizedBox(
+      width: 150,
       child: Material(
         color: ThemeConfig.of(context).surfaceColor,
         elevation: ThemeConfig.of(context).mediumElevation,
@@ -25,11 +26,8 @@ class AppSideNavigationBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              width: 192,
               padding: EdgeInsets.all(ThemeConfig.of(context).mediumSpacing),
-              child: FittedBox(
-                child: AppLogo(),
-              ),
+              child: AppLogo(),
             ),
             const Divider(),
             _buildItem(
