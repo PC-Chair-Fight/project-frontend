@@ -6,17 +6,17 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/config/theme.config.dart';
-import 'package:project/core/utils.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/models/job_order_field.enum.dart';
 import 'package:project/modules/job/providers/job_filter.provider.dart';
 import 'package:project/modules/job/providers/job_sort.provider.dart';
 import 'package:project/modules/job/providers/jobs.provider.dart';
-import 'package:project/modules/job/widgets/job_card.widget.dart';
 import 'package:project/modules/job/widgets/job_filter_form.widget.dart';
+import 'package:project/modules/job/widgets/job_list.widget.dart';
 import 'package:project/modules/job/widgets/job_sort_form.widget.dart';
 import 'package:project/modules/job/widgets/jobs_dashboard_toolbar.widget.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
+import 'package:project/modules/shared/widgets/flushbar.widget.dart';
 import 'package:provider/provider.dart';
 
 class JobsDashboard extends StatefulWidget {
@@ -128,18 +128,23 @@ class _JobsDashboardState extends State<JobsDashboard> {
                               constraints: BoxConstraints.tightFor(
                                 width: ThemeConfig.of(context).appMediumWidth,
                               ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: <Widget>[
-                                  ..._jobsProvider.jobs.map((e) => JobCard(
-                                      roundEdges:
-                                          !ScreenLayout.isSmall(context),
-                                      job: e))
-                                ]
-                                    .intersperse(SizedBox(
-                                        height: ThemeConfig.of(context)
-                                            .smallSpacing))
-                                    .toList(),
+                              child: AnimatedCrossFade(
+                                duration: ThemeConfig.of(context).fastDuration,
+                                crossFadeState: _jobsProvider.fetchLoading
+                                    ? CrossFadeState.showFirst
+                                    : CrossFadeState.showSecond,
+                                firstChild: Center(
+                                  child: Container(
+                                    margin: EdgeInsets.all(
+                                        ThemeConfig.of(context).smallSpacing),
+                                    height: 32,
+                                    width: 32,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                                secondChild: JobList(
+                                  jobs: _jobsProvider.jobs,
+                                ),
                               ),
                             ),
                             Flexible(
@@ -155,20 +160,23 @@ class _JobsDashboardState extends State<JobsDashboard> {
                           constraints: BoxConstraints(
                             maxWidth: ThemeConfig.of(context).appLargeWidth,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: _jobsProvider.jobs
-                                .map((e) => Padding(
-                                      padding: EdgeInsets.only(
-                                          bottom: ThemeConfig.of(context)
-                                              .mediumSpacing),
-                                      child: JobCard(
-                                        roundEdges:
-                                            !ScreenLayout.isSmall(context),
-                                        job: e,
-                                      ),
-                                    ))
-                                .toList(),
+                          child: AnimatedCrossFade(
+                            duration: ThemeConfig.of(context).fastDuration,
+                            crossFadeState: _jobsProvider.fetchLoading
+                                ? CrossFadeState.showFirst
+                                : CrossFadeState.showSecond,
+                            firstChild: Center(
+                              child: Container(
+                                margin: EdgeInsets.all(
+                                    ThemeConfig.of(context).smallSpacing),
+                                height: 32,
+                                width: 32,
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                            secondChild: JobList(
+                              jobs: _jobsProvider.jobs,
+                            ),
                           ),
                         ),
                 ],
@@ -258,7 +266,15 @@ class _JobsDashboardState extends State<JobsDashboard> {
     // the filter & sort provider (since that notification is also defined as a coroutine and is scheduled
     // to execute after this bit of synchronous code... I think).
     Future.delayed(Duration.zero, () {
-      _jobsProvider.fetchJobs();
+      _jobsProvider.fetchJobs().whenComplete(() {
+        if (_jobsProvider.fetchError != null) {
+          showAppFlushbar(
+            context,
+            message: _jobsProvider.fetchError!.message,
+            messageType: MessageType.Error,
+          );
+        }
+      });
     });
   }
 }

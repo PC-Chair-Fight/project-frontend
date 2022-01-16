@@ -2,11 +2,11 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:project/config/theme.config.dart';
+import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/providers/jobs.provider.dart';
 import 'package:project/modules/job/widgets/job_form.widget.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
-import 'package:project/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class CreateJob extends StatefulWidget {
@@ -50,8 +50,7 @@ class _CreateJobState extends State<CreateJob> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          final formResult =
-                          _formKey.currentState?.submit();
+                          final formResult = _formKey.currentState?.submit();
                           if (formResult != null)
                             _addJob(
                               jobsProvider,
@@ -120,8 +119,10 @@ class _CreateJobState extends State<CreateJob> {
                             ),
                             SizedBox(
                                 height: ThemeConfig.of(context).mediumSpacing),
-                            OutlinedButton(
+                            ElevatedButton(
                               onPressed: () => Navigator.of(context).pop(),
+                              style: ThemeConfig.of(context)
+                                  .appElevatedButtonAltStyle(),
                               child: Text(S.of(context).CreateJobScreen_back),
                             ),
                           ],

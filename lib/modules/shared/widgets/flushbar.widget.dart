@@ -12,7 +12,7 @@ extension ParseToString on MessageType {
   }
 }
 
-void showFlushBar(
+void showAppFlushbar(
   BuildContext context, {
   String message = '',
   MessageType messageType = MessageType.Information,
@@ -83,6 +83,7 @@ void showFlushBar(
               ThemeConfig.of(context).backgroundColor)));
 
   flushBar = Flushbar(
+    maxWidth: ThemeConfig.of(context).appLargeWidth,
     messageText: Row(
       children: [
         Flexible(
@@ -104,15 +105,20 @@ void showFlushBar(
     borderRadius: BorderRadius.circular(ThemeConfig.of(context).borderRadius),
     backgroundColor: ThemeConfig.of(context).backgroundColor,
     margin: EdgeInsets.all(ThemeConfig.of(context).appMargin),
-    padding: EdgeInsets.all(ThemeConfig.of(context).mediumSpacing),
+    padding: EdgeInsets.symmetric(
+      horizontal: ThemeConfig.of(context).appMargin,
+      vertical: ThemeConfig.of(context).mediumSpacing,
+    ),
     boxShadows: [
       BoxShadow(
-        color: ThemeConfig.of(context).shadowColor.withOpacity(.25),
+        color: Color.lerp(ThemeConfig.of(context).backgroundColor,
+            ThemeConfig.of(context).shadowColor, .25)!,
         spreadRadius: ThemeConfig.of(context).smallestSpacing,
         blurRadius: ThemeConfig.of(context).smallestSpacing,
         offset: Offset(0, ThemeConfig.of(context).smallestSpacing),
       ),
     ],
+    shouldIconPulse: false,
     icon: iconsMap[messageType],
     isDismissible: messageType != MessageType.Confirmation,
     duration: messageType == MessageType.Confirmation
@@ -120,5 +126,5 @@ void showFlushBar(
         : ThemeConfig.of(context).longDuration,
   );
 
-  flushBar..show(context);
+  flushBar.show(context);
 }

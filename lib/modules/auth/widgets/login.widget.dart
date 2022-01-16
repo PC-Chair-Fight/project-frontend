@@ -137,8 +137,10 @@ class LoginState extends State<Login> {
                         SizedBox(height: ThemeConfig.of(context).mediumSpacing),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, MainWrapperScreen.route);
+                            Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                MainWrapperScreen.route,
+                                (route) => route.isFirst);
                           },
                           child: Text('Skip'),
                         ),
@@ -160,8 +162,9 @@ class LoginState extends State<Login> {
           .login(emailController.value.text, passwordController.value.text)
           .whenComplete(() {
         if (authProvider.authToken != null)
-          Navigator.pushNamed(context, MainWrapperScreen.route);
-        showFlushBar(context,
+          Navigator.pushNamedAndRemoveUntil(
+              context, MainWrapperScreen.route, (route) => route.isFirst);
+        showAppFlushbar(context,
             message: authProvider.error?.message ??
                 S.of(context).LoginScreen_success,
             messageType: authProvider.error == null
