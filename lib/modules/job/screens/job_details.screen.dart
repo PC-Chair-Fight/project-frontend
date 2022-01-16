@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/generated/l10n.dart';
 import 'package:project/modules/job/providers/job_details.provider.dart';
 import 'package:project/modules/job/widgets/job_details.widget.dart';
+import 'package:project/modules/shared/widgets/flushbar.widget.dart';
 import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +36,12 @@ class _JobDetailsScreenState extends State<JobDetailsScreen> {
   Widget build(BuildContext context) {
     final provider = Provider.of<JobDetailsProvider>(context);
     if (provider.error != null) {
-      Navigator.pop(context); // TODO error screen
+      Navigator.pop(context);
+      showAppFlushbar(
+        context,
+        message: provider.error!.message,
+        messageType: MessageType.Error,
+      );
     }
     return Scaffold(
       appBar: kIsWeb

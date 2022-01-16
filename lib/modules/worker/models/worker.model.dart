@@ -8,7 +8,7 @@ class Worker {
 
   Worker.fromJson(Map<String, dynamic> json)
       : user = json.containsKey('user') ? User.fromJson(json['user']) : null,
-        workerSince = json.containsKey('workerSince')
+        workerSince = json['workerSince'] != null
             ? DateTime.parse(json['workerSince'])
             : null;
 

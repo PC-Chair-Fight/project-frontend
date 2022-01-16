@@ -19,7 +19,7 @@ class User {
       : id = json['id'],
         firstName = json['firstName'],
         lastName = json['lastName'],
-        dateOfBirth = json.containsKey('dateOfBirth')
+        dateOfBirth = json['dateOfBirth'] != null
             ? DateTime.parse(json['dateOfBirth'])
             : null,
         email = json['email'],
