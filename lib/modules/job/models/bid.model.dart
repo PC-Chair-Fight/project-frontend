@@ -11,7 +11,11 @@ class Bid {
       : id = json['id'],
         sum = (json['sum'] as num).toDouble(),
         worker =
-            json.containsKey('worker') ? Worker.fromJson(json['worker']) : null;
+            json['worker'] != null ? Worker.fromJson(json['worker']) : null;
 
-  Map<String, dynamic> toJson() => {'id': id, 'sum': sum, 'worker': worker};
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'sum': sum,
+        'worker': worker?.toJson(),
+      };
 }

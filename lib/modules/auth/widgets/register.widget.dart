@@ -222,8 +222,8 @@ class _RegisterState extends State<Register> {
               _selectedDate,
               passwordController.value.text)
           .whenComplete(() {
-        Navigator.pushNamedAndRemoveUntil(
-            context, MainWrapperScreen.route, (route) => route.isFirst);
+        Navigator.pushNamedAndRemoveUntil(context, MainWrapperScreen.route,
+                (Route? route) => route == null);
         showAppFlushbar(context,
             message: authProvider.error?.toString() ??
                 S.of(context).RegisterScreen_success,

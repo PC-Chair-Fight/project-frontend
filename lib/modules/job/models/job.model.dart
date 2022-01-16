@@ -25,13 +25,12 @@ class Job {
       : id = json['id'],
         name = json['name'],
         description = json['description'],
-        images = (json['images'] as List? ?? [])
-            .map((e) => e.toString())
-            .toList(),
+        images =
+            (json['images'] as List? ?? []).map((e) => e.toString()).toList(),
         bids = (json['bids'] as List? ?? [])
             .map((json) => Bid.fromJson(json))
             .toList(),
-        user = json.containsKey('user') ? User.fromJson(json['user']) : null,
+        user = json['user'] != null ? User.fromJson(json['user']) : null,
         postDate = DateTime.parse(json['postDate'] as String),
         done = json['done'];
 
@@ -40,7 +39,8 @@ class Job {
         'name': name,
         'description': description,
         'images': images,
-        'bids': bids.map((b) => b.toJson()),
+        'bids': bids.map((b) => b.toJson()).toList(),
+        'user': user?.toJson(),
         'postDate': postDate?.toIso8601String(),
         'done': done
       };

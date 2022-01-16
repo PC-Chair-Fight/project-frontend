@@ -4,7 +4,7 @@ import 'package:project/modules/job/models/job_order_field.enum.dart';
 
 class JobSortProvider extends AppProvider {
   JobOrderField _sortOrderField = JobOrderField.PostDate;
-  bool _ascending = true;
+  bool _ascending = false;
 
   JobOrderField get sortOrderField => _sortOrderField;
 

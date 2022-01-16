@@ -7,6 +7,8 @@ import 'package:project/modules/job/models/job.model.dart';
 import 'package:project/modules/job/providers/jobs.provider.dart';
 import 'package:project/modules/job/widgets/job_form.widget.dart';
 import 'package:project/modules/shared/utils/screen_layout.utils.dart';
+import 'package:project/modules/shared/widgets/flushbar.widget.dart';
+import 'package:project/modules/shared/widgets/loading_indicator.widget.dart';
 import 'package:provider/provider.dart';
 
 class CreateJob extends StatefulWidget {
@@ -58,11 +60,16 @@ class _CreateJobState extends State<CreateJob> {
                               formResult.images,
                             );
                         },
-                        child: Text(S.of(context).CreateJobScreen_submit),
+                        child: jobsProvider.addLoading
+                            ? LoadingIndicator(
+                                type: LoadingIndicatorType.Button)
+                            : Text(S.of(context).CreateJobScreen_submit),
                       ),
                       SizedBox(height: ThemeConfig.of(context).mediumSpacing),
-                      OutlinedButton(
+                      ElevatedButton(
                         onPressed: () => Navigator.of(context).pop(),
+                        style:
+                            ThemeConfig.of(context).appElevatedButtonAltStyle(),
                         child: Text(S.of(context).CreateJobScreen_back),
                       ),
                       SizedBox(
@@ -115,7 +122,10 @@ class _CreateJobState extends State<CreateJob> {
                                     formResult.images,
                                   );
                               },
-                              child: Text(S.of(context).CreateJobScreen_submit),
+                              child: jobsProvider.addLoading
+                                  ? LoadingIndicator(
+                                      type: LoadingIndicatorType.Button)
+                                  : Text(S.of(context).CreateJobScreen_submit),
                             ),
                             SizedBox(
                                 height: ThemeConfig.of(context).mediumSpacing),
@@ -139,25 +149,21 @@ class _CreateJobState extends State<CreateJob> {
   void _addJob(JobsProvider provider, Job job, List<Uint8List> images) {
     provider.addJob(job.name!, job.description!, images).then(
       (job) {
-        if (provider.addError == null) Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: provider.addError == null
-                ? ThemeConfig.of(context).successColor
-                : ThemeConfig.of(context).errorColor,
-            content: Text(
-              provider.addError?.message ??
-                  S.of(context).CreateJobScreen_success,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: provider.addError == null
-                    ? ThemeConfig.of(context).onSuccessColor
-                    : ThemeConfig.of(context).onErrorColor,
-              ),
-            ),
-            duration: Duration(seconds: 4),
-          ),
-        );
+        if (provider.addError == null) {
+          Navigator.pop(context);
+          showAppFlushbar(
+            context,
+            message: S.of(context).CreateJobScreen_success,
+            messageType: MessageType.Information,
+          );
+        } else {
+          Navigator.pop(context);
+          showAppFlushbar(
+            context,
+            message: provider.addError!.message,
+            messageType: MessageType.Error,
+          );
+        }
       },
     );
   }

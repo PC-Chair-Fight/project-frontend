@@ -93,10 +93,9 @@ class JobsProvider extends AppProvider {
     String description,
     List<Uint8List> images,
   ) async {
-    _addLoading = false;
+    _addLoading = true;
     _addError = null;
     notify('addJob', notificationType: NotificationType.Start);
-
     try {
       final createdJob = await _jobService.createJob(name, description, images);
       _addLoading = false;

@@ -134,16 +134,6 @@ class LoginState extends State<Login> {
                           child:
                               Text(S.of(context).LoginScreen_facebook_button),
                         ),
-                        SizedBox(height: ThemeConfig.of(context).mediumSpacing),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                MainWrapperScreen.route,
-                                (route) => route.isFirst);
-                          },
-                          child: Text('Skip'),
-                        ),
                       ],
                     ),
                   ),
@@ -162,8 +152,8 @@ class LoginState extends State<Login> {
           .login(emailController.value.text, passwordController.value.text)
           .whenComplete(() {
         if (authProvider.authToken != null)
-          Navigator.pushNamedAndRemoveUntil(
-              context, MainWrapperScreen.route, (route) => route.isFirst);
+          Navigator.pushNamedAndRemoveUntil(context, MainWrapperScreen.route,
+              (Route? route) => route == null);
         showAppFlushbar(context,
             message: authProvider.error?.message ??
                 S.of(context).LoginScreen_success,

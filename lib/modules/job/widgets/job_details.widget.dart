@@ -30,10 +30,12 @@ class _JobDetailsState extends State<JobDetails> {
     return ScreenLayout.isSmall(context)
         ? CustomScrollView(
             slivers: [
-              SliverAppBar(
+              if (widget.job.images.isNotEmpty)
+                SliverAppBar(
                   automaticallyImplyLeading: false,
                   expandedHeight: 400,
-                  flexibleSpace: _carousel(context)),
+                  flexibleSpace: _carousel(context),
+                ),
               SliverToBoxAdapter(
                 child: Container(
                   child: Column(
@@ -88,7 +90,8 @@ class _JobDetailsState extends State<JobDetails> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    _carousel(context),
+                                    if (widget.job.images.isNotEmpty)
+                                      _carousel(context),
                                     JobDescription(
                                       name: widget.job.name,
                                       description: widget.job.description,
@@ -151,7 +154,8 @@ class _JobDetailsState extends State<JobDetails> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    _carousel(context),
+                                    if (widget.job.images.isNotEmpty)
+                                      _carousel(context),
                                     JobDescription(
                                       name: widget.job.name,
                                       description: widget.job.description,
